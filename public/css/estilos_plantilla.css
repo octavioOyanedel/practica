@@ -60,7 +60,7 @@
 }
 
 .contenido{
-	padding: 30px;
+	padding: 0px 30px;
 }
 
 .titulo{
@@ -113,7 +113,7 @@ ul li ul{
 	.plantilla{
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: repeat(3, 1fr);
+		grid-template-rows: 0px .1fr 1fr;
 	}
 
 	.nav{
@@ -125,46 +125,25 @@ ul li ul{
 		grid-area: 2 / 1 / 3 / 3;
 	}
 
+	.boton-menu{
+		display: block;
+	}
+
 	.nav-interno{
 		display: none;
 	}
 
-	.titulo-nav{
-		grid-area: 1 / 1 / 2 / 3;
+	li.boton-menu{
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+		z-index: 1000;
 	}
 
-	.cerrar-sesion{
-		grid-area: 1 / 3 / 2 / 4;
-	}
-
-	.icono-usuario{
-		grid-area: 2 / 1 / 3 / 2;
-	}
-
-	.nombre-usuario{
-		grid-area: 2 / 2 / 3 / 4;
-	}
-
-	.info-1{
-		grid-area: 3 / 1 / 4 / 2;
-		text-align: center;
-	}
-
-	.info-2{
-		grid-area: 3 / 2 / 4 / 3;
-		text-align: center;
-	}
-
-	.info-3{
-		grid-area: 3 / 3 / 4 / 4;
-		text-align: center;
+	a.titulo-responsivo{
+		color: #6cb2eb;
 	}
 
 	.item-menu{
 		display: none;
 	}
 
-	.boton-menu{
-		display: block;
-	}
 }

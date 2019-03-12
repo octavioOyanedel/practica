@@ -37,7 +37,7 @@ body{
 }
 
 .titulo-nav{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -66,4 +66,20 @@ a:hover{
 .menu .menu-lateral .boton-menu .titulo-responsivo{
     font-size: 22px;
     font-weight: 600;
+}
+
+.contenido{
+	font-size: 14px;
+}
+
+.iconos-botones{
+	font-size: 14px;
+}
+
+.botonera{
+	text-align: right;
+}
+
+.icono-excel{
+	margin-left: 20px;
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Socio;
 
 class SocioController extends Controller
 {
@@ -13,7 +14,12 @@ class SocioController extends Controller
      */
     public function index()
     {
-        return view('sind1.socios.index');
+        $socios = Socio::all();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        //Sind1::formatoSalidaSocioColeccion($socios);
+        return view('sind1.socios.index', compact('socios','existencias','varones','damas'));
     }
 
     /**
