@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+//redireccion desde home
+Route::redirect('/home', '/socios');
+
+//rutas resource
+Route::resource('/socios', 'SocioController');
