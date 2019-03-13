@@ -18,6 +18,11 @@
                  {{ Auth::user()->name }}
             </a>
         </div>
-        <div class="cerrar-sesion"><a href="">Salir</a></div>
+        <div class="cerrar-sesion">
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
     </div>
 </div>

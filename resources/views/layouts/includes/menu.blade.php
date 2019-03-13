@@ -20,7 +20,7 @@
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria" href="">Prestamos<span class="derecha">@svg('iconos/mas')</span></a>
             <ul>
-                <li><a class="enlace-menu" href="">Solicitar</a></li>               
+                <li><a class="enlace-menu" href="">Solicitar</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
@@ -32,7 +32,7 @@
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria" href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="">Opción</a></li>           
+                <li><a class="enlace-menu" href="">Opción</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
@@ -52,7 +52,10 @@
             </ul>
         </li>
         <li class="item-menu item-responsivo titulo-ul">
-            <a href="">Salir</a>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
         </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </ul>
 </div>
