@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sind1\Sind1;
-use App\Socio;
-use App\Urbe;
-use App\Sede;
-use App\Cargo;
+use App\Area;
 
-class SocioController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +14,7 @@ class SocioController extends Controller
      */
     public function index()
     {
-        $socios = Socio::all();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        $existencias = $socios->count();
-        Sind1::formatearColeccionParaMostrar($socios);
-        return view('sind1.socios.index', compact('socios','existencias','varones','damas'));
+        //
     }
 
     /**
@@ -33,12 +24,7 @@ class SocioController extends Controller
      */
     public function create()
     {
-        $urbes = Urbe::all();
-        $cargos = Cargo::all();
-        $sedes = Sede::all();        
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.socios.create', compact('varones','damas','urbes','cargos','sedes'));
+        //
     }
 
     /**
@@ -95,5 +81,13 @@ class SocioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function obtenerAreas(Request $request){
+        if($request->ajax())
+        {
+            $areas = Area::obtenerComunasPorId($id);
+            return response()->json($areas);
+        }
     }
 }

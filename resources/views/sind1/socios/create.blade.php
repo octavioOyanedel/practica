@@ -87,9 +87,11 @@
 
                     <div class="col-sm-3 separar-responsivo">
                         <label for="ciudad">Ciudad</label>
-                        <select id="ciudad" class="form-control form-control-sm {{ $errors->has('ciudad') ? ' is-invalid' : '' }}" name="urbe_id">
+                        <select id="ciudad" class="select-ajax form-control form-control-sm {{ $errors->has('ciudad') ? ' is-invalid' : '' }}" name="urbe_id">
                             <option selected="true" value="">Seleccione Ciudad</option>
-
+                            @foreach ($urbes as $urbe)
+                                 <option value="{{ $urbe->id }}" @if(old('urbe_id') == $urbe->id) {{ 'selected' }} @endif>{{ $urbe->nombre }}</option>
+                            @endforeach                            
                         </select>
                     </div>
 
@@ -132,8 +134,11 @@
 
                     <div class="col-sm-3 separar-responsivo">
                         <label for="sede">Sede</label>
-                        <select id="sede" class="form-control form-control-sm {{ $errors->has('sede') ? ' is-invalid' : '' }}" name="sede_id">
+                        <select id="sede" class="select-ajax form-control form-control-sm {{ $errors->has('sede') ? ' is-invalid' : '' }}" name="sede_id">
                             <option selected="true" value="">Seleccione Sede</option>
+                            @foreach ($sedes as $sede)
+                                <option value="{{ $sede->id }}" @if(old('sede_id') == $sede->id) {{ 'selected' }} @endif>{{ $sede->nombre }}</option>
+                            @endforeach                            
                         </select>
                     </div>
 
@@ -157,7 +162,9 @@
                         <label for="cargo">Cargo</label>
                         <select id="cargo" class="form-control form-control-sm {{ $errors->has('cargo') ? ' is-invalid' : '' }}" name="cargo_id">
                             <option selected="true" value="">Seleccione Cargo</option>
-
+                            @foreach ($cargos as $cargo)
+                                <option value="{{ $cargo->id }}" @if(old('cargo_id') == $cargo->id) {{ 'selected' }} @endif>{{ $cargo->nombre }}</option>
+                            @endforeach
                         </select>
                     </div>
 

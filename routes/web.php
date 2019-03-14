@@ -11,10 +11,12 @@
 |
 */
 
+//login
 Route::get('/', function () {
     return view('auth.login');
 });
 
+//rutas autenticación
 Auth::routes();
 
 //redireccion desde home
@@ -22,3 +24,7 @@ Route::redirect('/home', '/socios');
 
 //rutas resource
 Route::resource('/socios', 'SocioController');
+
+//rutas selects vista create
+Route::get('/socios/areas/{id}', 'AreaController@obtenerAreas');
+Route::get('/socios/comunas/{id}', 'ComunaController@obtenerComunas');
