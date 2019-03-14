@@ -17,7 +17,7 @@
             @include('layouts.includes.menu')
             <div class="principal">
                 @include('layouts.includes.titulo_botonera')
-                <div class="contenido">
+                <div class="contenido shadow p-4 mb-4 bg-lite">
                     @include('layouts.includes.alertas')
                     @yield('content')
                 </div>

@@ -18,12 +18,9 @@
     @case('socios/create')
 	    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
 	    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-	    <script src="{{ asset('js/ajax_comunas.js') }}"></script>
-	    <script src="{{ asset('js/ajax_areas.js') }}"></script>
-	    <script src="{{ asset('js/ajax_cargos.js') }}"></script>
 	    <script src="{{ asset('js/cerrar_alert.js') }}"></script>
 	    <script src="{{ asset('js/popper.min.js') }}"></script>
+	    <script src="{{ asset('js/nav.js') }}"></script>
 
     @break
     @case('socios/'.$id)

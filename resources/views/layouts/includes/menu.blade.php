@@ -9,10 +9,14 @@
              <span class="derecha">@svg('iconos/logueado')</span> {{ Auth::user()->name }}
         </li>
         <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria" href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
+            <a class="mostrar-sub-categoria
+            {{request()->is('socios/create')?'activo':''}}
+            {{request()->is('socios')?'activo':''}}
+                " href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="">Incorporar</a></li>
-                <li><a class="enlace-menu" href="">Buscar</a></li>
+                <li><a class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
+                <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
+                <li><a class="enlace-menu" href="">Nueva sede</a></li>
                 <li><a class="enlace-menu" href="">Nueva área</a></li>
                 <li><a class="enlace-menu" href="">Nuevo cargo</a></li>
             </ul>
@@ -46,9 +50,9 @@
                 <span class="derecha">@svg('iconos/mas')</span>
             </a>
              <ul>
-                <li><a href="">Hombres:<span class="derecha">150</span></a></li>
-                <li><a href="">Mujeres:<span class="derecha">150</span></a></li>
-                <li><a href="">Total:<span class="derecha">300</span></a></li>
+                <li><a href="">Hombres:<span class="derecha">{{ $varones }}</span></a></li>
+                <li><a href="">Mujeres:<span class="derecha">{{ $damas }}</span></a></li>
+                <li><a href="">Total:<span class="derecha">{{ $varones + $damas }}</span></a></li>
             </ul>
         </li>
         <li class="item-menu item-responsivo titulo-ul">

@@ -146,4 +146,8 @@ ul li ul{
 		display: none;
 	}
 
+	.separar-responsivo{
+		padding: 10px 0px;
+	}
+
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sind1\Sind1;
 use App\Socio;
-use App\Sede;
 
 class SocioController extends Controller
 {
@@ -17,13 +16,10 @@ class SocioController extends Controller
     public function index()
     {
         $socios = Socio::all();
-        $sede = Sede::find(1);
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        //Sind1::formatoSalidaSocioColeccion($socios);
-        Sind1::funcionPrueba($sede);
-        //var_dump($sede);
+        Sind1::formatearColeccionParaMostrar($socios);
         return view('sind1.socios.index', compact('socios','existencias','varones','damas'));
     }
 
@@ -34,7 +30,9 @@ class SocioController extends Controller
      */
     public function create()
     {
-        //
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        return view('sind1.socios.create', compact('varones','damas'));
     }
 
     /**

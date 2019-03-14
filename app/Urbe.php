@@ -10,6 +10,10 @@ class Urbe extends Model
         'nombre',
     ];
 
+    static public function obtenerUrbe($id){
+        return Urbe::find($id);
+    }
+
     public function socio(){
         return $this->belongsTo('App\Socio');
     }

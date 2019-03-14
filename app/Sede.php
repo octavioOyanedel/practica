@@ -10,6 +10,10 @@ class Sede extends Model
         'nombre',
     ];
 
+    static public function obtenerSede($id){
+        return Sede::find($id);
+    }
+
     public function socio(){
         return $this->belongsTo('App\Socio');
     }

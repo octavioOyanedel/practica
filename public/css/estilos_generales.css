@@ -59,6 +59,11 @@ a:hover{
 	color: #6cb2eb;
 }
 
+.activo{
+	text-decoration: underline;
+	color: #6cb2eb;
+}
+
 .menu-lateral li a{
 	font-size: 14px;
 }
@@ -82,4 +87,20 @@ a:hover{
 
 .icono-excel{
 	margin-left: 20px;
+}
+
+.formulario{
+	font-size: 14px;
+}
+
+.formulario div div input{
+	font-size: 14px;
+}
+
+.formulario div div select{
+	font-size: 14px;
+}
+
+.formulario div div label{
+	font-size: 14px;
 }
