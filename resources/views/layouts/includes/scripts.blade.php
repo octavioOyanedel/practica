@@ -20,7 +20,8 @@
 	    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	    <script src="{{ asset('js/cerrar_alert.js') }}"></script>
 	    <script src="{{ asset('js/popper.min.js') }}"></script>
-	    <script src="{{ asset('js/ajax_selects.js') }}"></script>	    
+	    <script src="{{ asset('js/ajax_selects.js') }}"></script>
+	    <script src="{{ asset('js/modal_nuevo.js') }}"></script>	    
 	    <script src="{{ asset('js/nav.js') }}"></script>
 
     @break

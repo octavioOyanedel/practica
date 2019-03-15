@@ -16,9 +16,9 @@
              <ul>
                 <li><a class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
                 <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
-                <li><a class="enlace-menu" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva sede</a></li>
-                <li><a class="enlace-menu" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva área</a></li>
-                <li><a class="enlace-menu" href="" data-toggle="modal" data-target="#modal_nuevo">Nuevo cargo</a></li>
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva sede</a></li>
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva área</a></li>
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nuevo cargo</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
