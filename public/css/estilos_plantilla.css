@@ -91,6 +91,10 @@ ul li ul{
 	grid-template-rows: 1fr;
 }
 
+.plantilla .menu ul.menu-lateral{
+	padding-top: 50px;
+}
+
 .derecha{
 	margin-top: 1px;
 	float: right;
@@ -123,6 +127,10 @@ ul li ul{
 	.menu{
 		display: block;
 		grid-area: 2 / 1 / 3 / 3;
+	}
+
+	.plantilla .menu ul.menu-lateral{
+		padding-top: 10px;
 	}
 
 	.boton-menu{
