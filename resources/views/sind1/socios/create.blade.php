@@ -91,7 +91,7 @@
                             <option selected="true" value="">Seleccione Ciudad</option>
                             @foreach ($urbes as $urbe)
                                  <option value="{{ $urbe->id }}" @if(old('urbe_id') == $urbe->id) {{ 'selected' }} @endif>{{ $urbe->nombre }}</option>
-                            @endforeach                            
+                            @endforeach
                         </select>
                     </div>
 
@@ -138,7 +138,7 @@
                             <option selected="true" value="">Seleccione Sede</option>
                             @foreach ($sedes as $sede)
                                 <option value="{{ $sede->id }}" @if(old('sede_id') == $sede->id) {{ 'selected' }} @endif>{{ $sede->nombre }}</option>
-                            @endforeach                            
+                            @endforeach
                         </select>
                     </div>
 
@@ -201,6 +201,7 @@
                 </div>
                 {{--fin form --}}
              </form>
+             @include('modals.modal_nuevo')
         </div>
     </div>
 @endsection

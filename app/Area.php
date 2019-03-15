@@ -10,8 +10,8 @@ class Area extends Model
         'nombre', 'sede_id',
     ];
 
-    static public function obtenerArea($id){
-        return Area::find($id);
+    static public function obtenerAreas($id){
+    	return Area::where('sede_id','=',$id)->orderBy('nombre')->get();
     }
 
     public function socio(){

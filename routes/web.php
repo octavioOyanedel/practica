@@ -26,5 +26,5 @@ Route::redirect('/home', '/socios');
 Route::resource('/socios', 'SocioController');
 
 //rutas selects vista create
-Route::get('/socios/areas/{id}', 'AreaController@obtenerAreas');
-Route::get('/socios/comunas/{id}', 'ComunaController@obtenerComunas');
+Route::get('/areasSede', 'AreaController@obtenerAreas');
+Route::get('/comunasCiudad', 'ComunaController@obtenerComunas');

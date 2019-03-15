@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comuna;
 
 class ComunaController extends Controller
 {
@@ -83,6 +84,9 @@ class ComunaController extends Controller
     }
 
     public function obtenerComunas(Request $request){
-        //var_dump($request);    
+        if($request->ajax()){
+            $comunas = Comuna::obtenerComunas($request->id);
+            return response()->json($comunas);
+        }
     }
 }

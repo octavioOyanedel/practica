@@ -84,9 +84,8 @@ class AreaController extends Controller
     }
 
     public function obtenerAreas(Request $request){
-        if($request->ajax())
-        {
-            $areas = Area::obtenerComunasPorId($id);
+        if($request->ajax()){
+            $areas = Area::obtenerAreas($request->id);
             return response()->json($areas);
         }
     }
