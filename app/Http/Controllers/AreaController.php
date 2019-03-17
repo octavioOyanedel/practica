@@ -37,7 +37,7 @@ class AreaController extends Controller
     public function store(AreaRequest $request)
     {
             $area = new Area;
-            $area->nombre = $request->valor;
+            $area->nombre = ucfirst($request->valor);
             $area->sede_id = $request->id;
             $area->save();
             return response()->json($request->valor);
@@ -92,6 +92,13 @@ class AreaController extends Controller
         if($request->ajax()){
             $areas = Area::obtenerAreas($request->id);
             return response()->json($areas);
+        }
+    }
+
+    public function obtenerUltimaArea(Request $request){
+        if($request->ajax()){
+            $area = Area::obtenerUltimaArea();
+            return response()->json($area);
         }
     }
 }

@@ -18,6 +18,10 @@ class Comuna extends Model
     	return Comuna::where('urbe_id','=',$id)->orderBy('nombre')->get();
     }
 
+    static public function obtenerTodasLasComunas(){
+        return Comuna::orderBy('nombre')->get();
+    }
+
     public function socio()
     {
         return $this->belongsTo('App\Socio');

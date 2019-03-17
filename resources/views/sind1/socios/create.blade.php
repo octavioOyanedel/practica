@@ -100,7 +100,11 @@
                         <select id="comuna" class="form-control form-control-sm {{ $errors->has('comuna') ? ' is-invalid' : '' }}" name="comuna_id">
                             <option selected="true" value="">Seleccione Comuna</option>
                             @if(old('comuna_id') != null)
-
+                                @foreach ($comunas as $comuna)
+                                    @if(old('comuna_id') == $comuna->id)
+                                        <option value="{{ $comuna->id }}" @if(old('comuna_id') == $comuna->id) {{ 'selected' }} @endif>{{ $comuna->nombre }}</option>
+                                    @endif
+                                @endforeach
                             @endif
                         </select>
                     </div>
@@ -153,7 +157,11 @@
                         <select id="area" class="form-control form-control-sm {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area_id">
                             <option selected="true" value="">Seleccione Área</option>
                             @if(old('area_id') != null)
-
+                                @foreach ($areas as $area)
+                                    @if(old('area_id') == $area->id)
+                                        <option value="{{ $area->id }}" @if(old('area_id') == $area->id) {{ 'selected' }} @endif>{{ $area->nombre }}</option>
+                                    @endif
+                                @endforeach
                             @endif
                         </select>
                     </div>

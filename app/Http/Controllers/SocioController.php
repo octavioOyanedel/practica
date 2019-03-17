@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Sind1\Sind1;
 use App\Socio;
 use App\Urbe;
+use App\Comuna;
 use App\Sede;
+use App\Area;
 use App\Cargo;
 use App\Http\Requests\SocioRequest;
 
@@ -37,9 +39,11 @@ class SocioController extends Controller
         $urbes = Urbe::all();
         $cargos = Cargo::all();
         $sedes = Sede::obtenerSedes();
+        $areas = Area::obtenerTodasLasAreas();
+        $comunas = Comuna::obtenerTodasLasComunas();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.socios.create', compact('varones','damas','urbes','cargos','sedes'));
+        return view('sind1.socios.create', compact('varones','damas','urbes','cargos','sedes','comunas','areas'));
     }
 
     /**

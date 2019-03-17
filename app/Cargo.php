@@ -10,6 +10,11 @@ class Cargo extends Model
         'nombre',
     ];
 
+    static public function obtenerUltimoCargo(){
+        $cargo = Cargo::orderBy('created_at', 'desc')->first();
+        return $cargo;
+    }
+
     static public function obtenerCargo($id){
         return Cargo::find($id);
     }

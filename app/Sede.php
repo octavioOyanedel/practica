@@ -10,6 +10,11 @@ class Sede extends Model
         'nombre',
     ];
 
+    static public function obtenerUltimaSede(){
+        $sede = Sede::orderBy('created_at', 'desc')->first();
+        return $sede;
+    }
+
     static public function obtenerSede($id){
         return Sede::find($id);
     }

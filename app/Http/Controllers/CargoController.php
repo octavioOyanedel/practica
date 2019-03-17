@@ -37,7 +37,7 @@ class CargoController extends Controller
     public function store(CargoRequest $request)
     {
             $cargo = new cargo;
-            $cargo->nombre = $request->valor;
+            $cargo->nombre = ucfirst($request->valor);
             $cargo->save();
             return response()->json($request->valor);
     }
@@ -87,4 +87,10 @@ class CargoController extends Controller
         //
     }
 
+    public function obtenerUltimoCargo(Request $request){
+        if($request->ajax()){
+            $cargo = Cargo::obtenerUltimoCargo();
+            return response()->json($cargo);
+        }
+    }
 }

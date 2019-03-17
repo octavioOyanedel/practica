@@ -32,3 +32,7 @@ Route::resource('/cargos', 'CargoController');
 Route::get('/cargarSedes', 'SedeController@obtenerSedes');
 Route::get('/cargarAreas', 'AreaController@obtenerAreas');
 Route::get('/cargarComunas', 'ComunaController@obtenerComunas');
+
+Route::get('/obtenerUltimaSede', 'SedeController@obtenerUltimaSede');
+Route::get('/obtenerUltimaArea', 'AreaController@obtenerUltimaArea');
+Route::get('/obtenerUltimoCargo', 'CargoController@obtenerUltimoCargo');

@@ -30,6 +30,7 @@ $(window).on('load',function(){
 				url: ruta,
 				data: {id: id, valor: nuevo},
 				success: function(respuesta){
+					obtenerUltimoRegistroAlmacenado(nombre);
 					cerrarModal();
 				},
 				error: function(respuesta){
@@ -43,6 +44,7 @@ $(window).on('load',function(){
 				url: ruta,
 				data: {valor: nuevo},
 				success: function(respuesta){
+					obtenerUltimoRegistroAlmacenado(nombre);
 					cerrarModal();
 				},
 				error: function(respuesta){
@@ -60,6 +62,51 @@ $(window).on('load',function(){
 	function errorModal(respuesta){
 		$('.errores-modal').empty();
 		$('.errores-modal').append(respuesta.responseJSON.errors.valor[0]);
+	}
+
+	function obtenerUltimoRegistroAlmacenado(nombre){
+		var ruta = obtenerRutaNuevoOption(nombre);
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			success: function(respuesta){
+				cargarNuevoOption(nombre, respuesta)
+			},
+			error: function(respuesta){
+				console.log(respuesta);
+			}
+		});
+	}
+
+	function cargarNuevoOption(nombre, respuesta){
+		switch(nombre){
+			case 'Nueva sede':
+				$('#sede').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
+			break;
+			case 'Nueva área':
+				$('#area').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
+			break;
+			case 'Nuevo cargo':
+				$('#cargo').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
+			break;
+			default:
+		}
+	}
+
+	function obtenerRutaNuevoOption(nombre){
+		switch(nombre){
+			case 'Nueva sede':
+				return '/obtenerUltimaSede';
+			break;
+			case 'Nueva área':
+				return '/obtenerUltimaArea';
+			break;
+			case 'Nuevo cargo':
+				return '/obtenerUltimoCargo';
+			break;
+			default:
+		}
 	}
 
 	function obtenerRuta(nombre){
@@ -92,7 +139,6 @@ $(window).on('load',function(){
 				$('.modal-body').append('<label class="etiqueta-form separar-label" for="nueva_area">Nueva Área * <small class="errores-modal" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_area" id="nueva_area" value=""/>');
 				cargarSelectSedes();
-
 			break;
 			case 'Nuevo cargo':
 				$('.modal-body').append('<label class="etiqueta-form" for="nueva_area">Nuevo Cargo * <small class="errores-modal" class="form-text text-muted"></small></label>');
@@ -113,8 +159,7 @@ $(window).on('load',function(){
 				});
 			},
 			error: function(respuesta){
-				console.log('ERROR: '+respuesta);
-				//alert('Error de respuesta Ajax: carga selects dinámicos');
+				alert('Error de respuesta Ajax: carga selects dinámicos');
 			}
 		});
 	}

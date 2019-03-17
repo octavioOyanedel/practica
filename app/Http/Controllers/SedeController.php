@@ -38,7 +38,7 @@ class SedeController extends Controller
     {
         if($request->ajax()){
             $sede = new Sede;
-            $sede->nombre = $request->valor;
+            $sede->nombre = ucfirst($request->valor);
             $sede->save();
             return response()->json($request->valor);
         }
@@ -93,6 +93,13 @@ class SedeController extends Controller
         if($request->ajax()){
             $sedes = Sede::obtenerSedes();
             return response()->json($sedes);
+        }
+    }
+
+    public function obtenerUltimaSede(Request $request){
+        if($request->ajax()){
+            $sede = Sede::obtenerUltimaSede();
+            return response()->json($sede);
         }
     }
 }
