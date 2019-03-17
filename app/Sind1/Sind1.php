@@ -44,6 +44,37 @@ class Sind1
     	}
     }
 
+    static public function formatearObjetoParaMostrar(Object $socio)
+    {
+		if($socio['rut'] != null){
+			$socio['rut'] = Sind1::formatoRut($socio['rut']);
+		}
+		if($socio['fecha_nacimiento'] != null){
+			$socio['fecha_nacimiento'] = date("d-m-Y", strtotime($socio['fecha_nacimiento']));
+		}
+		if($socio['fecha_pucv'] != null){
+			$socio['fecha_pucv'] = date("d-m-Y", strtotime($socio['fecha_pucv']));
+		}
+		if($socio['fecha_sind1'] != null){
+			$socio['fecha_sind1'] = date("d-m-Y", strtotime($socio['fecha_sind1']));
+		}
+		if($socio['sede_id'] != null){
+			$socio['sede_id'] = Sede::obtenerSede($socio['sede_id'])->nombre;
+		}
+ 		if($socio['area_id'] != null){
+			$socio['area_id'] = Area::obtenerArea($socio['area_id'])->nombre;
+		}
+  		if($socio['urbe_id'] != null){
+			$socio['urbe_id'] = Urbe::obtenerUrbe($socio['urbe_id'])->nombre;
+		}
+  		if($socio['comuna_id'] != null){
+			$socio['comuna_id'] = Comuna::obtenerComuna($socio['comuna_id'])->nombre;
+		}
+  		if($socio['cargo_id'] != null){
+			$socio['cargo_id'] = Cargo::obtenerCargo($socio['cargo_id'])->nombre;
+		}
+    }
+
     static public function formatoSocioRequest(SocioRequest $request)
     {
     	//campos obligatorios

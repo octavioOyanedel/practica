@@ -141,3 +141,16 @@ ul.pagination{
 .paginate_button{
 	padding: 0px;
 }
+
+table thead tr th.cabecera{
+	width: 200px;
+}
+
+table thead tr th.actualizar{
+	width: 50px;
+}
+
+.boton-editar{
+	text-align:center;
+	color: #007bff;
+}

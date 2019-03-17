@@ -67,7 +67,13 @@ class SocioController extends Controller
      */
     public function show($id)
     {
-        //
+        $socios = Socio::all();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        $socio = Socio::find($id);
+        Sind1::formatearObjetoParaMostrar($socio);
+        return view('sind1.socios.show', compact('socio','existencias','varones','damas'));
     }
 
     /**
