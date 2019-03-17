@@ -24,7 +24,11 @@ Route::redirect('/home', '/socios');
 
 //rutas resource
 Route::resource('/socios', 'SocioController');
+Route::resource('/sedes', 'SedeController');
+Route::resource('/areas', 'AreaController');
+Route::resource('/cargos', 'CargoController');
 
-//rutas selects vista create
-Route::get('/areasSede', 'AreaController@obtenerAreas');
-Route::get('/comunasCiudad', 'ComunaController@obtenerComunas');
+//rutas selects vista
+Route::get('/cargarSedes', 'SedeController@obtenerSedes');
+Route::get('/cargarAreas', 'AreaController@obtenerAreas');
+Route::get('/cargarComunas', 'ComunaController@obtenerComunas');

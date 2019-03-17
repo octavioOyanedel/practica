@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sind1\Sind1;
-use App\Socio;
-use App\Urbe;
-use App\Sede;
 use App\Cargo;
+use App\Http\Requests\CargoRequest;
 
-class SocioController extends Controller
+class CargoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +15,7 @@ class SocioController extends Controller
      */
     public function index()
     {
-        $socios = Socio::all();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        $existencias = $socios->count();
-        Sind1::formatearColeccionParaMostrar($socios);
-        return view('sind1.socios.index', compact('socios','existencias','varones','damas'));
+        //
     }
 
     /**
@@ -33,12 +25,7 @@ class SocioController extends Controller
      */
     public function create()
     {
-        $urbes = Urbe::all();
-        $cargos = Cargo::all();
-        $sedes = Sede::obtenerSedes();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.socios.create', compact('varones','damas','urbes','cargos','sedes'));
+        //
     }
 
     /**
@@ -47,9 +34,12 @@ class SocioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CargoRequest $request)
     {
-        //
+            $cargo = new cargo;
+            $cargo->nombre = $request->valor;
+            $cargo->save();
+            return response()->json($request->valor);
     }
 
     /**
@@ -96,4 +86,5 @@ class SocioController extends Controller
     {
         //
     }
+
 }

@@ -104,3 +104,11 @@ a:hover{
 .formulario div div label{
 	font-size: 14px;
 }
+
+.separar-label{
+	padding-top: 10px;
+}
+
+.errores-modal, .errores{
+	color: #dc3545;
+}

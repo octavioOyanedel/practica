@@ -19,13 +19,13 @@ $(window).on('load',function(){
 			url: ruta,
 			data: {id: id},
 			success: function(respuesta){
-				console.log('OK: '+respuesta);
 				prepararSelect(label);
 				respuesta.forEach(e => {
 					cargarSelect(e, label);
 				});
 			},
 			error: function(respuesta){
+				//TODO errores
 				console.log('ERROR: '+respuesta);
 				//alert('Error de respuesta Ajax: carga selects dinámicos');
 			}
@@ -73,10 +73,10 @@ $(window).on('load',function(){
 	function obtenerRuta(label){
 		switch(label){
 			case 'Ciudad':
-				return '/comunasCiudad';
+				return '/cargarComunas';
 			break;
 			case 'Sede':
-				return '/areasSede';
+				return '/cargarAreas';
 			break;
 			default:
 		}

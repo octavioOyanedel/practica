@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sind1\Sind1;
-use App\Socio;
-use App\Urbe;
-use App\Sede;
-use App\Cargo;
+use App\sede;
+use App\Http\Requests\SedeRequest;
 
-class SocioController extends Controller
+class SedeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +15,7 @@ class SocioController extends Controller
      */
     public function index()
     {
-        $socios = Socio::all();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        $existencias = $socios->count();
-        Sind1::formatearColeccionParaMostrar($socios);
-        return view('sind1.socios.index', compact('socios','existencias','varones','damas'));
+        //
     }
 
     /**
@@ -33,12 +25,7 @@ class SocioController extends Controller
      */
     public function create()
     {
-        $urbes = Urbe::all();
-        $cargos = Cargo::all();
-        $sedes = Sede::obtenerSedes();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.socios.create', compact('varones','damas','urbes','cargos','sedes'));
+        //
     }
 
     /**
@@ -47,9 +34,14 @@ class SocioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SedeRequest $request)
     {
-        //
+        if($request->ajax()){
+            $sede = new Sede;
+            $sede->nombre = $request->valor;
+            $sede->save();
+            return response()->json($request->valor);
+        }
     }
 
     /**
@@ -95,5 +87,12 @@ class SocioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function obtenerSedes(Request $request){
+        if($request->ajax()){
+            $sedes = Sede::obtenerSedes();
+            return response()->json($sedes);
+        }
     }
 }

@@ -9,11 +9,11 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary btn-sm guardar-cambios">Guardar</button>
+				<button id="guardar_nuevo_registro" type="button" class="btn btn-primary btn-sm guardar-cambios">Guardar</button>
 			</div>
 		</div>
 	</div>
