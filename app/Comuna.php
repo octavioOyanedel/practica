@@ -10,6 +10,10 @@ class Comuna extends Model
         'nombre', 'urbe_id',
     ];
 
+    static public function obtenerComuna($id){
+        return Comuna::find($id);
+    }
+
     static public function obtenerComunas($id){
     	return Comuna::where('urbe_id','=',$id)->orderBy('nombre')->get();
     }

@@ -3,11 +3,12 @@
 namespace App\Sind1;
 use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Collection;
+use App\Urbe;
+use App\Comuna;
 use App\Sede;
-
-//clase Collection para conjunto de registros
-//clase Socio, Sede, etc. individual.
-//atributo de objeto individual  Sede $var -> $var->nombre
+use App\Area;
+use App\Cargo;
+use App\Http\Requests\SocioRequest;
 
 class Sind1
 {
@@ -41,6 +42,34 @@ class Sind1
     			$objeto['cargo_id'] = Cargo::obtenerCargo($objeto['cargo_id'])->nombre;
     		}
     	}
+    }
+
+    static public function formatoSocioRequest(SocioRequest $request)
+    {
+    	//campos obligatorios
+    	$request['nombres'] = Sind1::formatoNombres($request->nombres);
+    	$request['apellidos'] = Sind1::formatoNombres($request->apellidos);
+    	$request['rut'] = strtolower($request->rut);
+    	//campos nullable
+    	if($request['correo'] != null){
+			$request['correo'] = strtolower($request->correo);
+    	}
+    	if($request['direccion'] != null){
+			$request['direccion'] = ucfirst($request->direccion);
+		}
+    }
+
+    static public function formatoNombres($cadena)
+    {
+	    $nombreFormateado = strtolower($cadena);
+	    $nombreFormateado = ucwords($nombreFormateado);
+	    $nombreFormateado = str_replace(" De ", " de ", $nombreFormateado);
+	    $nombreFormateado = str_replace(" Del ", " del ", $nombreFormateado);
+	    $nombreFormateado = str_replace(" La ", " la ", $nombreFormateado);
+	    $nombreFormateado = str_replace(" Las ", " las ", $nombreFormateado);
+	    $nombreFormateado = str_replace(" Lo ", " lo ", $nombreFormateado);
+	    $nombreFormateado = str_replace(" Los ", " los ", $nombreFormateado);
+	    return $nombreFormateado;
     }
 
     static public function formatoRut($rut){

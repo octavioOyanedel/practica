@@ -112,3 +112,32 @@ a:hover{
 .errores-modal, .errores{
 	color: #dc3545;
 }
+
+ul.pagination{
+	float: right;
+}
+
+#tabla_socios_paginate{
+	text-align: right;
+}
+
+#tabla_socios_filter{
+	float: right;
+	display: inline;
+}
+
+#tabla_socios_filter label input{
+
+}
+
+#tabla_socios_length{
+	display: inline;
+}
+
+.label-data-table{
+	margin-right: 7px;
+}
+
+.paginate_button{
+	padding: 0px;
+}

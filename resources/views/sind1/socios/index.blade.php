@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12 mx-auto">
     	@if($existencias != 0)
-        	<div class="table-responsive">
+        	<div class="">
 				<table id="tabla_socios" class="table table-striped table-bordered">
 					<thead>
 						<tr>

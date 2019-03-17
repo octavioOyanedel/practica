@@ -8,6 +8,7 @@ use App\Socio;
 use App\Urbe;
 use App\Sede;
 use App\Cargo;
+use App\Http\Requests\SocioRequest;
 
 class SocioController extends Controller
 {
@@ -47,9 +48,11 @@ class SocioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SocioRequest $request)
     {
-        //
+        Sind1::formatoSocioRequest($request);
+        Socio::create($request->all());
+        return redirect()->route('socios.index')->with('incorporar_socio', '');
     }
 
     /**
