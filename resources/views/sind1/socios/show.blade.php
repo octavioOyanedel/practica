@@ -115,6 +115,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<input type="hidden" value="{{ $rut }}" id="rut_modelo">
+		<input type="hidden" value="{{ $fechaNacimento }}" id="fechaNacimento_modelo">
+		<input type="hidden" value="{{ $fechaPucv }}" id="fechaPucv_modelo">
+		<input type="hidden" value="{{ $fechaSind1 }}" id="fechaSind1_modelo">		
 	@else
 	    <div class="alert alert-warning alert-dismissible fade show" role="alert">
 	        <strong>No existen registros que mostrar.</strong>

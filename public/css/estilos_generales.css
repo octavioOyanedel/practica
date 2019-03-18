@@ -126,10 +126,6 @@ ul.pagination{
 	display: inline;
 }
 
-#tabla_socios_filter label input{
-
-}
-
 #tabla_socios_length{
 	display: inline;
 }
@@ -153,4 +149,8 @@ table thead tr th.actualizar{
 .boton-editar{
 	text-align:center;
 	color: #007bff;
+}
+
+.separar-label{
+	margin-top: 7px;
 }

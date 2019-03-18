@@ -160,4 +160,10 @@ class Sind1
 	    $rutFinal = implode("",$arrayRutFormato);
 	    return $rutFinal;
     }
+
+	static public function formatoFecha($fecha){
+		$bloque = explode('-',$fecha);
+    	$nuevaFecha = $bloque[2].'-'.$bloque[1].'-'.$bloque[0];
+    	return $nuevaFecha;
+	}
 }
