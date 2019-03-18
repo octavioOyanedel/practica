@@ -107,6 +107,7 @@ class SocioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Socio::destroy($id);
+        return redirect()->route('socios.index')->with('desvincular_socio', '');
     }
 }

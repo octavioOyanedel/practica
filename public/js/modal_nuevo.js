@@ -2,7 +2,6 @@ $(window).on('load',function(){
 	$('.enlace-nuevo').click(function(){
 		var nuevo = '';
 		var nombre = enlace($(this));
-		console.log(nombre);
 		configurarVentana(nombre);
 		$('#guardar_nuevo_registro').click(function(){
 			nuevo = convertirArticulos(obtenerNuevoValor());
@@ -22,7 +21,7 @@ $(window).on('load',function(){
 		$.ajaxSetup({
 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
 		});
-		if(nombre.localeCompare('Nueva área') === 0){
+		if(nombre.localeCompare('Nueva Área') === 0){
 			var id = $('#sede_nueva_area option:selected').val();
 			$.ajax({
 				method: 'POST',
@@ -74,20 +73,19 @@ $(window).on('load',function(){
 				cargarNuevoOption(nombre, respuesta)
 			},
 			error: function(respuesta){
-				console.log(respuesta);
 			}
 		});
 	}
 
 	function cargarNuevoOption(nombre, respuesta){
 		switch(nombre){
-			case 'Nueva sede':
+			case 'Nueva Sede':
 				$('#sede').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
 			break;
-			case 'Nueva área':
+			case 'Nueva Área':
 				$('#area').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
 			break;
-			case 'Nuevo cargo':
+			case 'Nuevo Cargo':
 				$('#cargo').append('<option value='+respuesta["id"]+' selected>'+respuesta["nombre"]+'</option');
 			break;
 			default:
@@ -96,13 +94,13 @@ $(window).on('load',function(){
 
 	function obtenerRutaNuevoOption(nombre){
 		switch(nombre){
-			case 'Nueva sede':
+			case 'Nueva Sede':
 				return '/obtenerUltimaSede';
 			break;
-			case 'Nueva área':
+			case 'Nueva Área':
 				return '/obtenerUltimaArea';
 			break;
-			case 'Nuevo cargo':
+			case 'Nuevo Cargo':
 				return '/obtenerUltimoCargo';
 			break;
 			default:
@@ -111,13 +109,13 @@ $(window).on('load',function(){
 
 	function obtenerRuta(nombre){
 		switch(nombre){
-			case 'Nueva sede':
+			case 'Nueva Sede':
 				return '/sedes';
 			break;
-			case 'Nueva área':
+			case 'Nueva Área':
 				return '/areas';
 			break;
-			case 'Nuevo cargo':
+			case 'Nuevo Cargo':
 				return '/cargos';
 			break;
 			default:
@@ -129,18 +127,18 @@ $(window).on('load',function(){
 		$('.form-modal').remove();
 		$('.etiqueta-form').remove();
 		switch(nombre){
-			case 'Nueva sede':
+			case 'Nueva Sede':
 				$('.modal-body').append('<label class="etiqueta-form" for="nueva_sede">Sede * <small class="errores-modal" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_sede" id="nueva_sede" value="" required/>');
 			break;
-			case 'Nueva área':
+			case 'Nueva Área':
 				$('.modal-body').append('<label class="etiqueta-form" for="sede_nueva_area">Sede * </label>');
 				$('.modal-body').append('<select id="sede_nueva_area" class="form-control form-control-sm form-modal" name="sede_nueva_area" required><option selected="true" value="">Seleccione Sede</option></select>');
 				$('.modal-body').append('<label class="etiqueta-form separar-label" for="nueva_area">Nueva Área * <small class="errores-modal" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_area" id="nueva_area" value=""/>');
 				cargarSelectSedes();
 			break;
-			case 'Nuevo cargo':
+			case 'Nuevo Cargo':
 				$('.modal-body').append('<label class="etiqueta-form" for="nueva_area">Nuevo Cargo * <small class="errores-modal" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_area" id="nueva_area" value=""/>');
 			break;
