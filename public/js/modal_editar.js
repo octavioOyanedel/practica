@@ -34,6 +34,54 @@ $(window).on('load',function(){
 		}
 	}
 
+
+	function cargarSelect(tituloFila){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			success: function(respuesta){
+				switch(tituloFila) {
+					case 'Ciudad':
+						$('#ciudad').empty();
+						$('#ciudad').append('<option selected="true">Seleccione Ciudad</option>');
+						respuesta.forEach(e => {
+							$('#ciudad').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					case 'Sede':
+						$('#sede').empty();
+						$('#sede').append('<option selected="true">Seleccione Sede</option>');
+						respuesta.forEach(e => {
+							$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function obtenerRuta(tituloFila){
+		var ruta;
+		switch(tituloFila) {
+			case 'Ciudad':
+				ruta = '/cargarUrbes';
+			break;
+			case 'Sede':
+				ruta = '/cargarSedes';
+			break;
+			default:
+				//error
+		}
+		return ruta;
+	}
+
 	function poblarVentanaModal(tituloFila, valorAnterior){
 		$('.modal-body').empty();
 		$('.modal-title').empty().append('Editar '+tituloFila);
@@ -49,7 +97,7 @@ $(window).on('load',function(){
 			case 'Rut':
 				$('.modal-body').append('<label for="rut">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="rut" id="rut" value="'+valorAnterior+'" maxlength="9"/>');
-			break;	
+			break;
 			case 'Género':
 				$('.modal-body').append('<label for="genero">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required><option selected="true" value="">Seleccione Genero</option><option value="Varón">Varón</option><option value="Dama">Dama</option></select>');
@@ -57,19 +105,19 @@ $(window).on('load',function(){
 			case 'Fecha Nacimiento':
 				$('.modal-body').append('<label for="fecha_nac">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_nac" id="fecha_nac" value="'+valorAnterior+'"/>');
-			break;	
+			break;
 			case 'Celular':
 				$('.modal-body').append('<label for="celular">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="celular" id="celular" value="'+valorAnterior+'" maxlength="9"/>');
-			break;		
+			break;
 			case 'Teléfono Fijo':
 				$('.modal-body').append('<label for="fijo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="fijo" id="fijo" value="'+valorAnterior+'" maxlength="7"/>');
-			break;	
+			break;
 			case 'Correo':
 				$('.modal-body').append('<label for="correo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="correo" id="correo" value="'+valorAnterior+'"/>');
-			break;	
+			break;
 			case 'Ciudad':
 				$('.modal-body').append('<label for="ciudad">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="ciudad" class="form-control form-control form-control-sm valor-form form-editar" name="ciudad" required><option selected="true" value="">Seleccione Ciudad</option></select>');
@@ -77,6 +125,7 @@ $(window).on('load',function(){
 				$('.modal-body').append('<select id="comuna" class="form-control form-control form-control-sm valor-form form-editar" name="comuna" required><option selected="true" value="">Seleccione Comuna</option></select>');
 				$('.modal-body').append('<label class="separar-label" for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value=""/>');
+				cargarSelect(tituloFila);
 			break;
 			case 'Comuna':
 				$('.modal-body').append('<label for="comuna">Comuna <small class="errores" class="form-text text-muted"></small></label>');
@@ -101,6 +150,7 @@ $(window).on('load',function(){
 				$('.modal-body').append('<select id="sede" class="form-control form-control-sm valor-form form-editar" name="sede" required><option selected="true" value="">Seleccione Sede</option></select>');
 				$('.modal-body').append('<label class="separar-label" for="area">Área <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="area" class="form-control form-control-sm valor-form form-editar" name="area" required><option selected="true" value="">Seleccione Área</option></select>');
+				cargarSelect(tituloFila);
 			break;
 			case 'Área':
 				$('.modal-body').append('<label for="area">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');

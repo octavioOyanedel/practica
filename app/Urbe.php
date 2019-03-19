@@ -10,6 +10,10 @@ class Urbe extends Model
         'nombre',
     ];
 
+    static public function obtenerUrbes(){
+        return Urbe::orderBy('nombre')->get();
+    }
+
     static public function obtenerUrbe($id){
         return Urbe::find($id);
     }

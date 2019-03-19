@@ -75,7 +75,7 @@ class SocioController extends Controller
         $rut = $socio->rut;
         $fechaNacimento = $socio->fecha_nacimiento;
         $fechaPucv = $socio->fecha_pucv;
-        $fechaSind1 = $socio->fecha_sind1;      
+        $fechaSind1 = $socio->fecha_sind1;
         Sind1::formatearObjetoParaMostrar($socio);
         return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1'));
     }
@@ -100,7 +100,7 @@ class SocioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
