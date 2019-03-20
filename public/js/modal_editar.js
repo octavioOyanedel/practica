@@ -35,7 +35,7 @@ $(window).on('load',function(){
 	}
 
 
-	function cargarSelect(tituloFila){
+	function cargarSelect(tituloFila, valorAnterior){
 		var ruta = obtenerRuta(tituloFila);
 		$.ajax({
 			method: 'GET',
@@ -47,14 +47,75 @@ $(window).on('load',function(){
 						$('#ciudad').empty();
 						$('#ciudad').append('<option selected="true">Seleccione Ciudad</option>');
 						respuesta.forEach(e => {
-							$('#ciudad').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							if(e.nombre.localeCompare(valorAnterior) === 0){
+								$('#ciudad').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#ciudad').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
 						});
 					break;
 					case 'Sede':
 						$('#sede').empty();
 						$('#sede').append('<option selected="true">Seleccione Sede</option>');
 						respuesta.forEach(e => {
-							$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							if(e.nombre.localeCompare(valorAnterior) === 0){
+								$('#sede').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					case 'Cargo':
+						$('#cargo').empty();
+						$('#cargo').append('<option selected="true">Seleccione Cargo</option>');
+						respuesta.forEach(e => {
+							if(e.nombre.localeCompare(valorAnterior) === 0){
+								$('#cargo').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#cargo').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function cargarSelectPorId(id, tituloFila, valorAnterior){
+		ruta = obtenerRutaSelectSecundario(tituloFila);
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id},
+			success: function(respuesta){
+				switch(tituloFila) {
+					case 'Ciudad':
+						$('#comuna').empty();
+						$('#comuna').append('<option selected="true">Seleccione Comuna</option>');
+						respuesta.forEach(e => {
+							if(e.nombre.localeCompare(valorAnterior) === 0){
+								$('#comuna').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#comuna').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+
+						});
+					break;
+					case 'Sede':
+						$('#area').empty();
+						$('#area').append('<option selected="true">Seleccione Área</option>');
+						respuesta.forEach(e => {
+							if(e.nombre.localeCompare(valorAnterior) === 0){
+								$('#area').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#area').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
 						});
 					break;
 					default:
@@ -75,6 +136,24 @@ $(window).on('load',function(){
 			break;
 			case 'Sede':
 				ruta = '/cargarSedes';
+			break;
+			case 'Cargo':
+				ruta = '/cargarCargos';
+			break;
+			default:
+				//error
+		}
+		return ruta;
+	}
+
+	function obtenerRutaSelectSecundario(tituloFila){
+		var ruta;
+		switch(tituloFila) {
+			case 'Ciudad':
+				ruta = '/cargarComunas';
+			break;
+			case 'Sede':
+				ruta = '/cargarAreas';
 			break;
 			default:
 				//error
@@ -124,14 +203,21 @@ $(window).on('load',function(){
 				$('.modal-body').append('<label class="separar-label" for="comuna">Comuna <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="comuna" class="form-control form-control form-control-sm valor-form form-editar" name="comuna" required><option selected="true" value="">Seleccione Comuna</option></select>');
 				$('.modal-body').append('<label class="separar-label" for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value=""/>');
-				cargarSelect(tituloFila);
+				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+$('.td-direccion').text()+'"/>');
+				cargarSelect(tituloFila, valorAnterior);
+				$('#ciudad').change(function(){
+					cargarSelectPorId($('#ciudad option:selected').val(), tituloFila, $('.td-comuna').text());
+				});
+				$('#comuna').empty();
+				$('#comuna').append('<option">Seleccione Comuna</option>');
+				$('#comuna').append('<option value='+$('#comuna_modelo').val()+' selected>'+$('.td-comuna').text()+'</option>');
 			break;
 			case 'Comuna':
 				$('.modal-body').append('<label for="comuna">Comuna <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="comuna" class="form-control form-control-sm valor-form form-editar" name="comuna" required><option selected="true" value="">Seleccione Comuna</option></select>');
 				$('.modal-body').append('<label class="separar-label" for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value=""/>');
+				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+$('.td-direccion').text()+'"/>');
+				cargarSelectPorId($('#ciudad_modelo').val(), 'Ciudad', valorAnterior);
 			break;
 			case 'Dirección':
 				$('.modal-body').append('<label for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
@@ -146,19 +232,25 @@ $(window).on('load',function(){
 				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="anexo" id="anexo" value="'+valorAnterior+'" maxlength="4"/>');
 			break;
 			case 'Sede':
+				var idSede;
 				$('.modal-body').append('<label for="sede">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="sede" class="form-control form-control-sm valor-form form-editar" name="sede" required><option selected="true" value="">Seleccione Sede</option></select>');
 				$('.modal-body').append('<label class="separar-label" for="area">Área <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="area" class="form-control form-control-sm valor-form form-editar" name="area" required><option selected="true" value="">Seleccione Área</option></select>');
-				cargarSelect(tituloFila);
+				cargarSelect(tituloFila, valorAnterior);
+				$('#sede').change(function(){
+					cargarSelectPorId($('#sede option:selected').val(), tituloFila, valorAnterior);
+				});
 			break;
 			case 'Área':
 				$('.modal-body').append('<label for="area">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="area" class="form-control form-control-sm valor-form form-editar" name="area" required><option selected="true" value="">Seleccione Área</option></select>');
+				cargarSelectPorId($('#sede_modelo').val(), 'Sede');
 			break;
 			case 'Cargo':
 				$('.modal-body').append('<label for="cargo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="cargo" class="form-control form-control-sm valor-form form-editar" name="cargo" required><option selected="true" value="">Seleccione Cargo</option></select>');
+				cargarSelect(tituloFila, valorAnterior);
 			break;
 			case 'Fecha Ingreso Sindicato':
 				$('.modal-body').append('<label for="fecha_sind1">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');

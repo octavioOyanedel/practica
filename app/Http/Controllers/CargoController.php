@@ -87,6 +87,13 @@ class CargoController extends Controller
         //
     }
 
+    public function obtenerCargos(Request $request){
+        if($request->ajax()){
+            $cargos = Cargo::obtenerCargos();
+            return response()->json($cargos);
+        }
+    }
+
     public function obtenerUltimoCargo(Request $request){
         if($request->ajax()){
             $cargo = Cargo::obtenerUltimoCargo();

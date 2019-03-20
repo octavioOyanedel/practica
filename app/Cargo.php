@@ -19,6 +19,10 @@ class Cargo extends Model
         return Cargo::find($id);
     }
 
+    static public function obtenerCargos(){
+        return Cargo::orderBy('nombre')->get();
+    }
+
     public function socio(){
         return $this->belongsTo('Sind1\Socio');
     }

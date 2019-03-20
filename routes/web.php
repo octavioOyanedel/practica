@@ -30,9 +30,10 @@ Route::resource('/cargos', 'CargoController');
 
 //rutas selects vista
 Route::get('/cargarUrbes', 'UrbeController@obtenerUrbes');
+Route::get('/cargarComunas', 'ComunaController@obtenerComunas');
 Route::get('/cargarSedes', 'SedeController@obtenerSedes');
 Route::get('/cargarAreas', 'AreaController@obtenerAreas');
-Route::get('/cargarComunas', 'ComunaController@obtenerComunas');
+Route::get('/cargarCargos', 'CargoController@obtenerCargos');
 
 Route::get('/obtenerUltimaSede', 'SedeController@obtenerUltimaSede');
 Route::get('/obtenerUltimaArea', 'AreaController@obtenerUltimaArea');

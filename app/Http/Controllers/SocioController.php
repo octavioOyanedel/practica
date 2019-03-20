@@ -76,8 +76,12 @@ class SocioController extends Controller
         $fechaNacimento = $socio->fecha_nacimiento;
         $fechaPucv = $socio->fecha_pucv;
         $fechaSind1 = $socio->fecha_sind1;
+        $ciudad = $socio->urbe_id;
+        $comuna = $socio->comuna_id;
+        $sede = $socio->sede_id;
+        $area = $socio->area_id;
         Sind1::formatearObjetoParaMostrar($socio);
-        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1'));
+        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1','ciudad','comuna','sede','area'));
     }
 
     /**
