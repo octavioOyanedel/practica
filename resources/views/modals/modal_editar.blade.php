@@ -13,7 +13,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
-				<button id="guardar_nuevo_registro" type="button" class="btn btn-primary btn-sm guardar-cambios">Editar</button>
+				<button id="editar_registro" type="button" class="btn btn-primary btn-sm guardar-cambios">Editar</button>
 			</div>
 		</div>
 	</div>
