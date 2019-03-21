@@ -11,6 +11,9 @@ use App\Sede;
 use App\Area;
 use App\Cargo;
 use App\Http\Requests\SocioRequest;
+use App\Http\Requests\NombresRequest;
+use App\Http\Requests\ApellidosRequest;
+use App\Http\Requests\RutRequest;
 
 class SocioController extends Controller
 {
@@ -72,6 +75,7 @@ class SocioController extends Controller
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
         $socio = Socio::find($id);
+        $id = $socio->id;
         $rut = $socio->rut;
         $fechaNacimento = $socio->fecha_nacimiento;
         $fechaPucv = $socio->fecha_pucv;
@@ -81,7 +85,7 @@ class SocioController extends Controller
         $sede = $socio->sede_id;
         $area = $socio->area_id;
         Sind1::formatearObjetoParaMostrar($socio);
-        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1','ciudad','comuna','sede','area'));
+        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1','ciudad','comuna','sede','area','id'));
     }
 
     /**
@@ -102,9 +106,9 @@ class SocioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NombresRequest $request, $id)
     {
-
+     
     }
 
     /**
@@ -117,5 +121,48 @@ class SocioController extends Controller
     {
         Socio::destroy($id);
         return redirect()->route('socios.index')->with('desvincular_socio', '');
+    }
+
+    public function editarNombres(NombresRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoNombresRequest($request);
+            $socio->nombres = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarApellidos(ApellidosRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoApellidosRequest($request);
+            $socio->apellidos = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarRut(RutRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoRutRequest($request);
+            $socio->rut = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+    
+    public function editarFechaNacimiento(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->fecha_nacimiento = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
     }
 }

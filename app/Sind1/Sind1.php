@@ -9,9 +9,28 @@ use App\Sede;
 use App\Area;
 use App\Cargo;
 use App\Http\Requests\SocioRequest;
+use App\Http\Requests\NombresRequest;
+use App\Http\Requests\ApellidosRequest;
+use App\Http\Requests\RutRequest;
 
 class Sind1
 {
+
+    static public function formatoNombresRequest(NombresRequest $request)
+    {
+    	$request['valor'] = Sind1::formatoNombres($request->valor);
+    }
+
+    static public function formatoApellidosRequest(ApellidosRequest $request)
+    {
+    	$request['valor'] = Sind1::formatoNombres($request->valor);
+    }
+
+    static public function formatoRutRequest(RutRequest $request)
+    {
+    	$request['valor'] = strtolower($request->valor);
+    }
+
     static public function formatearColeccionParaMostrar(Collection $coleccion){
     	foreach ($coleccion as $objeto){
     		if($objeto['rut'] != null){

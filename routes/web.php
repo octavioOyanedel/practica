@@ -38,3 +38,16 @@ Route::get('/cargarCargos', 'CargoController@obtenerCargos');
 Route::get('/obtenerUltimaSede', 'SedeController@obtenerUltimaSede');
 Route::get('/obtenerUltimaArea', 'AreaController@obtenerUltimaArea');
 Route::get('/obtenerUltimoCargo', 'CargoController@obtenerUltimoCargo');
+
+//rutas actualizar por medio de ajax
+Route::post('/socios/editar_nombres', 'SocioController@editarNombres');
+Route::post('/socios/editar_apellidos', 'SocioController@editarApellidos');
+Route::post('/socios/editar_rut', 'SocioController@editarRut');
+Route::post('/socios/editar_genero', 'SocioController@editarGenero');
+Route::post('/socios/editar_fecha_nacimiento', 'SocioController@editarFechaNacimiento');
+Route::post('/socios/editar_celular', 'SocioController@editarCelular');
+Route::post('/socios/editar_fijo', 'SocioController@editarFijo');
+Route::post('/socios/editar_correo', 'SocioController@editarCorreo');
+Route::post('/socios/editar_ciudad', 'SocioController@editarCiudad');
+Route::post('/socios/editar_comuna', 'SocioController@editarComuna');
+Route::post('/socios/editar_direccion', 'SocioController@editarDireccion');

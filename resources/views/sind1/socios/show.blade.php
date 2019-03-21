@@ -11,17 +11,17 @@
 			<tbody>
 				<tr>
 					<td>Nombres</td>
-					<td>{{ $socio->nombres}}</td>
+					<td class="td-nombres">{{ $socio->nombres}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Apellidos</td>
-					<td>{{ $socio->apellidos}}</td>
+					<td class="td-apellidos">{{ $socio->apellidos}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Rut</td>
-					<td>{{ $socio->rut}}</td>
+					<td class="td-rut">{{ $socio->rut}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
@@ -31,7 +31,7 @@
 				</tr>
 				<tr>
 					<td>Fecha Nacimiento</td>
-					<td>{{ $socio->fecha_nacimiento}}</td>
+					<td class="td-fecha-nacimiento">{{ $socio->fecha_nacimiento}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
@@ -115,6 +115,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<input type="hidden" value="{{ $id }}" id="id_modelo">
 		<input type="hidden" value="{{ $rut }}" id="rut_modelo">
 		<input type="hidden" value="{{ $fechaNacimento }}" id="fechaNacimento_modelo">
 		<input type="hidden" value="{{ $fechaPucv }}" id="fechaPucv_modelo">
