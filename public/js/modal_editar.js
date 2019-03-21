@@ -141,7 +141,15 @@ $(window).on('load',function(){
 			break;
 			case 'Género':
 				$('.modal-body').append('<label for="genero">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required><option selected="true" value="">Seleccione Genero</option><option value="Varón">Varón</option><option value="Dama">Dama</option></select>');
+				$('.modal-body').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required></select>');
+				$('#genero').append('<option selected="true" value="">Seleccione Genero</option>');
+					if(valorAnterior.localeCompare('Varón') === 0){					
+						$('#genero').append('<option selected value="Varón">Varón</option>');
+						$('#genero').append('<option value="Dama">Dama</option>');
+					}else{
+						$('#genero').append('<option value="Varón">Varón</option>');
+						$('#genero').append('<option selected value="Dama">Dama</option>');					
+					}
 			break;
 			case 'Fecha Nacimiento':
 				$('.modal-body').append('<label for="fecha_nac">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
