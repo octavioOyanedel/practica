@@ -12,6 +12,8 @@ use App\Http\Requests\SocioRequest;
 use App\Http\Requests\NombresRequest;
 use App\Http\Requests\ApellidosRequest;
 use App\Http\Requests\RutRequest;
+use App\Http\Requests\CorreoRequest;
+use App\Http\Requests\DireccionRequest;
 
 class Sind1
 {
@@ -29,6 +31,16 @@ class Sind1
     static public function formatoRutRequest(RutRequest $request)
     {
     	$request['valor'] = strtolower($request->valor);
+    }
+
+    static public function formatoCorreoRequest(CorreoRequest $request)
+    {
+        $request['valor'] = strtolower($request->valor);
+    }
+
+    static public function formatoDireccionRequest(DireccionRequest $request)
+    {
+    	$request['valor'] = ucfirst($request->valor);
     }
 
     static public function formatearColeccionParaMostrar(Collection $coleccion){

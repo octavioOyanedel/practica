@@ -13,18 +13,18 @@ $(window).on('load',function(){
 		valorAnterior = obtenerValorParaVista(tituloFila, elemento);
 		poblarVentanaModal(tituloFila, valorAnterior);
 
-		$('#editar_registro').click(function(){	
-			nuevoValor = obtenerNuevoValor(tituloFila);		
+		$('#editar_registro').click(function(){
+			nuevoValor = obtenerNuevoValor(tituloFila);
 			if(esCampoObligatorio(tituloFila)){
 				if(nuevoValor === ''){
 					$('.errores').empty();
 					$('.errores').append('campo obligatorio.');
 				}else{
 					peticionAjax(tituloFila, nuevoValor, id);
-				}			
+				}
 			}else{
 				peticionAjax(tituloFila, nuevoValor, id);
-			}			
+			}
 		});
 	});
 
@@ -57,8 +57,8 @@ $(window).on('load',function(){
 			break;
 			default:
 				return $('.valor-form').val().trim();
-		}		
-	}	
+		}
+	}
 
 	function obtenerRuta(tituloFila){
 		switch(tituloFila){
@@ -73,6 +73,30 @@ $(window).on('load',function(){
 			break;
 			case 'Fecha Nacimiento':
 				return 'editar_fecha_nacimiento';
+			break;
+			case 'Celular':
+				return 'editar_celular';
+			break;
+			case 'Teléfono Fijo':
+				return 'editar_fijo';
+			break;
+			case 'Correo':
+				return 'editar_correo';
+			break;
+			case 'Dirección':
+				return 'editar_direccion';
+			break;
+			case 'Fecha Ingreso PUCV':
+				return 'editar_fecha_ingreso_pucv';
+			break;
+			case 'Anexo':
+				return 'editar_anexo';
+			break;
+			case 'Fecha Ingreso Sindicato':
+				return 'editar_fecha_ingreso_sind1';
+			break;
+			case 'Número Socio':
+				return 'editar_numero_socio';
 			break;
 			default:
 		}
@@ -96,11 +120,43 @@ $(window).on('load',function(){
 					$('.td-rut').text(formatoRutVista8(nuevoValor));
 				}else{
 					$('.td-rut').text(formatoRutVista9(nuevoValor));
-				}				
+				}
 			break;
 			case 'Fecha Nacimiento':
 				$('.td-fecha-nacimiento').empty();
 				$('.td-fecha-nacimiento').text(formatoFecha(nuevoValor));
+			break;
+			case 'Celular':
+				$('.td-celular').empty();
+				$('.td-celular').text(nuevoValor);
+			break;
+			case 'Teléfono Fijo':
+				$('.td-fijo').empty();
+				$('.td-fijo').text(nuevoValor);
+			break;
+			case 'Correo':
+				$('.td-correo').empty();
+				$('.td-correo').text(nuevoValor);
+			break;
+			case 'Dirección':
+				$('.td-direccion').empty();
+				$('.td-direccion').text(ucWords(nuevoValor));
+			break;
+			case 'Fecha Ingreso PUCV':
+				$('.td-fecha-ingreso-pucv').empty();
+				$('.td-fecha-ingreso-pucv').text(formatoFecha(nuevoValor));
+			break;
+			case 'Anexo':
+				$('.td-anexo').empty();
+				$('.td-anexo').text(nuevoValor);
+			break;
+			case 'Fecha Ingreso Sindicato':
+				$('.td-fecha-ingreso-sind1').empty();
+				$('.td-fecha-ingreso-sind1').text(formatoFecha(nuevoValor));
+			break;
+			case 'Número Socio':
+				$('.td-numero-socio').empty();
+				$('.td-numero-socio').text(nuevoValor);
 			break;
 			default:
 		}
@@ -117,9 +173,12 @@ $(window).on('load',function(){
 			case 'Rut':
 				return true;
 			break;
+			case 'Número Socio':
+				return true;
+			break;
 			default:
 				return false;
-		}		
+		}
 	}
 
 	function poblarVentanaModal(tituloFila, valorAnterior){
@@ -143,12 +202,12 @@ $(window).on('load',function(){
 				$('.modal-body').append('<label for="genero">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
 				$('.modal-body').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required></select>');
 				$('#genero').append('<option selected="true" value="">Seleccione Genero</option>');
-					if(valorAnterior.localeCompare('Varón') === 0){					
+					if(valorAnterior.localeCompare('Varón') === 0){
 						$('#genero').append('<option selected value="Varón">Varón</option>');
 						$('#genero').append('<option value="Dama">Dama</option>');
 					}else{
 						$('#genero').append('<option value="Varón">Varón</option>');
-						$('#genero').append('<option selected value="Dama">Dama</option>');					
+						$('#genero').append('<option selected value="Dama">Dama</option>');
 					}
 			break;
 			case 'Fecha Nacimiento':
@@ -183,7 +242,7 @@ $(window).on('load',function(){
 			//TODO sede area cargo
 			case 'Fecha Ingreso Sindicato':
 				$('.modal-body').append('<label for="fecha_sind1">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_sind1" id="fecha_sind1" value=""/>');
+				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_sind1" id="fecha_sind1" value="'+valorAnterior+'"/>');
 			break;
 			case 'Número Socio':
 				$('.modal-body').append('<label for="num_socio">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');

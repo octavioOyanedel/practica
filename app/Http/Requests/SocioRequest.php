@@ -14,6 +14,7 @@ use App\Rules\CorreoUnicoRule;
 use App\Rules\FormatoDireccionRule;
 use App\Rules\AnexoRule;
 use App\Rules\NumeroSocioRule;
+use App\Rules\NumeroSocioUnicoRule;
 
 class SocioRequest extends FormRequest
 {
@@ -45,7 +46,7 @@ class SocioRequest extends FormRequest
            'direccion' => ['nullable',new FormatoDireccionRule,'max:255'],
            'fecha_pucv' => 'nullable|date',
            'anexo' => ['nullable',new NumeroPositivoRule,new AnexoRule],
-           'numero_socio' => ['nullable',new NumeroPositivoRule,new NumeroSocioRule],
+           'numero_socio' => ['nullable',new NumeroPositivoRule,new NumeroSocioRule, new NumeroSocioUnicoRule],
            'fecha_sind1' => 'nullable|date',
            'sede_id' => ['nullable',new NumeroPositivoRule,'max:3'],
            'area_id' => ['nullable',new NumeroPositivoRule,'max:3'],

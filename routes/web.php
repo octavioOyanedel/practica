@@ -51,3 +51,7 @@ Route::post('/socios/editar_correo', 'SocioController@editarCorreo');
 Route::post('/socios/editar_ciudad', 'SocioController@editarCiudad');
 Route::post('/socios/editar_comuna', 'SocioController@editarComuna');
 Route::post('/socios/editar_direccion', 'SocioController@editarDireccion');
+Route::post('/socios/editar_fecha_ingreso_pucv', 'SocioController@editarFechaIngresoPucv');
+Route::post('/socios/editar_anexo', 'SocioController@editarAnexo');
+Route::post('/socios/editar_fecha_ingreso_sind1', 'SocioController@editarFechaIngresoSind1');
+Route::post('/socios/editar_numero_socio', 'SocioController@editarNumeroSocio');

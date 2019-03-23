@@ -36,17 +36,17 @@
 				</tr>
 				<tr>
 					<td>Celular</td>
-					<td>{{ $socio->celular}}</td>
+					<td class="td-celular">{{ $socio->celular}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Teléfono Fijo</td>
-					<td>{{ $socio->fijo}}</td>
+					<td class="td-fijo">{{ $socio->fijo}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Correo</td>
-					<td>{{ $socio->correo}}</td>
+					<td class="td-correo">{{ $socio->correo}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
@@ -73,12 +73,12 @@
 			<tbody>
 				<tr>
 					<td>Fecha Ingreso PUCV</td>
-					<td>{{ $socio->fecha_pucv}}</td>
+					<td class="td-fecha-ingreso-pucv">{{ $socio->fecha_pucv}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Anexo</td>
-					<td>{{ $socio->anexo}}</td>
+					<td class="td-anexo">{{ $socio->anexo}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
@@ -105,12 +105,12 @@
 			<tbody>
 				<tr>
 					<td>Fecha Ingreso Sindicato</td>
-					<td>{{ $socio->fecha_sind1}}</td>
+					<td class="td-fecha-ingreso-sind1">{{ $socio->fecha_sind1}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
 					<td>Número Socio</td>
-					<td>{{ $socio->numero_socio}}</td>
+					<td class="td-numero-socio">{{ $socio->numero_socio}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 			</tbody>

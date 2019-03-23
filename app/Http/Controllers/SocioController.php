@@ -14,6 +14,12 @@ use App\Http\Requests\SocioRequest;
 use App\Http\Requests\NombresRequest;
 use App\Http\Requests\ApellidosRequest;
 use App\Http\Requests\RutRequest;
+use App\Http\Requests\CelularRequest;
+use App\Http\Requests\FijoRequest;
+use App\Http\Requests\CorreoRequest;
+use App\Http\Requests\DireccionRequest;
+use App\Http\Requests\AnexoRequest;
+use App\Http\Requests\NumeroSocioRequest;
 
 class SocioController extends Controller
 {
@@ -108,7 +114,7 @@ class SocioController extends Controller
      */
     public function update(NombresRequest $request, $id)
     {
-     
+
     }
 
     /**
@@ -155,12 +161,94 @@ class SocioController extends Controller
             return response()->json($request->input('valor'));
         }
     }
-    
+
     public function editarFechaNacimiento(Request $request)
     {
         if($request->ajax()){
             $socio = Socio::find($request->id);
             $socio->fecha_nacimiento = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarCelular(CelularRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->celular = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarFijo(FijoRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->fijo = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarCorreo(CorreoRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoCorreoRequest($request);
+            $socio->correo = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarDireccion(DireccionRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoDireccionRequest($request);
+            $socio->direccion = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarFechaIngresoPucv(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->fecha_pucv = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarAnexo(AnexoRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->anexo = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarFechaIngresoSind1(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->fecha_sind1 = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarNumeroSocio(NumeroSocioRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->numero_socio = $request->input('valor');
             $socio->update();
             return response()->json($request->input('valor'));
         }
