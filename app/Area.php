@@ -24,7 +24,7 @@ class Area extends Model
     }
 
     static public function obtenerAreas($id){
-    	return Area::where('sede_id','=',$id)->orderBy('nombre')->get();
+    	return Area::select('id','nombre')->where('sede_id','=',$id)->orderBy('nombre')->get();
     }
 
     public function socio(){

@@ -50,6 +50,7 @@ Route::post('/socios/editar_fijo', 'SocioController@editarFijo');
 Route::post('/socios/editar_correo', 'SocioController@editarCorreo');
 Route::post('/socios/editar_ciudad', 'SocioController@editarCiudad');
 Route::post('/socios/editar_comuna', 'SocioController@editarComuna');
+Route::post('/socios/editar_sede', 'SocioController@editarSede');
 Route::post('/socios/editar_direccion', 'SocioController@editarDireccion');
 Route::post('/socios/editar_fecha_ingreso_pucv', 'SocioController@editarFechaIngresoPucv');
 Route::post('/socios/editar_anexo', 'SocioController@editarAnexo');

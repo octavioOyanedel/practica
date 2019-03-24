@@ -11,7 +11,7 @@ class Urbe extends Model
     ];
 
     static public function obtenerUrbes(){
-        return Urbe::orderBy('nombre')->get();
+        return Urbe::select('id','nombre')->orderBy('nombre')->get();
     }
 
     static public function obtenerUrbe($id){

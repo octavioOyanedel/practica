@@ -30,6 +30,7 @@
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('js/popper.min.js') }}"></script>
 		<script src="{{ asset('js/modal_editar.js') }}"></script>
+		<script src="{{ asset('js/modal_eliminar.js') }}"></script>
 		<script src="{{ asset('js/nav.js') }}"></script>
     @break
     @default

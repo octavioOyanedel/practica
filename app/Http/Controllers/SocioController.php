@@ -20,6 +20,9 @@ use App\Http\Requests\CorreoRequest;
 use App\Http\Requests\DireccionRequest;
 use App\Http\Requests\AnexoRequest;
 use App\Http\Requests\NumeroSocioRequest;
+use App\Http\Requests\CiudadRequest;
+use App\Http\Requests\ComunaRequest;
+use App\Http\Requests\SedeRequest;
 
 class SocioController extends Controller
 {
@@ -162,6 +165,16 @@ class SocioController extends Controller
         }
     }
 
+    public function editarGenero(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->genero = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
     public function editarFechaNacimiento(Request $request)
     {
         if($request->ajax()){
@@ -249,6 +262,42 @@ class SocioController extends Controller
         if($request->ajax()){
             $socio = Socio::find($request->id);
             $socio->numero_socio = $request->input('valor');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarCiudad(CiudadRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoCiudadRequest($request);
+            $socio->urbe_id = $request->input('ciudad');
+            $socio->comuna_id = $request->input('comuna');
+            $socio->direccion = $request->input('direccion');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarComuna(ComunaRequest $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            Sind1::formatoComunaRequest($request);
+            $socio->comuna_id = $request->input('comuna');
+            $socio->direccion = $request->input('direccion');
+            $socio->update();
+            return response()->json($request->input('valor'));
+        }
+    }
+
+    public function editarSede(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->sede_id = $request->input('sede');
+            $socio->area_id = $request->input('area');
             $socio->update();
             return response()->json($request->input('valor'));
         }

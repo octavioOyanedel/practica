@@ -3,12 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\NombreSedeRule;
-use App\Rules\SedeUnicaRule;
-use App\Rules\NombreAreaRule;
-use App\Rules\AreaUnicaRule;
+use App\Rules\NumeroPositivoRule;
+use App\Rules\FormatoDireccionRule;
 
-class SedeRequest extends FormRequest
+class CiudadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +26,9 @@ class SedeRequest extends FormRequest
     public function rules()
     {
         return [
-            'sede' => ['required',new NombreSedeRule, new SedeUnicaRule, 'max:255'],
-            'area' => ['required',new NombreAreaRule, new AreaUnicaRule, 'max:255'],
+           'urbe_id' => ['nullable',new NumeroPositivoRule,'max:3'],
+           'comuna_id' => ['nullable',new NumeroPositivoRule,'max:3'],
+           'direccion' => ['nullable',new FormatoDireccionRule,'max:255'],
         ];
     }
 }

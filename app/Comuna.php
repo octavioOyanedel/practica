@@ -15,7 +15,7 @@ class Comuna extends Model
     }
 
     static public function obtenerComunas($id){
-    	return Comuna::where('urbe_id','=',$id)->orderBy('nombre')->get();
+    	return Comuna::select('id','nombre')->where('urbe_id','=',$id)->orderBy('nombre')->get();
     }
 
     static public function obtenerTodasLasComunas(){

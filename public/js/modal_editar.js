@@ -14,22 +14,108 @@ $(window).on('load',function(){
 		poblarVentanaModal(tituloFila, valorAnterior);
 
 		$('#editar_registro').click(function(){
-			nuevoValor = obtenerNuevoValor(tituloFila);
-			if(esCampoObligatorio(tituloFila)){
-				if(nuevoValor === ''){
-					$('.errores').empty();
-					$('.errores').append('campo obligatorio.');
-				}else{
-					peticionAjax(tituloFila, nuevoValor, id);
-				}
-			}else{
-				peticionAjax(tituloFila, nuevoValor, id);
+			switch(tituloFila){
+				case 'Ciudad':
+					var ciudad_id = obtenerNuevoValor('Ciudad_id');
+					var comuna_id = obtenerNuevoValor('Comuna_id');
+					var ciudad_texto = obtenerNuevoValor('Ciudad_texto');
+					var comuna_texto = obtenerNuevoValor('Comuna_texto');
+					var direccion = obtenerNuevoValor('Ciudad_Direccion');
+					peticionAjaxCiudad(tituloFila, ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion, id);
+				break;
+				case 'Comuna':
+					var comuna_id = obtenerNuevoValor('Comuna_id');
+					var comuna_texto = obtenerNuevoValor('Comuna_texto');
+					var direccion = obtenerNuevoValor('Ciudad_Direccion');
+					peticionAjaxComuna(tituloFila, comuna_id, comuna_texto, direccion, id);
+				break;
+				case 'Sede':
+					var sede_id = obtenerNuevoValor('Sede_id');
+					var sede_texto = obtenerNuevoValor('Sede_texto');
+					var area_id = obtenerNuevoValor('Area_id');
+					var area_texto = obtenerNuevoValor('Area_texto');
+					peticionAjaxSede(tituloFila, sede_id, sede_texto, area_id, area_texto, id);
+				break;
+				default:
+					nuevoValor = obtenerNuevoValor(tituloFila);
+					if(esCampoObligatorio(tituloFila)){
+						if(nuevoValor === ''){
+							$('.errores').empty();
+							$('.errores').append('campo obligatorio.');
+						}else{
+							peticionAjax(tituloFila, nuevoValor, id);
+						}
+					}else{
+						peticionAjax(tituloFila, nuevoValor, id);
+					}
 			}
 		});
 	});
 
+	function peticionAjaxSede(tituloFila, sede_id, sede_texto, area_id, area_texto, id){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id, sede: sede_id, area: area_id},
+			success: function(respuesta){
+				modificarVistaSede(sede_id, sede_texto, area_id, area_texto);
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+				$('.errores').append(respuesta.responseJSON.errors.valor[0]);
+			}
+		});
+	}
+
+	function peticionAjaxComuna(tituloFila, comuna_id, comuna_texto, direccion, id){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id, comuna: comuna_id, direccion:direccion},
+			success: function(respuesta){
+				modificarVistaComuna(comuna_id, comuna_texto, direccion);
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+				$('.errores').append(respuesta.responseJSON.errors.valor[0]);
+			}
+		});
+	}
+
+	function peticionAjaxCiudad(tituloFila, ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion, id){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id, ciudad: ciudad_id, comuna: comuna_id, direccion:direccion},
+			success: function(respuesta){
+				modificarVistaCiudad(ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion);
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+				$('.errores').append(respuesta.responseJSON.errors.valor[0]);
+			}
+		});
+	}
+
 	function peticionAjax(tituloFila, nuevoValor, id){
-		console.log(nuevoValor);
 		var ruta = obtenerRuta(tituloFila);
 		$.ajaxSetup({
 			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
@@ -52,8 +138,35 @@ $(window).on('load',function(){
 
 	function obtenerNuevoValor(tituloFila){
 		switch(tituloFila){
-			case 'Xxx':
-				return 0;
+			case 'Ciudad_id':
+				return $('#ciudad option:selected').val();
+			break;
+			case 'Ciudad_texto':
+				return $('#ciudad option:selected').text();
+			break;
+			case 'Comuna_id':
+				return $('#comuna option:selected').val();
+			break;
+			case 'Comuna_texto':
+				return $('#comuna option:selected').text();
+			break;
+			case 'Ciudad_Direccion':
+				return $('#direccion').val();
+			break;
+			case 'Sede_id':
+				return $('#sede option:selected').val();
+			break;
+			case 'Sede_texto':
+				return $('#sede option:selected').text();
+			break;
+			case 'Area_id':
+				return $('#area option:selected').val();
+			break;
+			case 'Area_texto':
+				return $('#area option:selected').text();
+			break;
+			case 'Género':
+				return $('#genero option:selected').val();
 			break;
 			default:
 				return $('.valor-form').val().trim();
@@ -70,6 +183,9 @@ $(window).on('load',function(){
 			break;
 			case 'Rut':
 				return 'editar_rut';
+			break;
+			case 'Género':
+				return 'editar_genero';
 			break;
 			case 'Fecha Nacimiento':
 				return 'editar_fecha_nacimiento';
@@ -97,6 +213,16 @@ $(window).on('load',function(){
 			break;
 			case 'Número Socio':
 				return 'editar_numero_socio';
+			break;
+			//selects
+			case 'Ciudad':
+				return 'editar_ciudad';
+			break;
+			case 'Comuna':
+				return 'editar_comuna';
+			break;
+			case 'Sede':
+				return 'editar_sede';
 			break;
 			default:
 		}
@@ -126,6 +252,10 @@ $(window).on('load',function(){
 				$('.td-fecha-nacimiento').empty();
 				$('.td-fecha-nacimiento').text(formatoFecha(nuevoValor));
 			break;
+			case 'Género':
+				$('.td-genero').empty();
+				$('.td-genero').text(nuevoValor);
+			break;
 			case 'Celular':
 				$('.td-celular').empty();
 				$('.td-celular').text(nuevoValor);
@@ -140,7 +270,7 @@ $(window).on('load',function(){
 			break;
 			case 'Dirección':
 				$('.td-direccion').empty();
-				$('.td-direccion').text(ucWords(nuevoValor));
+				$('.td-direccion').text(ucFirst(nuevoValor));
 			break;
 			case 'Fecha Ingreso PUCV':
 				$('.td-fecha-ingreso-pucv').empty();
@@ -160,6 +290,42 @@ $(window).on('load',function(){
 			break;
 			default:
 		}
+	}
+
+	function modificarVistaCiudad(ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion){
+		$('.td-ciudad').empty();
+		$('.td-ciudad').text(ciudad_texto);
+		$('.td-comuna').empty();
+		$('.td-comuna').text(comuna_texto);
+		$('.td-direccion').empty();
+		$('.td-direccion').text(ucFirst(direccion));
+		//valores ocultos
+		$('#ciudad_modelo').empty();
+		$('#ciudad_modelo').val(ciudad_id);
+		$('#comuna_modelo').empty();
+		$('#comuna_modelo').val(comuna_id);
+	}
+
+	function modificarVistaComuna(comuna_id, comuna_texto, direccion){
+		$('.td-comuna').empty();
+		$('.td-comuna').text(comuna_texto);
+		$('.td-direccion').empty();
+		$('.td-direccion').text(ucFirst(direccion));
+		//valores ocultos
+		$('#comuna_modelo').empty();
+		$('#comuna_modelo').val(comuna_id);
+	}
+
+	function modificarVistaSede(sede_id, sede_texto, area_id, area_texto){
+		$('.td-sede').empty();
+		$('.td-sede').text(sede_texto);
+		$('.td-area').empty();
+		$('.td-area').text(area_texto);
+		//valores ocultos
+		$('#sede_modelo').empty();
+		$('#sede_modelo').val(sede_id);
+		$('#area_modelo').empty();
+		$('#area_modelo').val(area_id);
 	}
 
 	function esCampoObligatorio(){
@@ -183,24 +349,24 @@ $(window).on('load',function(){
 
 	function poblarVentanaModal(tituloFila, valorAnterior){
 		var vacio;
-		$('.modal-body').empty();
-		$('.modal-title').empty().append('Editar '+tituloFila);
+		$('.cuerpo-modal').empty();
+		$('.titulo-modal').empty().append('Editar '+tituloFila);
 		switch(tituloFila) {
 			case 'Nombres':
-				$('.modal-body').append('<label for="nombres">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="nombres" id="nombres" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="nombres">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="nombres" id="nombres" value="'+valorAnterior+'"/>');
 			break;
 			case 'Apellidos':
-				$('.modal-body').append('<label for="apellidos">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="apellidos" id="apellidos" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="apellidos">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="apellidos" id="apellidos" value="'+valorAnterior+'"/>');
 			break;
 			case 'Rut':
-				$('.modal-body').append('<label for="rut">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="rut" id="rut" value="'+valorAnterior+'" maxlength="9"/>');
+				$('.cuerpo-modal').append('<label for="rut">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="rut" id="rut" value="'+valorAnterior+'" maxlength="9"/>');
 			break;
 			case 'Género':
-				$('.modal-body').append('<label for="genero">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required></select>');
+				$('.cuerpo-modal').append('<label for="genero">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="genero" class="form-control form-control-sm valor-form form-editar" name="genero" required></select>');
 				$('#genero').append('<option selected="true" value="">Seleccione Genero</option>');
 					if(valorAnterior.localeCompare('Varón') === 0){
 						$('#genero').append('<option selected value="Varón">Varón</option>');
@@ -211,42 +377,240 @@ $(window).on('load',function(){
 					}
 			break;
 			case 'Fecha Nacimiento':
-				$('.modal-body').append('<label for="fecha_nac">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_nac" id="fecha_nac" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="fecha_nac">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_nac" id="fecha_nac" value="'+valorAnterior+'"/>');
 			break;
 			case 'Celular':
-				$('.modal-body').append('<label for="celular">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="celular" id="celular" value="'+valorAnterior+'" maxlength="9"/>');
+				$('.cuerpo-modal').append('<label for="celular">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="celular" id="celular" value="'+valorAnterior+'" maxlength="9"/>');
 			break;
 			case 'Teléfono Fijo':
-				$('.modal-body').append('<label for="fijo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="fijo" id="fijo" value="'+valorAnterior+'" maxlength="7"/>');
+				$('.cuerpo-modal').append('<label for="fijo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="fijo" id="fijo" value="'+valorAnterior+'" maxlength="7"/>');
 			break;
 			case 'Correo':
-				$('.modal-body').append('<label for="correo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="correo" id="correo" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="correo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="correo" id="correo" value="'+valorAnterior+'"/>');
 			break;
-			//TODO ciudad comuna
 			case 'Dirección':
-				$('.modal-body').append('<label for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+valorAnterior+'"/>');
 			break;
 			case 'Fecha Ingreso PUCV':
-				$('.modal-body').append('<label for="fecha_pucv">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_pucv" id="fecha_pucv" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="fecha_pucv">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_pucv" id="fecha_pucv" value="'+valorAnterior+'"/>');
 			break;
 			case 'Anexo':
-				$('.modal-body').append('<label for="anexo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="anexo" id="anexo" value="'+valorAnterior+'" maxlength="4"/>');
+				$('.cuerpo-modal').append('<label for="anexo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="anexo" id="anexo" value="'+valorAnterior+'" maxlength="4"/>');
 			break;
-			//TODO sede area cargo
 			case 'Fecha Ingreso Sindicato':
-				$('.modal-body').append('<label for="fecha_sind1">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_sind1" id="fecha_sind1" value="'+valorAnterior+'"/>');
+				$('.cuerpo-modal').append('<label for="fecha_sind1">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="date" class="form-control form-control-sm valor-form form-editar" name="fecha_sind1" id="fecha_sind1" value="'+valorAnterior+'"/>');
 			break;
 			case 'Número Socio':
-				$('.modal-body').append('<label for="num_socio">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
-				$('.modal-body').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="num_socio" id="num_socio" value="'+valorAnterior+'" maxlength="3"/>');
+				$('.cuerpo-modal').append('<label for="num_socio">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="num_socio" id="num_socio" value="'+valorAnterior+'" maxlength="3"/>');
+			break;
+			//selects
+			case 'Ciudad':
+				$('.cuerpo-modal').append('<label for="ciudad">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="ciudad" class="form-control form-control-sm valor-form form-editar" name="ciudad" required><option selected="true" value="">Seleccione Ciudad</option></select>');
+				$('.cuerpo-modal').append('<label class="separar-label" for="comuna">Comuna <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="comuna" class="form-control form-control-sm valor-form form-editar" name="comuna" required><option selected="true" value="">Seleccione Comuna</option></select>');
+					if(existeValor('ciudad') != ''){
+						cargarSelectNoVacio('/cargarUrbes', existeValor('ciudad'));
+						cargarSelectNoVacioPorId($('#ciudad_modelo').val(), '/cargarComunas', existeValor('comuna'));
+					}else{
+						cargarSelect('/cargarUrbes');
+					}
+				$('.cuerpo-modal').append('<label class="separar-label" for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+$('.td-direccion').text()+'"/>');
+				$('#ciudad').change(function(){
+					cargarSelectPorId($('#ciudad option:selected').val(), '/cargarComunas');
+				});
+			break;
+			case 'Comuna':
+				$('.cuerpo-modal').append('<label for="comuna">Comuna <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="comuna" class="form-control form-control-sm valor-form form-editar" name="comuna" required><option selected="true" value="">Seleccione Comuna</option></select>');
+				cargarSelectNoVacioPorId($('#ciudad_modelo').val(), '/cargarComunas', existeValor('comuna'));
+				$('.cuerpo-modal').append('<label class="separar-label" for="direccion">Dirección <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="direccion" id="direccion" value="'+$('.td-direccion').text()+'"/>');
+			break;
+			case 'Sede':
+				$('.cuerpo-modal').append('<label for="sede">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="sede" class="form-control form-control-sm valor-form form-editar" name="sede" required><option selected="true" value="">Seleccione Sede</option></select>');
+				$('.cuerpo-modal').append('<label class="separar-label" for="area">Área <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="area" class="form-control form-control-sm valor-form form-editar" name="area" required><option selected="true" value="">Seleccione Área</option></select>');
+					if(existeValor('sede') != ''){
+						cargarSelectNoVacio('/cargarSedes', existeValor('sede'));
+						cargarSelectNoVacioPorId($('#sede_modelo').val(), '/cargarAreas', existeValor('area'));
+					}else{
+						cargarSelect('/cargarSedes');
+					}
+					$('#sede').change(function(){
+						cargarSelectPorId($('#sede option:selected').val(), '/cargarAreas');
+					});
+			break;
+			default:
+		}
+	}
+
+	function cargarSelect(ruta){
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			success: function(respuesta){
+				switch(ruta) {
+					case '/cargarUrbes':
+						$('#ciudad').empty();
+						$('#ciudad').append('<option selected="true">Seleccione Ciudad</option>');
+						respuesta.forEach(e => {
+							$('#ciudad').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					case '/cargarSedes':
+						$('#sede').empty();
+						$('#sede').append('<option selected="true">Seleccione Sede</option>');
+						respuesta.forEach(e => {
+							$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function cargarSelectPorId(id, ruta){
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id},
+			success: function(respuesta){
+				switch(ruta) {
+					case '/cargarComunas':
+						$('#comuna').empty();
+						$('#comuna').append('<option selected="true">Seleccione Comuna</option>');
+						respuesta.forEach(e => {
+							$('#comuna').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					case '/cargarAreas':
+						$('#area').empty();
+						$('#area').append('<option selected="true">Seleccione Área</option>');
+						respuesta.forEach(e => {
+							$('#area').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function cargarSelectNoVacio(ruta, valor){
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			success: function(respuesta){
+				switch(ruta) {
+					case '/cargarUrbes':
+						$('#ciudad').empty();
+						$('#ciudad').append('<option selected="true">Seleccione Ciudad</option>');
+						respuesta.forEach(e => {
+							if(valor === e.nombre){
+								$('#ciudad').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#ciudad').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					case '/cargarSedes':
+						$('#sede').empty();
+						$('#sede').append('<option selected="true">Seleccione Sede</option>');
+						respuesta.forEach(e => {
+							if(valor === e.nombre){
+								$('#sede').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function cargarSelectNoVacioPorId(id, ruta, valor){
+		$.ajax({
+			method: 'GET',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id},
+			success: function(respuesta){
+				switch(ruta) {
+					case '/cargarComunas':
+						$('#comuna').empty();
+						$('#comuna').append('<option selected="true">Seleccione Comuna</option>');
+						respuesta.forEach(e => {
+							if(valor === e.nombre){
+								$('#comuna').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#comuna').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					case '/cargarAreas':
+						$('#area').empty();
+						$('#area').append('<option selected="true">Seleccione Área</option>');
+						respuesta.forEach(e => {
+							if(valor === e.nombre){
+								$('#area').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#area').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
+					default:
+						//error
+				}
+			},
+			error: function(respuesta){
+				$('.valor-form').addClass('is-invalid');
+			}
+		});
+	}
+
+	function existeValor(campo){
+		switch(campo){
+			case 'ciudad':
+				return $('.td-ciudad').text();
+			break;
+			case 'comuna':
+				return $('.td-comuna').text();
+			break;
+			case 'sede':
+				return $('.td-sede').text();
+			break;
+			case 'area':
+				return $('.td-area').text();
 			break;
 			default:
 		}

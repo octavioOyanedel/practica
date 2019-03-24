@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td>Género</td>
-					<td>{{ $socio->genero}}</td>
+					<td class="td-genero">{{ $socio->genero}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 				<tr>
@@ -129,7 +129,7 @@
 	        <strong>No existen registros que mostrar.</strong>
 	    </div>
 	@endif
-	<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_eliminar">Desvincular Socio</button>
+	<button type="button" id="btn-desvincular" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_eliminar">Desvincular Socio</button>
 	</div>
 	@include('modals.modal_editar')
 	@include('modals.modal_eliminar')

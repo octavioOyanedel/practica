@@ -14,6 +14,8 @@ use App\Http\Requests\ApellidosRequest;
 use App\Http\Requests\RutRequest;
 use App\Http\Requests\CorreoRequest;
 use App\Http\Requests\DireccionRequest;
+use App\Http\Requests\CiudadRequest;
+use App\Http\Requests\ComunaRequest;
 
 class Sind1
 {
@@ -41,6 +43,16 @@ class Sind1
     static public function formatoDireccionRequest(DireccionRequest $request)
     {
     	$request['valor'] = ucfirst($request->valor);
+    }
+
+    static public function formatoCiudadRequest(CiudadRequest $request)
+    {
+    	$request['direccion'] = ucfirst($request->direccion);
+    }
+
+    static public function formatoComunaRequest(ComunaRequest $request)
+    {
+    	$request['direccion'] = ucfirst($request->direccion);
     }
 
     static public function formatearColeccionParaMostrar(Collection $coleccion){

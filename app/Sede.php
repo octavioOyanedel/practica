@@ -20,7 +20,7 @@ class Sede extends Model
     }
 
     static public function obtenerSedes(){
-    	return Sede::orderBy('nombre', 'asc')->get();
+    	return Sede::select('id','nombre')->orderBy('nombre', 'asc')->get();
     }
 
     public function socio(){
