@@ -12,6 +12,7 @@
     @case('socios/'.$id)Datos Socio @break
     @case('prestamos')Buscar Prestamo @break
     @case('prestamos/create')Solicitar Prestamo @break
+    @case('contables/create')Registrar Contabilidad @break
     @default
     No hay título para esta vista
 @endswitch

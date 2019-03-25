@@ -25,6 +25,7 @@ Route::redirect('/home', '/socios');
 //rutas resource
 Route::resource('/socios', 'SocioController');
 Route::resource('/prestamos', 'PrestamoController');
+Route::resource('/contables', 'ContableController');
 Route::resource('/sedes', 'SedeController');
 Route::resource('/areas', 'AreaController');
 Route::resource('/cargos', 'CargoController');

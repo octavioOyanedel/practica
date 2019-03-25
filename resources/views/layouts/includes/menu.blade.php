@@ -33,7 +33,7 @@
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria" href="">Contabilidad<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="">Opción</a></li>
+                <li><a class="enlace-menu" href="{{ route('contables.create') }}">Registrar (Ing/Egr)</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
