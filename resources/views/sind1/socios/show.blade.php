@@ -93,7 +93,7 @@
 				</tr>
 				<tr>
 					<td>Cargo</td>
-					<td>{{ $socio->cargo_id}}</td>
+					<td class="td-cargo">{{ $socio->cargo_id}}</td>
 					<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar">@svg('iconos/editar')</a></td>
 				</tr>
 			</tbody>
@@ -124,6 +124,7 @@
 		<input type="hidden" value="{{ $comuna }}" id="comuna_modelo">
 		<input type="hidden" value="{{ $sede }}" id="sede_modelo">
 		<input type="hidden" value="{{ $area }}" id="area_modelo">
+		<input type="hidden" value="{{ $cargo }}" id="cargo_modelo">
 	@else
 	    <div class="alert alert-warning alert-dismissible fade show" role="alert">
 	        <strong>No existen registros que mostrar.</strong>

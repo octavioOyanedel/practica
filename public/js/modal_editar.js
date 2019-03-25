@@ -21,20 +21,50 @@ $(window).on('load',function(){
 					var ciudad_texto = obtenerNuevoValor('Ciudad_texto');
 					var comuna_texto = obtenerNuevoValor('Comuna_texto');
 					var direccion = obtenerNuevoValor('Ciudad_Direccion');
-					peticionAjaxCiudad(tituloFila, ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion, id);
+					if(ciudad_id === 'Seleccione Ciudad' || comuna_id === 'Seleccione Comuna'){
+						peticionAjaxCiudad(tituloFila, '', '', '', '', direccion, id);
+					}else{
+						peticionAjaxCiudad(tituloFila, ciudad_id, comuna_id, ciudad_texto, comuna_texto, direccion, id);
+					}
 				break;
 				case 'Comuna':
 					var comuna_id = obtenerNuevoValor('Comuna_id');
 					var comuna_texto = obtenerNuevoValor('Comuna_texto');
 					var direccion = obtenerNuevoValor('Ciudad_Direccion');
-					peticionAjaxComuna(tituloFila, comuna_id, comuna_texto, direccion, id);
+					if(comuna_id === 'Seleccione Comuna'){
+						peticionAjaxComuna(tituloFila, '', '', direccion, id);
+					}else{
+						peticionAjaxComuna(tituloFila, comuna_id, comuna_texto, direccion, id);
+					}
 				break;
 				case 'Sede':
 					var sede_id = obtenerNuevoValor('Sede_id');
 					var sede_texto = obtenerNuevoValor('Sede_texto');
 					var area_id = obtenerNuevoValor('Area_id');
 					var area_texto = obtenerNuevoValor('Area_texto');
-					peticionAjaxSede(tituloFila, sede_id, sede_texto, area_id, area_texto, id);
+					if(sede_id === 'Seleccione Sede' || area_id === 'Seleccione Área'){
+						peticionAjaxSede(tituloFila, '', '', '', '', id);
+					}else{
+						peticionAjaxSede(tituloFila, sede_id, sede_texto, area_id, area_texto, id);
+					}
+				break;
+				case 'Área':
+					var area_id = obtenerNuevoValor('Area_id');
+					var area_texto = obtenerNuevoValor('Area_texto');
+					if(area_id === 'Seleccione Área'){
+						peticionAjaxArea(tituloFila, '', '', id);
+					}else{
+						peticionAjaxArea(tituloFila, area_id, area_texto, id);
+					}
+				break;
+				case 'Cargo':
+					var cargo_id = obtenerNuevoValor('Cargo_id');
+					var cargo_texto = obtenerNuevoValor('Cargo_texto');
+					if(cargo_id === 'Seleccione Cargo'){
+						peticionAjaxCargo(tituloFila, '', '', id);
+					}else{
+						peticionAjaxCargo(tituloFila, cargo_id, cargo_texto, id);
+					}
 				break;
 				default:
 					nuevoValor = obtenerNuevoValor(tituloFila);
@@ -51,6 +81,48 @@ $(window).on('load',function(){
 			}
 		});
 	});
+
+	function peticionAjaxCargo(tituloFila, cargo_id, cargo_texto, id){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id, cargo: cargo_id},
+			success: function(respuesta){
+				modificarVistaCargo(cargo_id, cargo_texto);
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+				$('.errores').append(respuesta.responseJSON.errors.valor[0]);
+			}
+		});
+	}
+
+	function peticionAjaxArea(tituloFila, area_id, area_texto, id){
+		var ruta = obtenerRuta(tituloFila);
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: ruta,
+			data: {id: id, area: area_id},
+			success: function(respuesta){
+				modificarVistaArea(area_id, area_texto);
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+				$('.errores').append(respuesta.responseJSON.errors.valor[0]);
+			}
+		});
+	}
 
 	function peticionAjaxSede(tituloFila, sede_id, sede_texto, area_id, area_texto, id){
 		var ruta = obtenerRuta(tituloFila);
@@ -165,6 +237,12 @@ $(window).on('load',function(){
 			case 'Area_texto':
 				return $('#area option:selected').text();
 			break;
+			case 'Cargo_id':
+				return $('#cargo option:selected').val();
+			break;
+			case 'Cargo_texto':
+				return $('#cargo option:selected').text();
+			break;
 			case 'Género':
 				return $('#genero option:selected').val();
 			break;
@@ -223,6 +301,12 @@ $(window).on('load',function(){
 			break;
 			case 'Sede':
 				return 'editar_sede';
+			break;
+			case 'Área':
+				return 'editar_area';
+			break;
+			case 'Cargo':
+				return 'editar_cargo';
 			break;
 			default:
 		}
@@ -326,6 +410,22 @@ $(window).on('load',function(){
 		$('#sede_modelo').val(sede_id);
 		$('#area_modelo').empty();
 		$('#area_modelo').val(area_id);
+	}
+
+	function modificarVistaArea(area_id, area_texto){
+		$('.td-area').empty();
+		$('.td-area').text(area_texto);
+		//valores ocultos
+		$('#area_modelo').empty();
+		$('#area_modelo').val(area_id);
+	}
+
+	function modificarVistaCargo(cargo_id, cargo_texto){
+		$('.td-cargo').empty();
+		$('.td-cargo').text(cargo_texto);
+		//valores ocultos
+		$('#cargo_modelo').empty();
+		$('#cargo_modelo').val(cargo_id);
 	}
 
 	function esCampoObligatorio(){
@@ -452,6 +552,20 @@ $(window).on('load',function(){
 						cargarSelectPorId($('#sede option:selected').val(), '/cargarAreas');
 					});
 			break;
+			case 'Área':
+				$('.cuerpo-modal').append('<label for="area">Área <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="area" class="form-control form-control-sm valor-form form-editar" name="area" required><option selected="true" value="">Seleccione Área</option></select>');
+				cargarSelectNoVacioPorId($('#sede_modelo').val(), '/cargarAreas', existeValor('area'));
+			break;
+			case 'Cargo':
+				$('.cuerpo-modal').append('<label for="cargo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<select id="cargo" class="form-control form-control-sm valor-form form-editar" name="cargo" required><option selected="true" value="">Seleccione Cargo</option></select>');
+					if(existeValor('cargo') != ''){
+						cargarSelectNoVacio('/cargarCargos', existeValor('cargo'));
+					}else{
+						cargarSelect('/cargarCargos');
+					}
+			break;
 			default:
 		}
 	}
@@ -475,6 +589,13 @@ $(window).on('load',function(){
 						$('#sede').append('<option selected="true">Seleccione Sede</option>');
 						respuesta.forEach(e => {
 							$('#sede').append('<option value='+e.id+'>'+e.nombre+'</option>');
+						});
+					break;
+					case '/cargarCargos':
+						$('#cargo').empty();
+						$('#cargo').append('<option selected="true">Seleccione Cargo</option>');
+						respuesta.forEach(e => {
+							$('#cargo').append('<option value='+e.id+'>'+e.nombre+'</option>');
 						});
 					break;
 					default:
@@ -548,6 +669,17 @@ $(window).on('load',function(){
 							}
 						});
 					break;
+					case '/cargarCargos':
+						$('#cargo').empty();
+						$('#cargo').append('<option selected="true">Seleccione Cargo</option>');
+						respuesta.forEach(e => {
+							if(valor === e.nombre){
+								$('#cargo').append('<option value='+e.id+' selected>'+e.nombre+'</option>');
+							}else{
+								$('#cargo').append('<option value='+e.id+'>'+e.nombre+'</option>');
+							}
+						});
+					break;
 					default:
 						//error
 				}
@@ -611,6 +743,9 @@ $(window).on('load',function(){
 			break;
 			case 'area':
 				return $('.td-area').text();
+			break;
+			case 'cargo':
+				return $('.td-cargo').text();
 			break;
 			default:
 		}

@@ -154,3 +154,12 @@ table thead tr th.actualizar{
 .separar-label{
 	margin-top: 7px;
 }
+
+.separar-boton{
+	margin-top: 30px;
+}
+
+#detalle_prestamo{
+	padding: 20px;
+	background-color: orange;
+}

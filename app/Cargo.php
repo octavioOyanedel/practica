@@ -20,7 +20,7 @@ class Cargo extends Model
     }
 
     static public function obtenerCargos(){
-        return Cargo::orderBy('nombre')->get();
+        return Cargo::select('id','nombre')->orderBy('nombre')->get();
     }
 
     public function socio(){

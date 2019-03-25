@@ -12,21 +12,22 @@
             <a class="mostrar-sub-categoria
             {{request()->is('socios/create')?'activo':''}}
             {{request()->is('socios')?'activo':''}}
-                " href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
+            " href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
                 <li><a class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
                 <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
-                @if(request()->path() == 'socios/create')
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Sede</a></li>
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Área</a></li>
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nuevo Cargo</a></li>
-                @endif
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Sede</a></li>
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Área</a></li>
+                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nuevo Cargo</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria" href="">Prestamos<span class="derecha">@svg('iconos/mas')</span></a>
+            <a class="mostrar-sub-categoria
+            {{request()->is('prestamos')?'activo':''}}
+            " href="">Prestamos<span class="derecha">@svg('iconos/mas')</span></a>
             <ul>
-                <li><a class="enlace-menu" href="">Solicitar</a></li>
+                <li><a class="enlace-menu" href="{{ route('prestamos.create') }}">Solicitar</a></li>
+                <li><a class="enlace-menu" href="{{ route('prestamos.index') }}">Buscar</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">

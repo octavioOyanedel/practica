@@ -28,8 +28,8 @@ class SedeRequest extends FormRequest
     public function rules()
     {
         return [
-            'sede' => ['required',new NombreSedeRule, new SedeUnicaRule, 'max:255'],
-            'area' => ['required',new NombreAreaRule, new AreaUnicaRule, 'max:255'],
+            'sede' => ['nullable',new NombreSedeRule, new SedeUnicaRule, 'max:255'],
+            'area' => ['nullable',new NombreAreaRule, new AreaUnicaRule, 'max:255'],
         ];
     }
 }

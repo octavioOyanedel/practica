@@ -93,8 +93,9 @@ class SocioController extends Controller
         $comuna = $socio->comuna_id;
         $sede = $socio->sede_id;
         $area = $socio->area_id;
+        $cargo = $socio->cargo_id;
         Sind1::formatearObjetoParaMostrar($socio);
-        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1','ciudad','comuna','sede','area','id'));
+        return view('sind1.socios.show', compact('socio','existencias','varones','damas','rut','fechaNacimento','fechaPucv','fechaSind1','ciudad','comuna','sede','area','cargo','id'));
     }
 
     /**
@@ -276,7 +277,7 @@ class SocioController extends Controller
             $socio->comuna_id = $request->input('comuna');
             $socio->direccion = $request->input('direccion');
             $socio->update();
-            return response()->json($request->input('valor'));
+            return response()->json($request->input('ciudad'));
         }
     }
 
@@ -288,7 +289,7 @@ class SocioController extends Controller
             $socio->comuna_id = $request->input('comuna');
             $socio->direccion = $request->input('direccion');
             $socio->update();
-            return response()->json($request->input('valor'));
+            return response()->json($request->input('comuna'));
         }
     }
 
@@ -299,7 +300,27 @@ class SocioController extends Controller
             $socio->sede_id = $request->input('sede');
             $socio->area_id = $request->input('area');
             $socio->update();
-            return response()->json($request->input('valor'));
+            return response()->json($request->input('sede'));
+        }
+    }
+
+    public function editarArea(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->area_id = $request->input('area');
+            $socio->update();
+            return response()->json($request->input('area'));
+        }
+    }
+
+    public function editarCargo(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::find($request->id);
+            $socio->cargo_id = $request->input('cargo');
+            $socio->update();
+            return response()->json($request->input('cargo'));
         }
     }
 }
