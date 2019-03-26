@@ -13,6 +13,9 @@
                     	<label class="separar-label" for="tipos" title="Campo obligatorio.">Tipo *</label>
 	                        <select id="tipos" class="form-control form-control-sm {{ $errors->has('tipos') ? ' is-invalid' : '' }}" name="tipos" required>
 	                        	<option selected="true" value="">Seleccione Tipo</option>
+                                @foreach ($tipos as $tipos)
+                                     <option value="{{ $tipos->id }}" @if(old('urbe_id') == $tipos->id) {{ 'selected' }} @endif>{{ $tipos->nombre }}</option>
+                                @endforeach
 	                        </select>
 
                     	<label class="separar-label" for="numero_registro" title="Campo obligatorio.">Número Registro *</label>
@@ -21,16 +24,25 @@
 						<label class="separar-label" for="cuenta" title="Campo obligatorio.">Cuenta Bancaria *</label>
 	                        <select id="cuenta" class="form-control form-control-sm {{ $errors->has('cuenta') ? ' is-invalid' : '' }}" name="cuenta" required>
 	                        	<option selected="true" value="">Seleccione Cuenta Bancaria</option>
+                                @foreach ($bancarios as $bancario)
+                                     <option value="{{ $bancario->id }}" @if(old('urbe_id') == $bancario->id) {{ 'selected' }} @endif>{{ $bancario->numero_cuenta }} {{ $bancario->banco_id }}</option>
+                                @endforeach
 	                        </select>
 
 						<label class="separar-label" for="concepto" title="Campo obligatorio.">Concepto *</label>
 	                        <select id="concepto" class="form-control form-control-sm {{ $errors->has('concepto') ? ' is-invalid' : '' }}" name="concepto" required>
 	                        	<option selected="true" value="">Seleccione Concepto</option>
+                                @foreach ($conceptos as $concepto)
+                                     <option value="{{ $concepto->id }}" @if(old('urbe_id') == $concepto->id) {{ 'selected' }} @endif>{{ $concepto->nombre }}</option>
+                                @endforeach
 	                        </select>
 
                     	<label class="separar-label" for="socio" title="Campo obligatorio.">Socio</label>
 	                        <select id="socio" class="form-control form-control-sm {{ $errors->has('socio') ? ' is-invalid' : '' }}" name="socio" required>
 	                        	<option selected="true" value="">Seleccione Socio</option>
+                                @foreach ($socios as $socio)
+                                     <option value="{{ $socio->id }}" @if(old('urbe_id') == $socio->id) {{ 'selected' }} @endif>{{ $socio->nombres }} {{ $socio->apellidos }} {{ $socio->rut }}</option>
+                                @endforeach
 	                        </select>
 
 	                    <label class="separar-label" for="cheque" title="Campo obligatorio.">Cheque *</label>

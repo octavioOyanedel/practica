@@ -18,7 +18,6 @@ class CreateBancariosTable extends Migration
             $table->collation = 'utf8mb4_spanish2_ci';
             $table->increments('id');
             $table->unsignedInteger('numero_cuenta')->unique();
-            $table->string('descripcion')->nullable();
             $table->unsignedInteger('banco_id');
             $table->unsignedInteger('cuenta_id');
             $table->timestamps();

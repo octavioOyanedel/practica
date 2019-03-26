@@ -33,7 +33,7 @@ class SocioController extends Controller
      */
     public function index()
     {
-        $socios = Socio::all();
+        $socios = Socio::obtenerSocios();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();

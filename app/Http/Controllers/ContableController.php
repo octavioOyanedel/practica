@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sind1\Sind1;
 use App\Socio;
+use App\Tipo;
+use App\Bancario;
+use App\Concepto;
 
 class ContableController extends Controller
 {
@@ -15,7 +18,7 @@ class ContableController extends Controller
      */
     public function index()
     {
-      
+
     }
 
     /**
@@ -25,9 +28,13 @@ class ContableController extends Controller
      */
     public function create()
     {
+        $socios = Socio::obtenerSocios();
+        $conceptos = Concepto::obtenerConceptos();
+        $bancarios = Bancario::obtenerBancarios();
+        $tipos = Tipo::obtenerTipos();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.contables.create', compact('varones','damas'));
+        return view('sind1.contables.create', compact('varones','damas','tipos','bancarios','conceptos','socios'));
     }
 
     /**

@@ -10,6 +10,10 @@ class Socio extends Model
         'nombres', 'apellidos', 'rut', 'genero', 'fecha_nacimiento', 'celular', 'fijo', 'correo', 'direccion', 'fecha_pucv', 'anexo', 'numero_socio', 'fecha_sind1', 'sede_id', 'area_id', 'cargo_id', 'urbe_id', 'comuna_id',
     ];
 
+    static public function obtenerSocios(){
+        return Socio::orderBy('nombres', 'asc')->get();
+    }
+
     public function sede(){
         return $this->hasOne('App\Sede');
     }

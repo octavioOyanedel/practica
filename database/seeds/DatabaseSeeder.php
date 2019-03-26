@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TitulosTableSeeder::class);
         $this->call(CuentasTableSeeder::class);
         $this->call(CarrerasTableSeeder::class);
+        $this->call(BancariosTableSeeder::class);
     }
 }
