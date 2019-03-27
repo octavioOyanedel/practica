@@ -133,6 +133,21 @@ class Sind1
 		}
     }
 
+    static public function formatoContableRequest(ContableRequest $request)
+    {
+    	//campos obligatorios
+    	$request['nombres'] = Sind1::formatoNombres($request->nombres);
+    	$request['apellidos'] = Sind1::formatoNombres($request->apellidos);
+    	$request['rut'] = strtolower($request->rut);
+    	//campos nullable
+    	if($request['correo'] != null){
+			$request['correo'] = strtolower($request->correo);
+    	}
+    	if($request['direccion'] != null){
+			$request['direccion'] = ucfirst($request->direccion);
+		}
+    }
+
     static public function formatoNombres($cadena)
     {
 	    $nombreFormateado = strtolower($cadena);

@@ -33,4 +33,8 @@ class Socio extends Model
     public function comuna(){
         return $this->hasOne('App\Comuna');
     }
+
+    public function contable(){
+        return $this->hasOne('App\Contable');
+    }
 }

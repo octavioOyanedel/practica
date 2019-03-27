@@ -24,6 +24,7 @@
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria
             {{request()->is('prestamos')?'activo':''}}
+            {{request()->is('prestamos/create')?'activo':''}}
             " href="">Prestamos<span class="derecha">@svg('iconos/mas')</span></a>
             <ul>
                 <li><a class="enlace-menu" href="{{ route('prestamos.create') }}">Solicitar</a></li>
@@ -31,9 +32,13 @@
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria" href="">Contabilidad<span class="derecha">@svg('iconos/mas')</span></a>
+            <a class="mostrar-sub-categoria
+            {{request()->is('contables')?'activo':''}}
+            {{request()->is('contables/create')?'activo':''}}
+            " href="">Contabilidad<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
                 <li><a class="enlace-menu" href="{{ route('contables.create') }}">Registrar (Ing/Egr)</a></li>
+                <li><a class="enlace-menu" href="">Nuevo Concepto</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">

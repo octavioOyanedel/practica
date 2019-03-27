@@ -8,6 +8,7 @@ use App\Socio;
 use App\Tipo;
 use App\Bancario;
 use App\Concepto;
+use App\Contable;
 
 class ContableController extends Controller
 {
@@ -45,7 +46,9 @@ class ContableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Sind1::formatoContableRequest($request);
+        Contable::create($request->all());
+        return redirect()->route('contables.create')->with('incorporar_contable', '');
     }
 
     /**
