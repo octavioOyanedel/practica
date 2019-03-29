@@ -30,9 +30,10 @@ class PrestamoController extends Controller
      */
     public function create()
     {
+        $socios = Socio::obtenerSocios();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.prestamos.create', compact('varones','damas'));
+        return view('sind1.prestamos.create', compact('varones','damas','socios'));
     }
 
     /**

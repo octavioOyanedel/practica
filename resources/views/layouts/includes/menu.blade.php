@@ -31,6 +31,7 @@
                 <li><a class="enlace-menu" href="{{ route('prestamos.index') }}">Buscar</a></li>
             </ul>
         </li>
+        <!--
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria
             {{request()->is('contables')?'activo':''}}
@@ -41,6 +42,7 @@
                 <li><a class="enlace-menu" href="">Nuevo Concepto</a></li>
             </ul>
         </li>
+        -->
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria" href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>

@@ -21,10 +21,10 @@ class CreateContablesTable extends Migration
             $table->unsignedInteger('numero_contabilidad');
             $table->unsignedInteger('cheque')->unique();
             $table->unsignedInteger('monto');
-            $table->unsignedInteger('banco_id');
+            $table->unsignedInteger('bancario_id');
             $table->unsignedInteger('tipo_id');
             $table->unsignedInteger('concepto_id');
-            $table->unsignedInteger('socio_id')->nullable();            
+            $table->unsignedInteger('socio_id')->nullable();
             $table->timestamps();
         });
     }

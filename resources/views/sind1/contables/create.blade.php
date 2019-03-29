@@ -44,10 +44,10 @@
                                      <option value="{{ $socio->id }}" @if(old('urbe_id') == $socio->id) {{ 'selected' }} @endif>{{ $socio->nombres }} {{ $socio->apellidos }} {{ $socio->rut }}</option>
                                 @endforeach
 	                        </select>
-
-	                    <label class="separar-label" for="cheque" title="Campo obligatorio.">Cheque</label>
-						<input maxlength="10" type="text" class="form-control form-control-sm {{ $errors->has('cheque') ? ' is-invalid' : '' }}" id="cheque" value="{{ old('cheque') }}" name="cheque">
-
+                        <div class="cambio-tipo">
+    	                    <label class="separar-label" for="cheque" title="Campo obligatorio.">Cheque</label>
+    						<input maxlength="10" type="text" class="form-control form-control-sm {{ $errors->has('cheque') ? ' is-invalid' : '' }}" id="cheque" value="{{ old('cheque') }}" name="cheque">
+                        </div>
 	                    <label class="separar-label" for="monto" title="Campo obligatorio.">Monto *</label>
 						<input maxlength="7" type="text" class="form-control form-control-sm {{ $errors->has('monto') ? ' is-invalid' : '' }}" id="monto" value="{{ old('monto') }}" name="monto">
 
@@ -64,6 +64,7 @@
                 </div>
                 {{--fin form --}}
              </form>
+             @include('modals.modal_nuevo')
         </div>
     </div>
 @endsection

@@ -132,6 +132,7 @@
 	@endif
 	<button type="button" id="btn-desvincular" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_eliminar">Desvincular Socio</button>
 	</div>
+	@include('modals.modal_nuevo')
 	@include('modals.modal_editar')
 	@include('modals.modal_eliminar')
 </div>

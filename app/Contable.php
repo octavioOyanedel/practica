@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contable extends Model
 {
     protected $fillable = [
-        'fecha', 'cheque', 'monto', 'banco_id', 'tipo_id', 'concepto_id', 'socio_id',
+        'fecha', 'cheque', 'monto', 'bancario_id', 'tipo_id', 'concepto_id', 'socio_id',
     ];
 
     public function socio(){
