@@ -5,10 +5,15 @@
     <div class="col-md-12 mx-auto">
     	@if($existencias != 0)
         	<div class="">
-				<table id="tabla_socios" class="table table-striped table-bordered">
+				<table id="tabla_prestamos" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-
+							<th># Prestamo</th>
+							<th>Nombre</th>
+							<th>Fecha</th>
+							<th>Cheque</th>
+							<th>Monto</th>
+							<th>Cuotas</th>
 						</tr>
 					</thead>
 					<tbody>

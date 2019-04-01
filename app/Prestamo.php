@@ -28,7 +28,7 @@ class Prestamo extends Model
         	['estado_id','=',2],
         ]);
         if($prestamos->count() > 0){
-            return $prestamos;
+            return 1;
         }else{
             return 0;
         }

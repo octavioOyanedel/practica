@@ -26,7 +26,7 @@ $(window).on('load',function(){
 								if(respuestaBuscarIdEnPrestamos === 0){
 									cargarFormularioPrestamo(nombre, idSocio);
 								}else{
-									console.log('existe prestamo pendiente');
+									alertaPrestamoRechazado(nombre);
 								}
 							},
 							error: function(respuestaBuscarIdEnPrestamos){
@@ -74,6 +74,10 @@ $(window).on('load',function(){
 
 	function alertaPrestamoAprobado(nombre){
 		$('#mensaje_prestamo').append('<div id="alerta-prestamo" class="alert alert-success alert-dismissible fade show" role="alert">'+nombre+'<strong class="icono-alerta"> no posee prestamos pendientes.</strong></div>');
+	}
+
+	function alertaPrestamoRechazado(nombre){
+		$('#mensaje_prestamo').append('<div id="alerta-prestamo" class="alert alert-danger alert-dismissible fade show" role="alert">'+nombre+'<strong class="icono-alerta"> posee un prestamo pendiente.</strong></div>');
 	}
 });
 
