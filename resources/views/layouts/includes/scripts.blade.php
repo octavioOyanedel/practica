@@ -33,7 +33,7 @@
 
     @break
     @case('prestamos/create')
-
+        <script src="{{ asset('js/ajax_prestamo.js') }}"></script>
     @break
 
     @default

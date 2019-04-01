@@ -37,4 +37,8 @@ class Socio extends Model
     public function contable(){
         return $this->hasOne('App\Contable');
     }
+
+    public function prestamo(){
+        return $this->hasOne('App\Socio');
+    }
 }

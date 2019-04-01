@@ -161,5 +161,17 @@ table thead tr th.actualizar{
 
 #detalle_prestamo{
 	padding: 20px;
-	
+}
+
+.nombre-prestamo{
+	font-weight: bold;
+}
+
+#solicitar_prestamo{
+	margin-left: 10px;
+}
+
+#alerta-prestamo{
+	margin-top: 20px;
+	margin-bottom: 0px;
 }

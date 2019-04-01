@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 mx-auto">
-            <form class="formulario" method="POST" action="{{ route('socios.store')}}">
+            <form class="formulario" method="POST" action="{{ route('socios.store') }}">
                 @csrf
                 {{--inicio form --}}
                 {{-- fila 1 con 4 columnas --}}

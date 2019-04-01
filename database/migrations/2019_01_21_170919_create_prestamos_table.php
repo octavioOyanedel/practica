@@ -18,11 +18,11 @@ class CreatePrestamosTable extends Migration
             $table->date('fecha');
             $table->unsignedInteger('numero_prestamo')->unique();
             $table->unsignedInteger('cheque')->unique();
-            $table->unsignedInteger('total');
-            $table->unsignedInteger('total_interes');
+            $table->unsignedInteger('monto');
             $table->unsignedInteger('cuotas');
             $table->unsignedInteger('socio_id');
             $table->unsignedInteger('renta_id');
+            $table->unsignedInteger('estado_id');
             $table->timestamps();
         });
     }

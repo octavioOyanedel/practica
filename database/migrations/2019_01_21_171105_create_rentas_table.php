@@ -18,7 +18,7 @@ class CreateRentasTable extends Migration
             $table->collation = 'utf8mb4_spanish2_ci';
             $table->increments('id');
             $table->unsignedInteger('interes');
-            $table->unsignedInteger('aspecto_id');
+            $table->string('aspecto')->unique();
             $table->timestamps();
         });
     }

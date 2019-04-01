@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AspectosTableSeeder extends Seeder
+class RentasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,9 @@ class AspectosTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Aspecto::create(['nombre' => 'Interés de Préstamo']);
+        App\Renta::create([
+        	'interes' => 2,
+        	'aspecto' => 'Interés de Préstamo',
+        ]);
     }
 }

@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ComunasTableSeeder::class);
         $this->call(ConceptosTableSeeder::class);
         $this->call(DetallesTableSeeder::class);
-        $this->call(AspectosTableSeeder::class);
         $this->call(BancosTableSeeder::class);
         $this->call(EstadosTableSeeder::class);
         $this->call(ParentescosTableSeeder::class);
@@ -31,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CuentasTableSeeder::class);
         $this->call(CarrerasTableSeeder::class);
         $this->call(BancariosTableSeeder::class);
+        $this->call(RentasTableSeeder::class);
     }
 }

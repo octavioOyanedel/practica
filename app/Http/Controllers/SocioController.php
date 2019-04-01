@@ -323,4 +323,12 @@ class SocioController extends Controller
             return response()->json($request->input('cargo'));
         }
     }
+
+    public function buscarIdParaPrestamo(Request $request)
+    {
+        if($request->ajax()){
+            $socio = Socio::where('rut','=',$request->rut)->get();
+            return response()->json($socio);
+        }
+    }
 }

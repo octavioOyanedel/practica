@@ -61,5 +61,10 @@ Route::post('/socios/editar_sede', 'SocioController@editarSede');
 Route::post('/socios/editar_area', 'SocioController@editarArea');
 Route::post('/socios/editar_cargo', 'SocioController@editarCargo');
 
+//rutas independientes prestamos
+Route::get('/validarPrestamo', 'PrestamoController@validarPrestamo');
+Route::get('/buscarIdEnPrestamos', 'PrestamoController@buscarIdEnPrestamos');
+Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumeroPrestamo');
+
 //pdf
 Route::get('/comprobante_prestamo', 'PdfController@pdf');

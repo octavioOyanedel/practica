@@ -9,4 +9,8 @@ class Estado extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function prestamo(){
+        return $this->belongsTo('App\Prestamo');
+    }
 }
