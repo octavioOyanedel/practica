@@ -33,7 +33,7 @@
                                 @if($errors->has('rut')) {{ $errors->first('rut') }}@endif
                             </small>
                         </label>
-                        <input maxlength="9" type="text" class="form-control form-control-sm {{ $errors->has('rut') ? ' is-invalid' : '' }}" id="rut" value="{{ old('rut') }}" name="rut" required>
+                        <input maxlength="9" type="text" class="form-control form-control-sm {{ $errors->has('rut') ? ' is-invalid' : '' }}" id="rut" value="{{ old('rut') }}" name="rut" maxlength="9" required>
                     </div>
 
                     <div class="col-sm-3 separar-responsivo">

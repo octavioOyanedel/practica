@@ -56,6 +56,7 @@ class PrestamoController extends Controller
         $prestamo->renta_id = 1;
         $prestamo->estado_id = 2;
         $prestamo->save();
+        app('App\Http\Controllers\CuotaController')->store($prestamo);
         return redirect()->route('prestamos.index')->with('solicitar_prestamo', '');
     }
 
@@ -120,11 +121,12 @@ class PrestamoController extends Controller
 
     public function buscarUltimoNumeroPrestamo()
     {
-        $numero = Prestamo::obtenerUltimoNumeroPrestamo();
-        if($numero->count() > 0){
-            return response()->json($numero->numero_prestamo+1);
+        $prestamo = Prestamo::obtenerUltimoNumeroPrestamo();
+        if($prestamo != null){
+            return response()->json($prestamo->numero_prestamo+1);
         }else{
             return response()->json(1);
         }
     }
+
 }

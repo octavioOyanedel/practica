@@ -17,8 +17,9 @@ class CreateCuotasTable extends Migration
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish2_ci';
             $table->increments('id');
-            $table->date('fecha');
-            $table->integer('monto');
+            $table->date('fecha_pago_cuota');
+            $table->unsignedInteger('numero_cuota');
+            $table->unsignedInteger('monto_cuota');
             $table->unsignedInteger('estado_id');
             $table->unsignedInteger('prestamo_id');
             $table->timestamps();
