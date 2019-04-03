@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Prestamo;
 use App\Cuota;
+use App\Renta;
+use App\Sind1\Sind1;
 
 class CuotaController extends Controller
 {
@@ -34,16 +36,18 @@ class CuotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Prestamo $request)
+    public function store(Prestamo $prestamo)
     {
-        $montoCouta = $request->monto / $request->cuotas;
-        for($i = 1; $i <= $request->cuotas; $i++){
+        //$interes = Renta::obtenerInteresPrestamos();
+        $montoConInteres = ((2 / 100) * $prestamo->monto) + $prestamo->monto;
+        $montoCouta = $montoConInteres / $prestamo->cuotas;
+        for($i = 1; $i <= $prestamo->cuotas; $i++){
             $cuota = new Cuota;
-            $cuota->fecha_pago_cuota = '1999-09-09';
+            $cuota->fecha_pago_cuota = Sind1::obtenerFechaPrestamo($i, date('j'), date('n'), date('Y'));
             $cuota->numero_cuota = $i;
-            $cuota->monto_cuota = 10000;
-            $cuota->estado_id = 1;
-            $cuota->prestamo_id = 1;
+            $cuota->monto_cuota = $montoCouta;
+            $cuota->estado_id = 2;
+            $cuota->prestamo_id = $prestamo->id;
             $cuota->save();
         }
     }

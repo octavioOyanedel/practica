@@ -19,6 +19,16 @@ use App\Http\Requests\ComunaRequest;
 
 class Sind1
 {
+	static public function obtenerFechaPrestamo($indice, $dia, $mes, $year){
+		$mesPago = 0;
+		if($dia <= 15){
+			$mesPago = $mes + ($indice-1);
+		}else{
+
+		}
+
+		return $year.'-'.$mesPago.'-25';
+	}
 
     static public function formatoNombresRequest(NombresRequest $request)
     {

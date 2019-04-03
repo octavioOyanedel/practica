@@ -11,7 +11,7 @@ class Renta extends Model
     ];
 
     static public function obtenerInteresPrestamos(){
-    	return Renta::select('interes')->where('aspecto','=','Interés de Préstamo')->get();
+    	return Renta::where('aspecto','=','Interés de Préstamo')->get();
     }
 
     public function prestamo(){

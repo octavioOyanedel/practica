@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cuota extends Model
 {
     protected $fillable = [
-        'fecha', 'monto', 'estado_id', 'prestamo_id',
+        'fecha_pago_cuota', 'numero_cuota', 'monto_cuota', 'estado_id', 'prestamo_id',
     ];
 
     public function estado(){
