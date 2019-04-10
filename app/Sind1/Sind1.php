@@ -24,7 +24,7 @@ class Sind1
 		if($dia <= 15){
 			$mesPago = $mes + ($indice-1);
 		}else{
-
+			$mesPago = $mes;
 		}
 
 		return $year.'-'.$mesPago.'-25';

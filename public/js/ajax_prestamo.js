@@ -50,11 +50,11 @@ $(window).on('load',function(){
 			success: function(respuesta){
 				alertaPrestamoAprobado(nombre);
 				$('#formulario_prestamo').append('<label for="numero_prestamo">Número Prestamo *</label>');
-				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="numero_prestamo" id="numero_prestamo" value="'+respuesta+'" required />');
+				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="numero_prestamo" id="numero_prestamo" value="'+respuesta+'" maxlength="5" required />');
 				$('#formulario_prestamo').append('<label for="cheque" class="separar-label">Cheque *</label>');
-				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="cheque" id="cheque" value="" maxlength="9" required />');
+				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="cheque" id="cheque" value="" maxlength="10" required />');
 				$('#formulario_prestamo').append('<label for="monto" class="separar-label">Monto *</label>');
-				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="monto" id="monto" value="" required />');
+				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="monto" id="monto" value="" maxlength="7" required />');
 				$('#formulario_prestamo').append('<label for="cuotas" class="separar-label">Cuotas *</label>');
 				$('#formulario_prestamo').append('<select id="cuotas" class="form-control form-control-sm valor-form form-editar" name="cuotas" required><option selected="true" value="">Seleccione Cuotas</option></select>');
 				cargarCuotas();

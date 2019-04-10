@@ -7,6 +7,7 @@ use App\Prestamo;
 use App\Socio;
 use App\Renta;
 use App\Http\Requests\RutPrestamoRequest;
+use App\Http\Requests\PrestamoRequest;
 
 class PrestamoController extends Controller
 {
@@ -44,7 +45,7 @@ class PrestamoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PrestamoRequest $request)
     {
         $prestamo = new Prestamo;
         $prestamo->fecha = date('Y-m-d');

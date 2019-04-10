@@ -7,6 +7,10 @@
 				<label for="rut" title="Campo obligatorio.">Rut *
 					<small class="errores" id="" class="form-text text-muted">
 						@if($errors->has('rut')) {{ $errors->first('rut') }}@endif
+						@if($errors->has('numero_prestamo')) {{ $errors->first('numero_prestamo') }}@endif
+						@if($errors->has('monto')) {{ $errors->first('monto') }}@endif
+						@if($errors->has('cheque')) {{ $errors->first('cheque') }}@endif
+						@if($errors->has('cuotas')) {{ $errors->first('cuotas') }}@endif
 					</small>
 				</label>
 				<div class="form-inline">
