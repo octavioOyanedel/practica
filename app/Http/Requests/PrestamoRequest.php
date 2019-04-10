@@ -27,8 +27,8 @@ class PrestamoRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_prestamo' => ['required',new NumeroPositivoRule, new NumeroPrestamoUnicoRule,'max:10'],
-            'cheque' => ['required',new NumeroPositivoRule, new NumeroChequeUnicoRule,'max:10'],
+            'numero_prestamo' => ['required',new NumeroPositivoRule, new NumeroPrestamoUnicoRule,'max:8'],
+            'cheque' => ['required',new NumeroPositivoRule, new NumeroChequeUnicoRule,'max:8'],
             'monto' => ['required',new NumeroPositivoRule,'max:7'],
         ];
     }

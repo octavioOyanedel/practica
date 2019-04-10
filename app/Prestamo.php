@@ -14,6 +14,18 @@ class Prestamo extends Model
         return Prestamo::find($id);
     }
 
+    static public function obtenerTodosLosPrestamos(){
+        return Prestamo::orderBy('created_at', 'desc')->get();
+    }
+
+    static public function obtenerPrestamosPendientes(){
+        return Prestamo::where('estado_id','=',2)->orderBy('created_at', 'desc')->get();
+    }
+
+    static public function obtenerUltimoNumeroPrestamo(){
+        return Prestamo::orderBy('created_at', 'desc')->first();
+    }
+
     public function socio(){
         return $this->belongsTo('App\Socio');
     }
@@ -38,11 +50,4 @@ class Prestamo extends Model
         }
     }
 
-    static public function obtenerPrestamosPendientes(){
-        return Prestamo::where('estado_id','=',2)->orderBy('created_at', 'desc')->get();
-    }
-
-    static public function obtenerUltimoNumeroPrestamo(){
-    	return Prestamo::orderBy('created_at', 'desc')->first();
-    }
 }

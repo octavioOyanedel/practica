@@ -43,7 +43,7 @@ class CuotaController extends Controller
         $montoCouta = $montoConInteres / $prestamo->cuotas;
         for($i = 1; $i <= $prestamo->cuotas; $i++){
             $cuota = new Cuota;
-            $cuota->fecha_pago_cuota = Sind1::obtenerFechaPrestamo($i, date('j'), date('n'), date('Y'));
+            $cuota->fecha_pago_cuota = Sind1::obtenerFechaPrestamo($i);
             $cuota->numero_cuota = $i;
             $cuota->monto_cuota = $montoCouta;
             $cuota->estado_id = 2;
