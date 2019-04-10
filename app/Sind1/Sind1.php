@@ -21,9 +21,12 @@ use App\Http\Requests\ComunaRequest;
 
 class Sind1
 {
-	static public function obtenerFechaPrestamo($indice){	
 
-	}
+    static public function obtenerFechaUnix($fecha)
+    {
+        $fechaUnix = new DateTime($fecha);
+        return $fechaUnix->getTimestamp();
+    }
 
     static public function formatoNombresRequest(NombresRequest $request)
     {

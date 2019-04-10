@@ -69,5 +69,8 @@ Route::get('/validarPrestamo', 'PrestamoController@validarPrestamo');
 Route::get('/buscarIdEnPrestamos', 'PrestamoController@buscarIdEnPrestamos');
 Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumeroPrestamo');
 
+//pago automatico de cuotas
+Route::get('/pagoAutomaticoCuotas', 'CuotaController@pagoAutomaticoCuotas');
+
 //pdf
 Route::get('/comprobante_prestamo', 'PdfController@pdf');

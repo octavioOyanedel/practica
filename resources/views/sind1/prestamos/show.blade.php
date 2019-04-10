@@ -22,6 +22,10 @@
 					<td class="monto">{{ $prestamo->monto}}</td>
 				</tr>
 				<tr>
+					<td>Cuotas</td>
+					<td class="">{{ $prestamo->cuotas}}</td>
+				</tr>
+				<tr>
 					<td>Fecha de Solicitud del Prestamo</td>
 					<td class="">{{ $prestamo->fecha}}</td>
 				</tr>

@@ -41,14 +41,29 @@ class CuotaController extends Controller
         //$interes = Renta::obtenerInteresPrestamos();
         $montoConInteres = ((2 / 100) * $prestamo->monto) + $prestamo->monto;
         $montoCouta = $montoConInteres / $prestamo->cuotas;
+        $dia = date('j');
+        $mes = date('n');
+        $year = date('Y');
+        if($dia > 15){
+            $mes = $mes + 1;
+            if($mes >= 13){
+                $mes = 1;
+            }
+        }
         for($i = 1; $i <= $prestamo->cuotas; $i++){
+            if($mes > 12){
+                $mes = 1;
+                $year = $year + 1;
+            }
             $cuota = new Cuota;
-            $cuota->fecha_pago_cuota = Sind1::obtenerFechaPrestamo($i);
+            $cuota->fecha_pago_cuota = $year.'-'.$mes.'-25';
             $cuota->numero_cuota = $i;
             $cuota->monto_cuota = $montoCouta;
             $cuota->estado_id = 2;
             $cuota->prestamo_id = $prestamo->id;
+            //validar mes para incremento de año
             $cuota->save();
+            $mes++;
         }
     }
 
@@ -99,5 +114,17 @@ class CuotaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pagoAutomaticoCuotas(){
+        $cuotas = Cuota::obtenerCoutasParaPagar();
+
+        $fechaInicio = Sind1::obtenerFechaUnix('1963-01-01');
+        foreach ($cuotas as $cuota) {
+            if($cuota->fecha){
+                $cuota->estado_id = 1;
+                $cuota->update();
+            }
+        }
     }
 }

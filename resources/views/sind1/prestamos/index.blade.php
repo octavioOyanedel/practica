@@ -14,6 +14,7 @@
 							<th class="centrar-td">Número de Cheque</th>
 							<th class="centrar-td">Monto</th>
 							<th class="centrar-td">Cuotas</th>
+							<th class="centrar-td">Estado Prestamo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -25,6 +26,7 @@
 								<td class="centrar-td">{{ $prestamo->cheque}}</td>
 								<td class="centrar-td">{{ $prestamo->monto}}</td>
 								<td class="centrar-td">{{ $prestamo->cuotas}}</td>
+								<td class="centrar-td">{{ $prestamo->estado_id}}</td>
 							</tr>
 						@endforeach
 					</tbody>
