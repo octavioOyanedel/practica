@@ -14,7 +14,7 @@
             {{request()->is('socios')?'activo':''}}
             " href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
+                <li><a id="incorporar_nuevo_socio" class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
                 <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
                 <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Sede</a></li>
                 <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Área</a></li>

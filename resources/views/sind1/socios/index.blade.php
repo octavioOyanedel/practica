@@ -9,22 +9,22 @@
 					<thead>
 						<tr>
 							<th>Nombres</th>
-							<th>Rut</th>
-							<th>Celular</th>
-							<th>Correo</th>
+							<th class="centrar-td">Rut</th>
+							<th class="centrar-td">Celular</th>
+							<th class="centrar-td">Correo</th>
 							<th>Cargo</th>
-							<th>Anexo</th>
+							<th class="centrar-td">Anexo</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($socios as $soc)
 							<tr>
 								<td><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}}</a></td>
-								<td>{{ $soc->rut }}</td>
-								<td>{{ $soc->celular }}</td>
-								<td>{{ $soc->correo }}</td>
+								<td class="centrar-td">{{ $soc->rut }}</td>
+								<td class="centrar-td">{{ $soc->celular }}</td>
+								<td class="centrar-td">{{ $soc->correo }}</td>
 								<td>{{ $soc->cargo_id }}</td>
-								<td>{{ $soc->anexo }}</td>
+								<td class="centrar-td">{{ $soc->anexo }}</td>
 							</tr>
 						@endforeach
 					</tbody>

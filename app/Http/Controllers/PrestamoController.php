@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sind1\Sind1;
 use App\Prestamo;
 use App\Socio;
 use App\Renta;
+use App\Cuota;
 use App\Http\Requests\RutPrestamoRequest;
 use App\Http\Requests\PrestamoRequest;
 
@@ -22,8 +24,9 @@ class PrestamoController extends Controller
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        $prestamos = Prestamo::all();
-        return view('sind1.prestamos.index', compact('socios','existencias','varones','damas'));
+        $prestamos = Prestamo::obtenerPrestamosPendientes();
+        Sind1::formatearColeccionParaMostrar($prestamos);
+        return view('sind1.prestamos.index', compact('prestamos','existencias','varones','damas'));
     }
 
     /**
@@ -69,7 +72,15 @@ class PrestamoController extends Controller
      */
     public function show($id)
     {
-        //
+        $socios = Socio::all();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        $prestamo = Prestamo::obtenerPrestamo($id);
+        $cuotas = Cuota::obtenerCuotasDePrestamo($id);
+        Sind1::formatearColeccionParaMostrar($cuotas);
+        Sind1::formatearObjetoParaMostrar($prestamo);
+        return view('sind1.prestamos.show', compact('cuotas','prestamo','existencias','varones','damas'));
     }
 
     /**
@@ -92,7 +103,11 @@ class PrestamoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prestamo = Prestamo::find($id);
+        $prestamo->estado_id = 1;
+        $prestamo->update();
+        app('App\Http\Controllers\CuotaController')->update($id);
+        return redirect()->route('prestamos.index')->with('prestamo_saldado', '');
     }
 
     /**

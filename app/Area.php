@@ -11,8 +11,7 @@ class Area extends Model
     ];
 
     static public function obtenerUltimaArea(){
-        $area = Area::orderBy('created_at', 'desc')->first();
-        return $area;
+        return Area::orderBy('created_at', 'desc')->first();
     }
 
     static public function obtenerArea($id){

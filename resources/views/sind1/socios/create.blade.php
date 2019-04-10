@@ -177,12 +177,12 @@
                     </div>
 
                     <div class="col-sm-3 separar-responsivo">
-                        <label for="numero" title="Campo obligatorio.">N° Socio *
+                        <label for="numero_socio" title="Campo obligatorio.">N° Socio *
                             <small class="errores" id="" class="form-text text-muted">
                                 @if($errors->has('numero_socio')) {{ $errors->first('numero_socio') }}@endif
                             </small>
                         </label>
-                        <input maxlength="3" type="text" class="form-control form-control-sm {{ $errors->has('numero_socio') ? ' is-invalid' : '' }}" id="numero" value="{{ old('numero_socio') }}" name="numero_socio" required>
+                        <input maxlength="3" type="text" class="form-control form-control-sm {{ $errors->has('numero_socio') ? ' is-invalid' : '' }}" id="numero_socio" value="{{ old('numero_socio') }}" name="numero_socio" required>
                     </div>
 
                 </div>

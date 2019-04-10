@@ -10,6 +10,10 @@ class Cuota extends Model
         'fecha_pago_cuota', 'numero_cuota', 'monto_cuota', 'estado_id', 'prestamo_id',
     ];
 
+    static public function obtenerCuotasDePrestamo($id){
+    	return Cuota::where('prestamo_id','=',$id)->get();
+    }
+
     public function estado(){
         return $this->hasOne('App\Estado');
     }

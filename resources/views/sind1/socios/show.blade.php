@@ -125,12 +125,12 @@
 		<input type="hidden" value="{{ $sede }}" id="sede_modelo">
 		<input type="hidden" value="{{ $area }}" id="area_modelo">
 		<input type="hidden" value="{{ $cargo }}" id="cargo_modelo">
-	@else
-	    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-	        <strong>No existen registros que mostrar.</strong>
-	    </div>
-	@endif
-	<button type="button" id="btn-desvincular" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_eliminar">Desvincular Socio</button>
+		@else
+		    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+		        <strong>No existen registros que mostrar.</strong>
+		    </div>
+		@endif
+		<button type="button" id="btn-desvincular" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_eliminar">Desvincular Socio</button>
 	</div>
 	@include('modals.modal_nuevo')
 	@include('modals.modal_editar')

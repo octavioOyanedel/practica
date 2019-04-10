@@ -20,17 +20,20 @@
 		{{-- datatable --}}
 	    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 	    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-	    <script src="{{ asset('js/runDataTable.js') }}"></script>
+	    <script src="{{ asset('js/runDataTableSocios.js') }}"></script>
     @break
     @case('socios/create')
-
+        <script src="{{ asset('js/ajax_socio.js') }}"></script>
     @break
     @case('socios/'.$id)
 		<script src="{{ asset('js/modal_editar.js') }}"></script>
 		<script src="{{ asset('js/modal_eliminar.js') }}"></script>
     @break
     @case('prestamos')
-
+        {{-- datatable --}}
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('js/runDataTablePrestamos.js') }}"></script>
     @break
     @case('prestamos/create')
         <script src="{{ asset('js/ajax_prestamo.js') }}"></script>

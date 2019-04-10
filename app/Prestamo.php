@@ -10,6 +10,10 @@ class Prestamo extends Model
         'fecha', 'numero_prestamo', 'cheque', 'monto', 'cuotas', 'socio_id', 'renta_id', 'estado_id',
     ];
 
+    static public function obtenerPrestamo($id){
+        return Prestamo::find($id);
+    }
+
     public function socio(){
         return $this->belongsTo('App\Socio');
     }
@@ -32,6 +36,10 @@ class Prestamo extends Model
         }else{
             return 0;
         }
+    }
+
+    static public function obtenerPrestamosPendientes(){
+        return Prestamo::where('estado_id','=',2)->orderBy('created_at', 'desc')->get();
     }
 
     static public function obtenerUltimoNumeroPrestamo(){

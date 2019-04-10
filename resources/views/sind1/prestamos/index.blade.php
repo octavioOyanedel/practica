@@ -8,16 +8,25 @@
 				<table id="tabla_prestamos" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th># Prestamo</th>
-							<th>Nombre</th>
-							<th>Fecha</th>
-							<th>Cheque</th>
-							<th>Monto</th>
-							<th>Cuotas</th>
+							<th class="centrar-td"># Prestamo</th>
+							<th>Socio</th>
+							<th class="centrar-td">Fecha Solicitud</th>
+							<th class="centrar-td">Número de Cheque</th>
+							<th class="centrar-td">Monto</th>
+							<th class="centrar-td">Cuotas</th>
 						</tr>
 					</thead>
 					<tbody>
-
+						@foreach($prestamos as $prestamo)
+							<tr>
+								<td class="centrar-td"><a href="{{ route('prestamos.show',['id'=>$prestamo->id]) }}">{{ $prestamo->numero_prestamo}}</a></td>
+								<td>{{ $prestamo->socio_id}}</td>
+								<td class="centrar-td">{{ $prestamo->fecha }}</td>
+								<td class="centrar-td">{{ $prestamo->cheque}}</td>
+								<td class="centrar-td">{{ $prestamo->monto}}</td>
+								<td class="centrar-td">{{ $prestamo->cuotas}}</td>
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>

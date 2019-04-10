@@ -8,6 +8,8 @@ use App\Comuna;
 use App\Sede;
 use App\Area;
 use App\Cargo;
+use App\Socio;
+use App\Estado;
 use App\Http\Requests\SocioRequest;
 use App\Http\Requests\NombresRequest;
 use App\Http\Requests\ApellidosRequest;
@@ -67,6 +69,18 @@ class Sind1
 
     static public function formatearColeccionParaMostrar(Collection $coleccion){
     	foreach ($coleccion as $objeto){
+    		if($objeto['fecha_pago_cuota'] != null){
+    			$objeto['fecha_pago_cuota'] = date("d-m-Y", strtotime($objeto['fecha_pago_cuota']));
+    		}
+      		if($objeto['estado_id'] != null){
+    			$objeto['estado_id'] = Estado::obtenerEstado($objeto['estado_id'])->nombre;
+    		}
+    		if($objeto['socio_id'] != null){
+    			$objeto['socio_id'] = Socio::obtenerSocio($objeto['socio_id'])->nombres.' '.Socio::obtenerSocio($objeto['socio_id'])->apellidos;
+    		}
+    		if($objeto['fecha'] != null){
+    			$objeto['fecha'] = date("d-m-Y", strtotime($objeto['fecha']));
+    		}
     		if($objeto['rut'] != null){
     			$objeto['rut'] = Sind1::formatoRut($objeto['rut']);
     		}
@@ -97,34 +111,40 @@ class Sind1
     	}
     }
 
-    static public function formatearObjetoParaMostrar(Object $socio)
+    static public function formatearObjetoParaMostrar(Object $objeto)
     {
-		if($socio['rut'] != null){
-			$socio['rut'] = Sind1::formatoRut($socio['rut']);
+		if($objeto['socio_id'] != null){
+			$objeto['socio_id'] = Socio::obtenerSocio($objeto['socio_id'])->nombres.' '.Socio::obtenerSocio($objeto['socio_id'])->apellidos;
 		}
-		if($socio['fecha_nacimiento'] != null){
-			$socio['fecha_nacimiento'] = date("d-m-Y", strtotime($socio['fecha_nacimiento']));
+		if($objeto['fecha'] != null){
+			$objeto['fecha'] = date("d-m-Y", strtotime($objeto['fecha']));
 		}
-		if($socio['fecha_pucv'] != null){
-			$socio['fecha_pucv'] = date("d-m-Y", strtotime($socio['fecha_pucv']));
+		if($objeto['rut'] != null){
+			$objeto['rut'] = Sind1::formatoRut($objeto['rut']);
 		}
-		if($socio['fecha_sind1'] != null){
-			$socio['fecha_sind1'] = date("d-m-Y", strtotime($socio['fecha_sind1']));
+		if($objeto['fecha_nacimiento'] != null){
+			$objeto['fecha_nacimiento'] = date("d-m-Y", strtotime($objeto['fecha_nacimiento']));
 		}
-		if($socio['sede_id'] != null){
-			$socio['sede_id'] = Sede::obtenerSede($socio['sede_id'])->nombre;
+		if($objeto['fecha_pucv'] != null){
+			$objeto['fecha_pucv'] = date("d-m-Y", strtotime($objeto['fecha_pucv']));
 		}
- 		if($socio['area_id'] != null){
-			$socio['area_id'] = Area::obtenerArea($socio['area_id'])->nombre;
+		if($objeto['fecha_sind1'] != null){
+			$objeto['fecha_sind1'] = date("d-m-Y", strtotime($objeto['fecha_sind1']));
 		}
-  		if($socio['urbe_id'] != null){
-			$socio['urbe_id'] = Urbe::obtenerUrbe($socio['urbe_id'])->nombre;
+		if($objeto['sede_id'] != null){
+			$objeto['sede_id'] = Sede::obtenerSede($objeto['sede_id'])->nombre;
 		}
-  		if($socio['comuna_id'] != null){
-			$socio['comuna_id'] = Comuna::obtenerComuna($socio['comuna_id'])->nombre;
+ 		if($objeto['area_id'] != null){
+			$objeto['area_id'] = Area::obtenerArea($objeto['area_id'])->nombre;
 		}
-  		if($socio['cargo_id'] != null){
-			$socio['cargo_id'] = Cargo::obtenerCargo($socio['cargo_id'])->nombre;
+  		if($objeto['urbe_id'] != null){
+			$objeto['urbe_id'] = Urbe::obtenerUrbe($objeto['urbe_id'])->nombre;
+		}
+  		if($objeto['comuna_id'] != null){
+			$objeto['comuna_id'] = Comuna::obtenerComuna($objeto['comuna_id'])->nombre;
+		}
+  		if($objeto['cargo_id'] != null){
+			$objeto['cargo_id'] = Cargo::obtenerCargo($objeto['cargo_id'])->nombre;
 		}
     }
 

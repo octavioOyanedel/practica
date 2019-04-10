@@ -331,4 +331,14 @@ class SocioController extends Controller
             return response()->json($socio);
         }
     }
+
+    public function buscarUltimoNumeroSocio()
+    {
+        $socio = Socio::obtenerUltimoNumeroSocio();
+        if($socio != null){
+            return response()->json($socio->numero_socio+1);
+        }else{
+            return response()->json(1);
+        }
+    }
 }

@@ -81,9 +81,13 @@ class CuotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $cuotas = Cuota::where('prestamo_id','=',$id)->get();
+        foreach ($cuotas as $cuota){
+            $cuota->estado_id = 1;
+            $cuota->update();
+        }
     }
 
     /**

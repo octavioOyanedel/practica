@@ -80,5 +80,3 @@ $(window).on('load',function(){
 		$('#mensaje_prestamo').append('<div id="alerta-prestamo" class="alert alert-danger alert-dismissible fade show" role="alert">'+nombre+'<strong class="icono-alerta"> posee un prestamo pendiente.</strong></div>');
 	}
 });
-
-

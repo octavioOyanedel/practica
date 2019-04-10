@@ -117,16 +117,16 @@ ul.pagination{
 	float: right;
 }
 
-#tabla_socios_paginate{
+#tabla_socios_paginate, #tabla_prestamos_paginate{
 	text-align: right;
 }
 
-#tabla_socios_filter{
+#tabla_socios_filter, #tabla_prestamos_filter{
 	float: right;
 	display: inline;
 }
 
-#tabla_socios_length{
+#tabla_socios_length, #tabla_prestamos_length{
 	display: inline;
 }
 
@@ -140,6 +140,10 @@ ul.pagination{
 
 table thead tr th.cabecera{
 	width: 200px;
+}
+
+table tbody tr td.cabecera-prestamo{
+	width: 300px;
 }
 
 table thead tr th.actualizar{
@@ -174,4 +178,23 @@ table thead tr th.actualizar{
 #alerta-prestamo{
 	margin-top: 20px;
 	margin-bottom: 0px;
+}
+
+.label-total{
+	font-weight: bold;
+	text-align: right;
+	text-decoration: underline;
+}
+
+.monto{
+	font-weight: bold;
+}
+
+.monto-total{
+	text-align: center;
+	font-weight: bold;
+}
+
+.centrar-td{
+	text-align: center;
 }

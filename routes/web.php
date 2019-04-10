@@ -61,6 +61,9 @@ Route::post('/socios/editar_sede', 'SocioController@editarSede');
 Route::post('/socios/editar_area', 'SocioController@editarArea');
 Route::post('/socios/editar_cargo', 'SocioController@editarCargo');
 
+//rutas independientes socios
+Route::get('/buscarUltimoNumeroSocio', 'SocioController@buscarUltimoNumeroSocio');
+
 //rutas independientes prestamos
 Route::get('/validarPrestamo', 'PrestamoController@validarPrestamo');
 Route::get('/buscarIdEnPrestamos', 'PrestamoController@buscarIdEnPrestamos');

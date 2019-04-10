@@ -14,6 +14,14 @@ class Socio extends Model
         return Socio::orderBy('nombres', 'asc')->get();
     }
 
+    static public function obtenerSocio($id){
+        return Socio::find($id);
+    }
+
+    static public function obtenerUltimoNumeroSocio(){
+        return Socio::orderBy('created_at', 'desc')->first();
+    }
+
     public function sede(){
         return $this->hasOne('App\Sede');
     }

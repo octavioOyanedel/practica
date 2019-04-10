@@ -10,6 +10,10 @@ class Estado extends Model
         'nombre',
     ];
 
+    static public function obtenerEstado($id){
+    	return Estado::where('id','=',$id)->first();
+    }
+
     public function prestamo(){
         return $this->belongsTo('App\Prestamo');
     }
