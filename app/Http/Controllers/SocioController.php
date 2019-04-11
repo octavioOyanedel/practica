@@ -341,4 +341,13 @@ class SocioController extends Controller
             return response()->json(1);
         }
     }
+
+    public function estadisticasSocios()
+    {
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_socios', compact('socios','existencias','varones','damas'));        
+    }
 }

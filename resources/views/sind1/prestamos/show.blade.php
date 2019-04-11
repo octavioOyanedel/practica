@@ -53,7 +53,7 @@
 						<td class="centrar-td">{{ $cuota->numero_cuota.'/'.$prestamo->cuotas}}</td>
 						<td class="centrar-td">{{ $cuota->fecha_pago_cuota }}</td>
 						<td class="centrar-td">{{ $cuota->monto_cuota}}</td>
-						<td class="centrar-td">{{ $cuota->estado_id}}</td>
+						<td class="centrar-td estado-prestamo">{{ $cuota->estado_id}}</td>
 					</tr>
 				@endforeach
 					<tr>

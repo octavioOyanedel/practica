@@ -73,5 +73,8 @@ Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumero
 Route::get('/pagoAutomaticoCuotas', 'CuotaController@pagoAutomaticoCuotas');
 Route::get('/comprobarEstadoPrestamo', 'PrestamoController@comprobarEstadoPrestamo');
 
+//rutas estadisticas
+Route::get('/estadisticasSocios', 'SocioController@estadisticasSocios')->name('todos');
+
 //pdf
 Route::get('/comprobante_prestamo', 'PdfController@pdf');
