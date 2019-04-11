@@ -145,5 +145,15 @@ class PrestamoController extends Controller
             return response()->json(1);
         }
     }
-
+    public function comprobarEstadoPrestamo()
+    {
+        $prestamos = Prestamo::where('estado_id', 2)->get();
+        foreach($prestamos as $prestamo){
+            $cuotas = app('App\Http\Controllers\CuotaController')->obtenerCuotasDePrestamo($prestamo->id);
+            if(Sind1::contarCuotasPagadas($cuotas) == $prestamo->cuotas){
+                $prestamo->estado_id = 1;
+                $prestamo->update();
+            }
+        }
+    }
 }

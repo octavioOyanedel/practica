@@ -71,6 +71,7 @@ Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumero
 
 //pago automatico de cuotas
 Route::get('/pagoAutomaticoCuotas', 'CuotaController@pagoAutomaticoCuotas');
+Route::get('/comprobarEstadoPrestamo', 'PrestamoController@comprobarEstadoPrestamo');
 
 //pdf
 Route::get('/comprobante_prestamo', 'PdfController@pdf');

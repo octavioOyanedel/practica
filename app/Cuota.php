@@ -11,7 +11,9 @@ class Cuota extends Model
     ];
 
     static public function obtenerCoutasParaPagar(){
-        return Cuota::where('estado_id', 2)->get();
+        $desde = '1963-01-01';
+        $hasta = date('Y-n-j');
+        return Cuota::where('estado_id', 2)->whereBetween('fecha_pago_cuota',array($desde , $hasta))->get();
     }
 
     static public function obtenerCuotasDePrestamo($id){

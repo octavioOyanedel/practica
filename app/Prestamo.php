@@ -10,6 +10,10 @@ class Prestamo extends Model
         'fecha', 'numero_prestamo', 'cheque', 'monto', 'cuotas', 'socio_id', 'renta_id', 'estado_id',
     ];
 
+    static public function estaPagadoPrestamo(){
+
+    }
+
     static public function obtenerPrestamo($id){
         return Prestamo::find($id);
     }

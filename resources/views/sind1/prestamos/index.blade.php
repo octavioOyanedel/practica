@@ -26,7 +26,7 @@
 								<td class="centrar-td">{{ $prestamo->cheque}}</td>
 								<td class="centrar-td">{{ $prestamo->monto}}</td>
 								<td class="centrar-td">{{ $prestamo->cuotas}}</td>
-								<td class="centrar-td">{{ $prestamo->estado_id}}</td>
+								<td class="centrar-td estado-prestamo">{{ $prestamo->estado_id}}</td>
 							</tr>
 						@endforeach
 					</tbody>

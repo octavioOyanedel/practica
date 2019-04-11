@@ -198,3 +198,11 @@ table thead tr th.actualizar{
 .centrar-td{
 	text-align: center;
 }
+
+.pagada{
+	color:green;
+}
+
+.no-pagada{
+	color:red;
+}

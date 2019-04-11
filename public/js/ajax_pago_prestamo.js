@@ -2,12 +2,20 @@ $(window).on('load',function(){
 	$.ajax({
 		method: 'GET',
 		dataType: 'json',
-		url: '/pagoAutomaticoCuota',
+		url: '/pagoAutomaticoCuotas',
 		success: function(respuesta){
-			console.log(respuesta);
 		},
 		error: function(respuesta){
-			console.log(respuesta);
 		}
 	});
+	$.ajax({
+		method: 'GET',
+		dataType: 'json',
+		url: '/comprobarEstadoPrestamo',
+		success: function(respuesta){
+		},
+		error: function(respuesta){
+		}
+	});
+
 });

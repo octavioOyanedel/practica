@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Prestamo;
 use App\Cuota;
 use App\Renta;
+use Carbon\Carbon;
 use App\Sind1\Sind1;
 
 class CuotaController extends Controller
@@ -118,13 +119,13 @@ class CuotaController extends Controller
 
     public function pagoAutomaticoCuotas(){
         $cuotas = Cuota::obtenerCoutasParaPagar();
-
-        $fechaInicio = Sind1::obtenerFechaUnix('1963-01-01');
         foreach ($cuotas as $cuota) {
-            if($cuota->fecha){
-                $cuota->estado_id = 1;
-                $cuota->update();
-            }
+            $cuota->estado_id = 1;
+            $cuota->update();
         }
+    }
+
+    public function obtenerCuotasDePrestamo($id){
+       return Cuota::obtenerCuotasDePrestamo($id);
     }
 }

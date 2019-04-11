@@ -7,6 +7,7 @@
 {{-- nav --}}
 <script src="{{ asset('js/nav.js') }}"></script>
 <script src="{{ asset('js/ajax_selects.js') }}"></script>
+<script src="{{ asset('js/color_estado.js') }}"></script>
 @php
 	$id = '';
 @endphp

@@ -22,10 +22,15 @@ use App\Http\Requests\ComunaRequest;
 class Sind1
 {
 
-    static public function obtenerFechaUnix($fecha)
+	static public function contarCuotasPagadas(Collection $cuotas)
     {
-        $fechaUnix = new DateTime($fecha);
-        return $fechaUnix->getTimestamp();
+    	$contador = 0;
+    	foreach ($cuotas as $cuota){
+    		if($cuota->estado_id == 1){
+    			$contador++;
+    		}
+    	}
+    	return $contador;
     }
 
     static public function formatoNombresRequest(NombresRequest $request)
