@@ -348,6 +348,7 @@ class SocioController extends Controller
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        return view('sind1.estadisticas.estadisticas_socios', compact('socios','existencias','varones','damas'));        
+        Sind1::formatearColeccionParaMostrar($socios);
+        return view('sind1.estadisticas.estadisticas_socios', compact('socios','existencias','varones','damas'));
     }
 }

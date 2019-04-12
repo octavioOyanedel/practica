@@ -23,6 +23,7 @@
 	    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 	    <script src="{{ asset('js/runDataTableSocios.js') }}"></script>
         <script src="{{ asset('js/ajax_pago_prestamo.js') }}"></script>
+        <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
     @case('socios/create')
         <script src="{{ asset('js/ajax_socio.js') }}"></script>
@@ -36,10 +37,16 @@
         <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('js/runDataTablePrestamos.js') }}"></script>
+        <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
     @case('prestamos/create')
         <script src="{{ asset('js/ajax_prestamo.js') }}"></script>
     @break
-
+    @case('estadisticasSocios')
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('js/runDataTableEstadisticaSocios.js') }}"></script>
+        <script src="{{ asset('js/descargar_tabla.js') }}"></script>
+    @break
     @default
 @endswitch

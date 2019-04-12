@@ -19,12 +19,12 @@
 					<tbody>
 						@foreach($socios as $soc)
 							<tr>
-								<td><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}}</a></td>
-								<td class="centrar-td">{{ $soc->rut }}</td>
-								<td class="centrar-td">{{ $soc->celular }}</td>
-								<td class="centrar-td">{{ $soc->correo }}</td>
-								<td>{{ $soc->cargo_id }}</td>
-								<td class="centrar-td">{{ $soc->anexo }}</td>
+								<td class="valores-td"><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}}</a></td>
+								<td class="valores-td centrar-td">{{ $soc->rut }}</td>
+								<td class="valores-td centrar-td">{{ $soc->celular }}</td>
+								<td class="valores-td centrar-td">{{ $soc->correo }}</td>
+								<td class="valores-td">{{ $soc->cargo_id }}</td>
+								<td class="valores-td centrar-td">{{ $soc->anexo }}</td>
 							</tr>
 						@endforeach
 					</tbody>

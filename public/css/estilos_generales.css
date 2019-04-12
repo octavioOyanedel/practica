@@ -146,6 +146,10 @@ table tbody tr td.cabecera-prestamo{
 	width: 300px;
 }
 
+table tbody tr th.cabecera-prestamo{
+	width: 300px;
+}
+
 table thead tr th.actualizar{
 	width: 50px;
 }
@@ -205,4 +209,8 @@ table thead tr th.actualizar{
 
 .no-pagada{
 	color:red;
+}
+
+.separar-td{
+	width: 300px;
 }
