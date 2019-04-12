@@ -46,7 +46,7 @@
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria" href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="">Generar</a></li>
+                <li><a class="enlace-menu" href="{{ route('crear_estadistica') }}">Generar</a></li>
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">

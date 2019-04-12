@@ -75,6 +75,7 @@ Route::get('/comprobarEstadoPrestamo', 'PrestamoController@comprobarEstadoPresta
 
 //rutas estadisticas
 Route::get('/estadisticasSocios', 'SocioController@estadisticasSocios')->name('todos');
+Route::get('/crearEstadistica', 'SocioController@crearEstadistica')->name('crear_estadistica');
 
 //pdf
 Route::get('/comprobante_prestamo', 'PdfController@pdf');
