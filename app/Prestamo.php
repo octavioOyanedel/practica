@@ -10,8 +10,8 @@ class Prestamo extends Model
         'fecha', 'numero_prestamo', 'cheque', 'monto', 'cuotas', 'socio_id', 'renta_id', 'estado_id',
     ];
 
-    static public function estaPagadoPrestamo(){
-
+    static public function obtenerPrestamoPorFechas($fechaIni, $fechaFin){
+        return Prestamo::whereBetween('fecha', array($fechaIni , $fechaFin))->orderBy('created_at', 'ASC')->get();
     }
 
     static public function obtenerPrestamo($id){

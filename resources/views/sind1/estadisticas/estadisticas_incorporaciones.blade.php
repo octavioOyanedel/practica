@@ -9,7 +9,7 @@
             <div class="form-group row">
 
                 <div class="col-sm-3 separar-responsivo">
-                    <label for="fecha_inicio">Fecha Inicio</label>
+                    <label for="fecha_inicio">Fecha Inicial</label>
                     <input type="date" class="form-control form-control-sm {{ $errors->has('fecha_inicio') ? ' is-invalid' : '' }}" id="fecha_inicio" value="{{ old('fecha_inicio') }}" name="fecha_inicio">
                 </div>
 

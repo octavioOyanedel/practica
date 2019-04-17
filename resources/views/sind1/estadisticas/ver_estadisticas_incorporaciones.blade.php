@@ -11,7 +11,7 @@
 
 		function drawChart() {
 			var data = google.visualization.arrayToDataTable([
-				['Género', 'Cantidad'],
+				['Task', 'Hours per Day'],
 				['Damas', {{$damas}}],
 				['Varones', {{$varones}}]
 			]);

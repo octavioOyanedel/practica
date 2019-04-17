@@ -10,6 +10,7 @@ use App\Comuna;
 use App\Sede;
 use App\Area;
 use App\Cargo;
+use App\Prestamo;
 use App\Http\Requests\SocioRequest;
 use App\Http\Requests\NombresRequest;
 use App\Http\Requests\ApellidosRequest;
@@ -376,12 +377,17 @@ class SocioController extends Controller
         return view('sind1.estadisticas.estadisticas_incorporaciones', compact('existencias','varones','damas'));
     }
 
-    public function verEstadisticaCantidadPrestamos(){
+    public function verEstadisticaCantidadPrestamos(Request $request){
         $socios = Socio::obtenerSocios();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        return view('sind1.estadisticas.estadisticas_cantidades', compact('existencias','varones','damas'));
+        $fecha_ini = date("d-m-Y", strtotime($request->fecha_ini));
+        $fecha_fin = date("d-m-Y", strtotime($request->fecha_fin));
+        $prestamos = Prestamo::obtenerPrestamoPorFechas($fecha_ini, $fecha_fin);
+        Sind1::formatearColeccionParaMostrar($prestamos);
+        $existencias_prestamos = $prestamos->count();
+        return view('sind1.estadisticas.ver_estadisticas_cantidades', compact('prestamos','existencias_prestamos','fecha_ini','fecha_fin','existencias','varones','damas'));
     }
 
     public function verEstadisticaMontoPrestamos(){
