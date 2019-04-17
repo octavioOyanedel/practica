@@ -382,12 +382,14 @@ class SocioController extends Controller
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        $fecha_ini = date("d-m-Y", strtotime($request->fecha_ini));
-        $fecha_fin = date("d-m-Y", strtotime($request->fecha_fin));
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+        $fecha_ini_grafico = date("d-m-Y", strtotime($request->fecha_ini));
+        $fecha_fin_grafico = date("d-m-Y", strtotime($request->fecha_fin));
         $prestamos = Prestamo::obtenerPrestamoPorFechas($fecha_ini, $fecha_fin);
         Sind1::formatearColeccionParaMostrar($prestamos);
         $existencias_prestamos = $prestamos->count();
-        return view('sind1.estadisticas.ver_estadisticas_cantidades', compact('prestamos','existencias_prestamos','fecha_ini','fecha_fin','existencias','varones','damas'));
+        return view('sind1.estadisticas.ver_estadisticas_cantidades', compact('prestamos','existencias_prestamos','fecha_ini_grafico','fecha_fin_grafico','existencias','varones','damas'));
     }
 
     public function verEstadisticaMontoPrestamos(){

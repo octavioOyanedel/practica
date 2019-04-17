@@ -48,5 +48,11 @@
         <script src="{{ asset('js/runDataTableEstadisticaSocios.js') }}"></script>
         <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
+    @case('verEstadisticaCantidadPrestamos')
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('js/runDataTableGraficoPrestamo.js') }}"></script>
+        <script src="{{ asset('js/descargar_tabla.js') }}"></script>
+    @break
     @default
 @endswitch

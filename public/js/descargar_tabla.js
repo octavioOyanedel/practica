@@ -1,7 +1,7 @@
 $(window).on('load',function(){
 
     var ruta = window.location.pathname;
-
+    console.log(ruta);
     $('.descargar-excel').click(function(e){
 
         e.preventDefault();
@@ -44,6 +44,9 @@ $(window).on('load',function(){
             case '/prestamos':
                 return 'lista_prestamos.csv';
             break;
+            case '/verEstadisticaCantidadPrestamos':
+                return 'lista_prestamos_filtros.csv';
+            break;
             default:
                 return false;
         }
@@ -58,6 +61,9 @@ $(window).on('load',function(){
                 return 5;
             break;
             case '/prestamos':
+                return 7;
+            break;
+            case '/verEstadisticaCantidadPrestamos':
                 return 7;
             break;
             default:
@@ -77,6 +83,9 @@ $(window).on('load',function(){
             case '/prestamos':
                 return 6;
             break;
+            case '/verEstadisticaCantidadPrestamos':
+                return 6;
+            break;
             default:
                 return false;
         }
@@ -93,6 +102,9 @@ $(window).on('load',function(){
             case '/prestamos':
                 return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Estado Prestamo"];
             break;
+            case '/verEstadisticaCantidadPrestamos':
+                return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Estado Prestamo"];
+            break;
             default:
                 return false;
         }
@@ -107,6 +119,9 @@ $(window).on('load',function(){
                 return Math.round(valoresTabla.length/5);
             break;
             case '/prestamos':
+                return Math.round(valoresTabla.length/7);
+            break;
+            case '/verEstadisticaCantidadPrestamos':
                 return Math.round(valoresTabla.length/7);
             break;
             default:

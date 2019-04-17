@@ -214,3 +214,8 @@ table thead tr th.actualizar{
 .separar-td{
 	width: 300px;
 }
+
+.grafico{
+	width: 100%;
+	margin: 50px;
+}

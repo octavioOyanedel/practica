@@ -15,26 +15,15 @@
       data.addColumn('number', 'Monto');
 
       data.addRows([
-        ['01-01-2019',  100],
-        ['02-01-2019',  37],
-        ['03-01-2019',  39],
-        ['04-01-2019',  45],
-        ['05-01-2019',  23],
-        ['06-01-2019',  5],
-        ['07-01-2019',  37],
-        ['08-01-2019',  37],
-        ['09-01-2019',  39],
-        ['10-01-2019',  8],
-        ['11-01-2019',  23],
-        ['12-01-2019',  5],
-        ['13-01-2019',  23],
-        ['14-01-2019',  5],
-        ['15-01-2019',  37],
-        ['16-01-2019',  9],
-        ['17-01-2019',  39],
-        ['18-01-2019',  66],
-        ['19-01-2019',  2],
-        ['20-01-2019',  55]
+        @php
+          $suma_montos = 0;
+        @endphp
+        @foreach($prestamos as $prestamo)
+          @php
+            $suma_montos = $suma_montos + $prestamo->monto;
+          @endphp
+          ['{{$prestamo->fecha}}', {{$prestamo->monto}}],
+        @endforeach
       ]);
 
       var options = {
@@ -42,8 +31,8 @@
       	hAxis: {minValue: 0},
       	backgroundColor: '#f8fafc',
         chart: {
-          title: 'Prestamos realizados entre {{$fecha_ini}} y el {{$fecha_fin}}',
-          subtitle: 'Gráfico fecha v/s monto'
+          title: 'Prestamos realizados entre {{ $fecha_ini_grafico }} y el {{ $fecha_fin_grafico }}',
+          subtitle: 'Se han solicitado {{ $existencias_prestamos }} prestamos con un monto total de {{ $suma_montos }}'
         },
       };
 
@@ -52,8 +41,41 @@
       chart.draw(data, google.charts.Line.convertOptions(options));
     }
 		</script>
-	<div id="linechart_material" style="width: 1200px; height: 350px; margin:0 auto;"></div>
-
+	<div class="tabla-grafico" id="linechart_material" style="width: 800px; height: 350px; margin:0 auto;"></div>
+    @if($existencias_prestamos != 0)
+      <div>
+        <table id="tabla_prestamos" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="centrar-td"># Prestamo</th>
+              <th>Socio</th>
+              <th class="centrar-td">Fecha Solicitud</th>
+              <th class="centrar-td">Número de Cheque</th>
+              <th class="centrar-td">Monto</th>
+              <th class="centrar-td">Cuotas</th>
+              <th class="centrar-td">Estado Prestamo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($prestamos as $prestamo)
+              <tr>
+                <td class="valores-td centrar-td"><a href="{{ route('prestamos.show',['id'=>$prestamo->id]) }}">{{ $prestamo->numero_prestamo}}</a></td>
+                <td class="valores-td">{{ $prestamo->socio_id}}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->fecha }}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->cheque}}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->monto}}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->cuotas}}</td>
+                <td class="valores-td centrar-td estado-prestamo">{{ $prestamo->estado_id}}</td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    @else
+      <div class="tamano-texto alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>No existen registros que mostrar.</strong>
+      </div>
+      @endif
     </div>
 </div>
 
