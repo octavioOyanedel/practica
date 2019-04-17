@@ -20,7 +20,9 @@
     @case('prestamos/create')Solicitar Prestamo @break
     @case('prestamos/'.$idPrestamo)Información Prestamo @break
     @case('estadisticasSocios')Estadisticas Socios @break
-    @case('crearEstadistica')Generar Estadística @break
+    @case('estadisticaCantidadPrestamos')Generar Estadística Cantidad de Prestamos @break
+    @case('estadisticaMontoPrestamos')Generar Estadística Monto de Prestamos @break
+    @case('estadisticaIncorporacionSocios')Generar Estadística Incorporación de Socios @break
     @default
     No hay título para esta vista
 @endswitch

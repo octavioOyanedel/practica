@@ -352,11 +352,51 @@ class SocioController extends Controller
         return view('sind1.estadisticas.estadisticas_socios', compact('socios','existencias','varones','damas'));
     }
 
-    public function crearEstadistica(){
+    public function estadisticaCantidadPrestamos(){
         $socios = Socio::obtenerSocios();
         $varones = Socio::where('genero','Varón')->count();
         $damas = Socio::where('genero','Dama')->count();
         $existencias = $socios->count();
-        return view('sind1.estadisticas.crear_estadistica', compact('existencias','varones','damas'));
+        return view('sind1.estadisticas.estadisticas_cantidades', compact('existencias','varones','damas'));
+    }
+
+    public function estadisticaMontoPrestamos(){
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_montos', compact('existencias','varones','damas'));
+    }
+
+    public function estadisticaIncorporacionSocios(){
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_incorporaciones', compact('existencias','varones','damas'));
+    }
+
+    public function verEstadisticaCantidadPrestamos(){
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_cantidades', compact('existencias','varones','damas'));
+    }
+
+    public function verEstadisticaMontoPrestamos(){
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_montos', compact('existencias','varones','damas'));
+    }
+
+    public function verEstadisticaIncorporacionSocios(){
+        $socios = Socio::obtenerSocios();
+        $varones = Socio::where('genero','Varón')->count();
+        $damas = Socio::where('genero','Dama')->count();
+        $existencias = $socios->count();
+        return view('sind1.estadisticas.estadisticas_incorporaciones', compact('existencias','varones','damas'));
     }
 }

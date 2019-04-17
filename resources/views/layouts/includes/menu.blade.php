@@ -44,17 +44,18 @@
         </li>
         -->
         <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria" href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
+            <a class="mostrar-sub-categoria
+            {{request()->is('estadisticaCantidadPrestamos')?'activo':''}}
+            {{request()->is('estadisticaMontoPrestamos')?'activo':''}}
+            {{request()->is('estadisticaIncorporacionSocios')?'activo':''}}
+            " href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a class="enlace-menu" href="{{ route('crear_estadistica') }}">Generar</a></li>
+                <li><a class="enlace-menu" href="{{ route('cantidad') }}">Cantidad de Prestamos</a></li>
+                <li><a class="enlace-menu" href="{{ route('monto') }}">Montos Prestamos</a></li>
+                <li><a class="enlace-menu" href="{{ route('incorporaciones') }}">Incorporaciones Sind1</a></li>
             </ul>
         </li>
-        <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria" href="">Correo<span class="derecha">@svg('iconos/mas')</span></a>
-             <ul>
-                <li><a class="enlace-menu" href="">Opción</a></li>
-            </ul>
-        </li>
+
         <li class="item-menu item-responsivo titulo-ul">
             <a class="mostrar-sub-categoria" href="">Sindicalizados
                 <span class="derecha">@svg('iconos/mas')</span>
