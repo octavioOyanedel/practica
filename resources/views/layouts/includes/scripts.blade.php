@@ -12,11 +12,17 @@
 <script src="{{ asset('js/color_estado.js') }}"></script>
 @php
 	$id = '';
+    $idUsuario = '';
 @endphp
 @if(isset($socio))
 	@php
 		$id = $socio->id;
 	@endphp
+@endif
+@if(isset($usuario))
+    @php
+        $idUsuario = $usuario->id;
+    @endphp
 @endif
 @switch(request()->path())
     @case('socios')
@@ -62,8 +68,8 @@
         <script src="{{ asset('js/runDataTableGraficoIncorporacion.js') }}"></script>
         <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
-    @case('usuarios/create')
-
+    @case('usuarios/'.$idUsuario)
+        <script src="{{ asset('js/modal_editar_usuario.js') }}"></script>
     @break
     @default
 @endswitch

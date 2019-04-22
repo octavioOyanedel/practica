@@ -4,16 +4,17 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class PasswordUsuarioRule implements Rule
+class PasswordsIgualesRule implements Rule
 {
+    protected $cont;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contrasena1)
     {
-        //
+        $this->cont = $contrasena1;
     }
 
     /**
@@ -25,7 +26,9 @@ class PasswordUsuarioRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(strlen($value) >= 6 && strlen($value) <= 10 && preg_match("/^[a-zA-Z0-9 \-]*$/",$value)){
+        $contrasena1 = $this->cont;
+        $contrasena2 = $value;
+        if(strcmp($contrasena1, $contrasena2) === 0){
             return true;
         }else{
             return false;
@@ -39,6 +42,6 @@ class PasswordUsuarioRule implements Rule
      */
     public function message()
     {
-        return 'no válida.';
+        return 'no son iguales.';
     }
 }

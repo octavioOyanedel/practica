@@ -82,5 +82,11 @@ Route::get('/estadisticaIncorporacionSocios', 'SocioController@estadisticaIncorp
 Route::post('/verEstadisticaCantidadPrestamos', 'SocioController@verEstadisticaCantidadPrestamos')->name('ver_cantidad')->middleware('auth');
 Route::post('/verEstadisticaIncorporacionSocios', 'SocioController@verEstadisticaIncorporacionSocios')->name('ver_incorporaciones')->middleware('auth');
 
+//rutas actualizar por medio de ajax
+Route::post('/usuarios/editar_nombre', 'UserController@editarNombre')->middleware('auth');
+Route::post('/usuarios/editar_correo', 'UserController@editarCorreo')->middleware('auth');
+Route::post('/usuarios/editar_contrasena', 'UserController@editarContrasena')->middleware('auth');
+Route::post('/usuarios/editar_tipo', 'UserController@editarTipo')->middleware('auth');
+
 //pdf
 //Route::get('/comprobante_prestamo', 'PdfController@pdf');

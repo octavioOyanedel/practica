@@ -7,7 +7,10 @@ use App\Sind1\Sind1;
 use App\Socio;
 use App\User;
 use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\NombresRequest;
+use App\Http\Requests\CorreoRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class UserController extends Controller {
 	/**
@@ -70,8 +73,10 @@ class UserController extends Controller {
 		$varones = Socio::where('genero', 'Varón')->count();
 		$damas = Socio::where('genero', 'Dama')->count();
 		$usuario = User::find($id);
+		$id_tipo = $usuario->clase_id;
+		$id_usuario = $usuario->id;
 		Sind1::formatearUsuarioParaMostrar($usuario);
-		return view('sind1.usuarios.show', compact('usuario', 'varones', 'damas'));
+		return view('sind1.usuarios.show', compact('id_usuario','id_tipo','usuario', 'varones', 'damas'));
 	}
 
 	/**
@@ -103,5 +108,38 @@ class UserController extends Controller {
 	 */
 	public function destroy($id) {
 		//
+	}
+
+	public function editarNombre(NombresRequest $request) {
+		if ($request->ajax()) {
+			$usuario = User::find($request->id);
+			Sind1::formatoNombresRequest($request);
+			$usuario->name = $request->input('valor');
+			$usuario->update();
+			return response()->json($request->input('valor'));
+		}		
+	}
+
+	public function editarCorreo(CorreoRequest $request) {
+		if ($request->ajax()) {
+			$usuario = User::find($request->id);
+			Sind1::formatoCorreoRequest($request);
+			$usuario->email = $request->input('valor');
+			$usuario->update();
+			return response()->json($request->input('valor'));
+		}
+	}
+
+	public function editarContrasena(ContrasenaRequest $request) {
+
+	}
+
+	public function editarTipo(Request $request) {
+		if ($request->ajax()) {
+			$usuario = User::find($request->id);
+			$usuario->clase_id = $request->input('valor');
+			$usuario->update();
+			return response()->json($request->input('valor'));
+		}
 	}
 }

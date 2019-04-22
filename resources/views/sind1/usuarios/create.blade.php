@@ -4,6 +4,9 @@
 
     <div class="row">
         <div class="col-md-12 mx-auto">
+            <div class="alert alert-info" role="alert">
+                Contraseña sólo permite letras y números entre 6 y 10 caracteres.
+            </div>
             <form class="formulario" method="POST" action="{{ route('usuarios.store') }}" id="form_nuevo_usuario" autocomplete="off">
                 @csrf
                 {{--inicio form --}}
@@ -34,7 +37,7 @@
                                 @if($errors->has('contrasena')) {{ $errors->first('contrasena') }}@endif
                             </small>
                         </label>
-                        <input type="password" class="form-control form-control-sm form-control-sm {{ $errors->has('contrasena') ? ' is-invalid' : '' }}" id="contrasena" value="{{ old('contrasena') }}" name="contrasena" required autocomplete="new-password">
+                        <input type="password" class="form-control form-control-sm form-control-sm {{ $errors->has('contrasena') ? ' is-invalid' : '' }}" id="contrasena" value="{{ old('contrasena') }}" name="contrasena" required autocomplete="new-password" maxlength="10">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -44,7 +47,7 @@
                                 @if($errors->has('contrasena2')) {{ $errors->first('contrasena2') }}@endif
                             </small>
                         </label>
-                        <input type="password" class="form-control form-control-sm form-control-sm {{ $errors->has('contrasena2') ? ' is-invalid' : '' }}" id="contrasena2" value="{{ old('contrasena2') }}" name="contrasena2" required autocomplete="new-password">
+                        <input type="password" class="form-control form-control-sm form-control-sm {{ $errors->has('contrasena2') ? ' is-invalid' : '' }}" id="contrasena2" value="{{ old('contrasena2') }}" name="contrasena2" required autocomplete="new-password" maxlength="10">
                     </div>
 
                 </div>
