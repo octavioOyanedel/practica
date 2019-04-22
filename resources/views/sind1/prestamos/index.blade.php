@@ -8,13 +8,13 @@
 				<table id="tabla_prestamos" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th class="centrar-td"># Prestamo</th>
+							<th class="centrar-td"># Préstamo</th>
 							<th>Socio</th>
 							<th class="centrar-td">Fecha Solicitud</th>
 							<th class="centrar-td">Número de Cheque</th>
 							<th class="centrar-td">Monto</th>
 							<th class="centrar-td">Cuotas</th>
-							<th class="centrar-td">Estado Prestamo</th>
+							<th class="centrar-td">Estado Préstamo</th>
 						</tr>
 					</thead>
 					<tbody>

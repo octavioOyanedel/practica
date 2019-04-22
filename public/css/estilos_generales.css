@@ -219,3 +219,6 @@ table thead tr th.actualizar{
 	width: 100%;
 	margin: 50px;
 }
+.etiqueta-form{
+    font-size: 14px;
+}

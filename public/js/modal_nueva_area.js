@@ -1,4 +1,7 @@
 $(window).on('load',function(){
+    $('.enlace-nuevo').click(function(){
+        $('#nueva_area').val('');
+    });
     cargarSelectSedes();
     $('#guardar_nueva_area').click(function(){
         var id_sede = $('#sede_actual option:selected').val();

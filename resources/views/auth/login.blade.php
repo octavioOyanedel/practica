@@ -8,7 +8,7 @@
         <title>Iniciar Sesión - Sind1</title>
     </head>
     <body>
-        <form class="form-signin" method="POST" action="{{ route('login') }}">
+        <form class="form-signin" method="POST" action="{{ route('login') }}" autocomplete="off">
             @csrf
             <div class="text-center mb-4">
                 <div class="mb-4">

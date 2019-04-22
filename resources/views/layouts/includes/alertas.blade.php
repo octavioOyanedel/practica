@@ -24,3 +24,12 @@
         </button>
     </div>
 @endif
+
+@if(session()->has('registrar_usuario'))
+    <div class="alertas alert alert-success alert-dismissible fade show" role="alert">
+        <strong class="icono-alerta">Usuario registrado con exito.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif

@@ -26,4 +26,7 @@
         {{-- Fin plantilla --}}
         @include('layouts.includes.scripts')
     </body>
+    @include('modals.modal_nueva_sede')
+    @include('modals.modal_nuevo_cargo')
+    @include('modals.modal_nueva_area')
 </html>

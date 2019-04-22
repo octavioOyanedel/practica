@@ -1,4 +1,8 @@
 $(window).on('load',function(){
+    $('.enlace-nuevo').click(function(){
+        $('#nuevo_cargo').val('');
+    });
+
     $('#guardar_nuevo_cargo').click(function(){
         var nuevo = $('#nuevo_cargo').val();
         if(nuevo != ''){

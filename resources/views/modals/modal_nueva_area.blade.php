@@ -9,10 +9,12 @@
 				</button>
 			</div>
 			<div class="modal-body">
-                <label class="etiqueta-form" for="sede_actual">Sede * </label>
-                <select id="sede_actual" class="form-control form-control-sm form-modal" name="sede_actual" required><option selected="true" value="">Seleccione Sede</option></select>
-                <label class="etiqueta-form separar-label" for="nueva_area">Nueva Área * <small class="errores-modal" class="form-text text-muted"></small></label>
-                <input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_area" id="nueva_area" value=""/>
+                <form id="form_nueva_area">
+                    <label class="etiqueta-form" for="sede_actual">Sede * </label>
+                    <select id="sede_actual" class="form-control form-control-sm form-modal" name="sede_actual" required><option selected="true" value="">Seleccione Sede</option></select>
+                    <label class="etiqueta-form separar-label" for="nueva_area">Nueva Área * <small class="errores-modal" class="form-text text-muted"></small></label>
+                    <input type="text" class="form-control form-control-sm form-modal nuevo-valor" name="nueva_area" id="nueva_area" value=""/>
+                </form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>

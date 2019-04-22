@@ -3,6 +3,7 @@
 namespace App\Sind1;
 use App\Area;
 use App\Cargo;
+use App\Clase;
 use App\Comuna;
 use App\Estado;
 use App\Http\Requests\ApellidosRequest;
@@ -17,6 +18,7 @@ use App\Prestamo;
 use App\Sede;
 use App\Socio;
 use App\Urbe;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 
 class Sind1 {
@@ -61,18 +63,26 @@ class Sind1 {
 
 	static public function formatearColeccionParaMostrar(Collection $coleccion) {
 		foreach ($coleccion as $objeto) {
-			if ($objeto['fecha_pago_cuota'] != null) {
-				$objeto['fecha_pago_cuota'] = date("d-m-Y", strtotime($objeto['fecha_pago_cuota']));
+			//usuarios
+			if ($objeto['clase_id'] != null) {
+				$objeto['clase_id'] = Clase::obtenerClase($objeto['clase_id'])->nombre;
 			}
+			//cuotas
 			if ($objeto['estado_id'] != null) {
 				$objeto['estado_id'] = Estado::obtenerEstado($objeto['estado_id'])->nombre;
 			}
+			if ($objeto['fecha_pago_cuota'] != null) {
+				$objeto['fecha_pago_cuota'] = date("d-m-Y", strtotime($objeto['fecha_pago_cuota']));
+			}
+
 			if ($objeto['socio_id'] != null) {
 				$objeto['socio_id'] = Socio::obtenerSocio($objeto['socio_id'])->nombres . ' ' . Socio::obtenerSocio($objeto['socio_id'])->apellidos;
 			}
+			//prestamos
 			if ($objeto['fecha'] != null) {
 				$objeto['fecha'] = date("d-m-Y", strtotime($objeto['fecha']));
 			}
+			//socios
 			if ($objeto['rut'] != null) {
 				$objeto['rut'] = Sind1::formatoRut($objeto['rut']);
 			}
@@ -139,6 +149,12 @@ class Sind1 {
 		}
 		if ($objeto['fecha'] != null) {
 			$objeto['fecha'] = date("d-m-Y", strtotime($objeto['fecha']));
+		}
+	}
+
+	static public function formatearUsuarioParaMostrar(User $objeto) {
+		if ($objeto['clase_id'] != null) {
+			$objeto['clase_id'] = Clase::obtenerClase($objeto['clase_id'])->nombre;
 		}
 	}
 

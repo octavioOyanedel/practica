@@ -14,11 +14,11 @@
 					<td class="">{{ $prestamo->socio_id}}</td>
 				</tr>
 				<tr>
-					<td>Número de Prestamo</td>
+					<td>Número de Préstamo</td>
 					<td class="">{{ $prestamo->numero_prestamo}}</td>
 				</tr>
 				<tr>
-					<td>Monto Prestamo</td>
+					<td>Monto Préstamo</td>
 					<td class="monto">{{ $prestamo->monto}}</td>
 				</tr>
 				<tr>
@@ -26,14 +26,14 @@
 					<td class="">{{ $prestamo->cuotas}}</td>
 				</tr>
 				<tr>
-					<td>Fecha de Solicitud del Prestamo</td>
+					<td>Fecha de Solicitud del Préstamo</td>
 					<td class="">{{ $prestamo->fecha}}</td>
 				</tr>
 			</tbody>
 		</table>
 		<table id="tabla_datos_laborales" class="table table-striped table-bordered">
 			<thead>
-				<tr><th class="cabecera" colspan="4">Cuotas Prestamo</th></tr>
+				<tr><th class="cabecera" colspan="4">Cuotas Préstamo</th></tr>
 				<tr>
 					<th class="centrar-td">Cuotas</th>
 					<th class="centrar-td">Fecha de Pago Cuota</th>
@@ -69,7 +69,9 @@
 	    </div>
 	@endif
         @if(Auth::user()->clase_id == 1)
-		  <button type="button" id="btn-prestamo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_prestamo">Saldar Prestamo</button>
+            @if($prestamo->estado_id != 1)
+                <button type="button" id="btn-prestamo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_prestamo">Saldar Préstamo</button>
+            @endif
         @endif
     </div>
     @include('modals.modal_prestamo')

@@ -3,6 +3,9 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/cerrar_alert.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/modal_nueva_sede.js') }}"></script>
+<script src="{{ asset('js/modal_nuevo_cargo.js') }}"></script>
+<script src="{{ asset('js/modal_nueva_area.js') }}"></script>
 {{-- nav --}}
 <script src="{{ asset('js/nav.js') }}"></script>
 <script src="{{ asset('js/ajax_selects.js') }}"></script>
@@ -25,9 +28,6 @@
         <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
     @case('socios/create')
-        <script src="{{ asset('js/modal_nueva_sede.js') }}"></script>
-        <script src="{{ asset('js/modal_nuevo_cargo.js') }}"></script>
-        <script src="{{ asset('js/modal_nueva_area.js') }}"></script>
         <script src="{{ asset('js/ajax_socio.js') }}"></script>
     @break
     @case('socios/'.$id)
@@ -61,6 +61,9 @@
         <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('js/runDataTableGraficoIncorporacion.js') }}"></script>
         <script src="{{ asset('js/descargar_tabla.js') }}"></script>
+    @break
+    @case('usuarios/create')
+
     @break
     @default
 @endswitch

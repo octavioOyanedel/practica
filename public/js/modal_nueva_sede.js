@@ -1,4 +1,7 @@
 $(window).on('load',function(){
+    $('.enlace-nuevo').click(function(){
+        document.getElementById("form_nueva_area").reset();
+    });
     $('#guardar_nueva_sede').click(function(){
         var nuevo = $('#nueva_sede').val();
         if(nuevo != ''){

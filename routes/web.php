@@ -29,6 +29,7 @@ Route::resource('/contables', 'ContableController')->middleware('auth');
 Route::resource('/sedes', 'SedeController')->middleware('auth');
 Route::resource('/areas', 'AreaController')->middleware('auth');
 Route::resource('/cargos', 'CargoController')->middleware('auth');
+Route::resource('/usuarios', 'UserController')->middleware('auth');
 
 //rutas selects vista
 Route::get('/cargarUrbes', 'UrbeController@obtenerUrbes')->middleware('auth');

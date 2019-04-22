@@ -18,11 +18,6 @@
                     <li><a id="incorporar_nuevo_socio" class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
                 @endif
                 <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
-                @if(Auth::user()->clase_id == 1)
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_sede">Nueva Sede</a></li>
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_area">Nueva Área</a></li>
-                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo_cargo">Nuevo Cargo</a></li>
-                @endif
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
@@ -61,7 +56,22 @@
                 <li><a class="enlace-menu" href="{{ route('incorporaciones') }}">Incorporaciones Sind1</a></li>
             </ul>
         </li>
+        @if(Auth::user()->clase_id == 1)
+            <li class="item-menu item-general titulo-ul">
+                <a class="mostrar-sub-categoria
+                {{request()->is('usuarios')?'activo':''}}
+                {{request()->is('usuarios/create')?'activo':''}}
+                " href="">Administrar<span class="derecha">@svg('iconos/mas')</span></a>
+                 <ul>
+                        <li><a class="enlace-menu" id="enlace_nuevo_usuario" href="{{ route('usuarios.create') }}">Registrar Usuario</a></li>
+                        <li><a class="enlace-menu" href="{{ route('usuarios.index') }}">Buscar Usuarios</a></li>
+                        <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_sede">Nueva Sede</a></li>
+                        <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_area">Nueva Área</a></li>
+                        <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo_cargo">Nuevo Cargo</a></li>
 
+                </ul>
+            </li>
+        @endif
         <li class="item-menu item-responsivo titulo-ul">
             <a class="mostrar-sub-categoria" href="">Sindicalizados
                 <span class="derecha">@svg('iconos/mas')</span>

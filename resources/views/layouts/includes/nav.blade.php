@@ -14,13 +14,13 @@
             <span class="icon icono-usuario">@svg('iconos/logueado')</span>
         </div>
         <div class="nombre-usuario">
-            <a href="#">
+            <a href="{{ route('usuarios.show',['id'=>Auth::user()->id]) }}">
                  {{ Auth::user()->name }}
             </a>
         </div>
         <div class="cerrar-sesion">
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </div>

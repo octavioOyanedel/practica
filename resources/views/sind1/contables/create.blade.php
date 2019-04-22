@@ -64,7 +64,6 @@
                 </div>
                 {{--fin form --}}
              </form>
-             @include('modals.modal_nuevo')
         </div>
     </div>
 @endsection
