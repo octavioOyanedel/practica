@@ -117,16 +117,16 @@ ul.pagination{
 	float: right;
 }
 
-#tabla_socios_paginate, #tabla_prestamos_paginate{
+#tabla_socios_paginate, #tabla_prestamos_paginate, #tabla_incorporacion_paginate{
 	text-align: right;
 }
 
-#tabla_socios_filter, #tabla_prestamos_filter{
+#tabla_socios_filter, #tabla_prestamos_filter, #tabla_incorporacion_filter{
 	float: right;
 	display: inline;
 }
 
-#tabla_socios_length, #tabla_prestamos_length{
+#tabla_socios_length, #tabla_prestamos_length, #tabla_incorporacion_length{
 	display: inline;
 }
 

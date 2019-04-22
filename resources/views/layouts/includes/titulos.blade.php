@@ -24,6 +24,7 @@
     @case('estadisticaMontoPrestamos')Generar Estadística Monto de Prestamos @break
     @case('estadisticaIncorporacionSocios')Generar Estadística Incorporación de Socios @break
     @case('verEstadisticaCantidadPrestamos')Estadística Cantidad de Prestamos @break
+    @case('verEstadisticaIncorporacionSocios')Estadística Cantidad de Incorporaciones @break
     @default
     No hay título para esta vista
 @endswitch

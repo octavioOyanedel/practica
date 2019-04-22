@@ -35,5 +35,5 @@
             </div>
         </div>
     </div>
-    @include('modals.modal_nuevo')
+
 @endsection

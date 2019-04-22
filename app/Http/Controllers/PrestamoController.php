@@ -2,158 +2,151 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Sind1\Sind1;
-use App\Prestamo;
-use App\Socio;
-use App\Renta;
 use App\Cuota;
-use App\Http\Requests\RutPrestamoRequest;
 use App\Http\Requests\PrestamoRequest;
+use App\Http\Requests\RutPrestamoRequest;
+use App\Prestamo;
+use App\Sind1\Sind1;
+use App\Socio;
+use Illuminate\Http\Request;
 
-class PrestamoController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $socios = Socio::all();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        $existencias = $socios->count();
-        //$prestamos = Prestamo::obtenerPrestamosPendientes();
-        $prestamos = Prestamo::obtenerTodosLosPrestamos();
-        Sind1::formatearColeccionParaMostrar($prestamos);
-        return view('sind1.prestamos.index', compact('prestamos','existencias','varones','damas'));
-    }
+class PrestamoController extends Controller {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $socios = Socio::obtenerSocios();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        return view('sind1.prestamos.create', compact('varones','damas','socios'));
-    }
+	public function __construct() {
+		$this->middleware('administrador')->only('create');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PrestamoRequest $request)
-    {
-        $prestamo = new Prestamo;
-        $prestamo->fecha = date('Y-m-d');
-        $prestamo->numero_prestamo = $request->numero_prestamo;
-        $prestamo->cheque = $request->cheque;
-        $prestamo->monto = $request->monto;
-        $prestamo->cuotas = $request->cuotas;
-        $prestamo->socio_id = $request->id;
-        $prestamo->renta_id = 1;
-        $prestamo->estado_id = 2;
-        $prestamo->save();
-        app('App\Http\Controllers\CuotaController')->store($prestamo);
-        return redirect()->route('prestamos.index')->with('solicitar_prestamo', '');
-    }
+	public function index() {
+		$socios = Socio::all();
+		$varones = Socio::where('genero', 'Varón')->count();
+		$damas = Socio::where('genero', 'Dama')->count();
+		$existencias = $socios->count();
+		//$prestamos = Prestamo::obtenerPrestamosPendientes();
+		$prestamos = Prestamo::obtenerTodosLosPrestamos();
+		Sind1::formatearColeccionParaMostrar($prestamos);
+		return view('sind1.prestamos.index', compact('prestamos', 'existencias', 'varones', 'damas'));
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $socios = Socio::all();
-        $varones = Socio::where('genero','Varón')->count();
-        $damas = Socio::where('genero','Dama')->count();
-        $existencias = $socios->count();
-        $prestamo = Prestamo::obtenerPrestamo($id);
-        $cuotas = Cuota::obtenerCuotasDePrestamo($id);
-        Sind1::formatearColeccionParaMostrar($cuotas);
-        Sind1::formatearObjetoParaMostrar($prestamo);
-        return view('sind1.prestamos.show', compact('cuotas','prestamo','existencias','varones','damas'));
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		$socios = Socio::obtenerSocios();
+		$varones = Socio::where('genero', 'Varón')->count();
+		$damas = Socio::where('genero', 'Dama')->count();
+		return view('sind1.prestamos.create', compact('varones', 'damas', 'socios'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(PrestamoRequest $request) {
+		$prestamo = new Prestamo;
+		$prestamo->fecha = date('Y-m-d');
+		$prestamo->numero_prestamo = $request->numero_prestamo;
+		$prestamo->cheque = $request->cheque;
+		$prestamo->monto = $request->monto;
+		$prestamo->cuotas = $request->cuotas;
+		$prestamo->socio_id = $request->id;
+		$prestamo->renta_id = 1;
+		$prestamo->estado_id = 2;
+		$prestamo->save();
+		app('App\Http\Controllers\CuotaController')->store($prestamo);
+		return redirect()->route('prestamos.index')->with('solicitar_prestamo', '');
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $prestamo = Prestamo::find($id);
-        $prestamo->estado_id = 1;
-        $prestamo->update();
-        app('App\Http\Controllers\CuotaController')->update($id);
-        return redirect()->route('prestamos.index')->with('prestamo_saldado', '');
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id) {
+		$socios = Socio::all();
+		$varones = Socio::where('genero', 'Varón')->count();
+		$damas = Socio::where('genero', 'Dama')->count();
+		$existencias = $socios->count();
+		$prestamo = Prestamo::obtenerPrestamo($id);
+		$cuotas = Cuota::obtenerCuotasDePrestamo($id);
+		Sind1::formatearColeccionParaMostrar($cuotas);
+		Sind1::formatearPrestamoParaMostrar($prestamo);
+		return view('sind1.prestamos.show', compact('cuotas', 'prestamo', 'existencias', 'varones', 'damas'));
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
+		//
+	}
 
-    public function validarPrestamo(RutPrestamoRequest $request){
-        if($request->ajax()){
-            $socio = Socio::where('rut','=',$request->rut)->get();
-            return response()->json($socio);
-        }
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id) {
+		$prestamo = Prestamo::find($id);
+		$prestamo->estado_id = 1;
+		$prestamo->update();
+		app('App\Http\Controllers\CuotaController')->update($id);
+		return redirect()->route('prestamos.index')->with('prestamo_saldado', '');
+	}
 
-    public function buscarIdEnPrestamos(Request $request)
-    {
-        if($request->ajax()){
-            return Prestamo::existePrestamo($request->id);
-        }
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		//
+	}
 
-    public function buscarUltimoNumeroPrestamo()
-    {
-        $prestamo = Prestamo::obtenerUltimoNumeroPrestamo();
-        if($prestamo != null){
-            return response()->json($prestamo->numero_prestamo+1);
-        }else{
-            return response()->json(1);
-        }
-    }
-    public function comprobarEstadoPrestamo()
-    {
-        $prestamos = Prestamo::where('estado_id', 2)->get();
-        foreach($prestamos as $prestamo){
-            $cuotas = app('App\Http\Controllers\CuotaController')->obtenerCuotasDePrestamo($prestamo->id);
-            if(Sind1::contarCuotasPagadas($cuotas) == $prestamo->cuotas){
-                $prestamo->estado_id = 1;
-                $prestamo->update();
-            }
-        }
-    }
+	public function validarPrestamo(RutPrestamoRequest $request) {
+		if ($request->ajax()) {
+			$socio = Socio::where('rut', '=', $request->rut)->get();
+			return response()->json($socio);
+		}
+	}
+
+	public function buscarIdEnPrestamos(Request $request) {
+		if ($request->ajax()) {
+			return Prestamo::existePrestamo($request->id);
+		}
+	}
+
+	public function buscarUltimoNumeroPrestamo() {
+		$prestamo = Prestamo::obtenerUltimoNumeroPrestamo();
+		if ($prestamo != null) {
+			return response()->json($prestamo->numero_prestamo + 1);
+		} else {
+			return response()->json(1);
+		}
+	}
+	public function comprobarEstadoPrestamo() {
+		$prestamos = Prestamo::where('estado_id', 2)->get();
+		foreach ($prestamos as $prestamo) {
+			$cuotas = app('App\Http\Controllers\CuotaController')->obtenerCuotasDePrestamo($prestamo->id);
+			if (Sind1::contarCuotasPagadas($cuotas) == $prestamo->cuotas) {
+				$prestamo->estado_id = 1;
+				$prestamo->update();
+			}
+		}
+	}
 }

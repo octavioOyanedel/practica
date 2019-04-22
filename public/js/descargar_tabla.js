@@ -1,7 +1,6 @@
 $(window).on('load',function(){
 
     var ruta = window.location.pathname;
-    console.log(ruta);
     $('.descargar-excel').click(function(e){
 
         e.preventDefault();
@@ -47,6 +46,9 @@ $(window).on('load',function(){
             case '/verEstadisticaCantidadPrestamos':
                 return 'lista_prestamos_filtros.csv';
             break;
+            case '/verEstadisticaIncorporacionSocios':
+                return 'lista_incorporaciones_filtros.csv';
+            break;
             default:
                 return false;
         }
@@ -65,6 +67,9 @@ $(window).on('load',function(){
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return 7;
+            break;
+            case '/verEstadisticaIncorporacionSocios':
+                return 5;
             break;
             default:
                 return false;
@@ -86,6 +91,9 @@ $(window).on('load',function(){
             case '/verEstadisticaCantidadPrestamos':
                 return 6;
             break;
+            case '/verEstadisticaIncorporacionSocios':
+                return 4;
+            break;
             default:
                 return false;
         }
@@ -105,6 +113,9 @@ $(window).on('load',function(){
             case '/verEstadisticaCantidadPrestamos':
                 return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Estado Prestamo"];
             break;
+            case '/verEstadisticaIncorporacionSocios':
+                return  ["Nombre", "Género", "Sede", "Área","Cargo"];
+            break;
             default:
                 return false;
         }
@@ -123,6 +134,9 @@ $(window).on('load',function(){
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return Math.round(valoresTabla.length/7);
+            break;
+            case '/verEstadisticaIncorporacionSocios':
+                return Math.round(valoresTabla.length/5);
             break;
             default:
                 return false;

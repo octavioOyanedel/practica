@@ -209,7 +209,9 @@
                 </div>
                 {{--fin form --}}
              </form>
-             @include('modals.modal_nuevo')
+             @include('modals.modal_nueva_sede')
+             @include('modals.modal_nuevo_cargo')
+             @include('modals.modal_nueva_area')
         </div>
     </div>
 @endsection

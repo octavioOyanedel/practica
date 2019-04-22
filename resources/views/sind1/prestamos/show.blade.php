@@ -68,7 +68,9 @@
 	        <strong>No existen registros que mostrar.</strong>
 	    </div>
 	@endif
-		<button type="button" id="btn-prestamo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_prestamo">Saldar Prestamo</button>
+        @if(Auth::user()->clase_id == 1)
+		  <button type="button" id="btn-prestamo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_prestamo">Saldar Prestamo</button>
+        @endif
     </div>
     @include('modals.modal_prestamo')
 </div>

@@ -14,11 +14,15 @@
             {{request()->is('socios')?'activo':''}}
             " href="">Socios<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
-                <li><a id="incorporar_nuevo_socio" class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
+                @if(Auth::user()->clase_id == 1)
+                    <li><a id="incorporar_nuevo_socio" class="enlace-menu" href="{{ route('socios.create') }}">Incorporar</a></li>
+                @endif
                 <li><a class="enlace-menu" href="{{ route('socios.index') }}">Buscar</a></li>
-                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Sede</a></li>
-                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nueva Área</a></li>
-                <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo">Nuevo Cargo</a></li>
+                @if(Auth::user()->clase_id == 1)
+                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_sede">Nueva Sede</a></li>
+                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nueva_area">Nueva Área</a></li>
+                    <li><a class="enlace-menu enlace-nuevo" href="" data-toggle="modal" data-target="#modal_nuevo_cargo">Nuevo Cargo</a></li>
+                @endif
             </ul>
         </li>
         <li class="item-menu item-general titulo-ul">
@@ -27,7 +31,9 @@
             {{request()->is('prestamos/create')?'activo':''}}
             " href="">Prestamos<span class="derecha">@svg('iconos/mas')</span></a>
             <ul>
-                <li><a class="enlace-menu" href="{{ route('prestamos.create') }}">Solicitar</a></li>
+                @if(Auth::user()->clase_id == 1)
+                    <li><a class="enlace-menu" href="{{ route('prestamos.create') }}">Solicitar</a></li>
+                @endif
                 <li><a class="enlace-menu" href="{{ route('prestamos.index') }}">Buscar</a></li>
             </ul>
         </li>
@@ -51,7 +57,7 @@
             " href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
                 <li><a class="enlace-menu" href="{{ route('cantidad') }}">Cantidad de Prestamos</a></li>
-                <li><a class="enlace-menu" href="{{ route('monto') }}">Montos Prestamos</a></li>
+                {{-- <li><a class="enlace-menu" href="{{ route('monto') }}">Montos Prestamos</a></li> --}}
                 <li><a class="enlace-menu" href="{{ route('incorporaciones') }}">Incorporaciones Sind1</a></li>
             </ul>
         </li>

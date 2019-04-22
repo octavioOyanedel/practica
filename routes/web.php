@@ -9,11 +9,11 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 //login
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
 });
 
 //rutas autenticación
@@ -23,65 +23,63 @@ Auth::routes();
 Route::redirect('/home', '/socios');
 
 //rutas resource
-Route::resource('/socios', 'SocioController');
-Route::resource('/prestamos', 'PrestamoController');
-Route::resource('/contables', 'ContableController');
-Route::resource('/sedes', 'SedeController');
-Route::resource('/areas', 'AreaController');
-Route::resource('/cargos', 'CargoController');
+Route::resource('/socios', 'SocioController')->middleware('auth');
+Route::resource('/prestamos', 'PrestamoController')->middleware('auth');
+Route::resource('/contables', 'ContableController')->middleware('auth');
+Route::resource('/sedes', 'SedeController')->middleware('auth');
+Route::resource('/areas', 'AreaController')->middleware('auth');
+Route::resource('/cargos', 'CargoController')->middleware('auth');
 
 //rutas selects vista
-Route::get('/cargarUrbes', 'UrbeController@obtenerUrbes');
-Route::get('/cargarComunas', 'ComunaController@obtenerComunas');
-Route::get('/cargarSedes', 'SedeController@obtenerSedes');
-Route::get('/cargarAreas', 'AreaController@obtenerAreas');
-Route::get('/cargarCargos', 'CargoController@obtenerCargos');
+Route::get('/cargarUrbes', 'UrbeController@obtenerUrbes')->middleware('auth');
+Route::get('/cargarComunas', 'ComunaController@obtenerComunas')->middleware('auth');
+Route::get('/cargarSedes', 'SedeController@obtenerSedes')->middleware('auth');
+Route::get('/cargarAreas', 'AreaController@obtenerAreas')->middleware('auth');
+Route::get('/cargarCargos', 'CargoController@obtenerCargos')->middleware('auth');
 
-Route::get('/obtenerUltimaSede', 'SedeController@obtenerUltimaSede');
-Route::get('/obtenerUltimaArea', 'AreaController@obtenerUltimaArea');
-Route::get('/obtenerUltimoCargo', 'CargoController@obtenerUltimoCargo');
+Route::get('/obtenerUltimaSede', 'SedeController@obtenerUltimaSede')->middleware('auth');
+Route::get('/obtenerUltimaArea', 'AreaController@obtenerUltimaArea')->middleware('auth');
+Route::get('/obtenerUltimoCargo', 'CargoController@obtenerUltimoCargo')->middleware('auth');
 
 //rutas actualizar por medio de ajax
-Route::post('/socios/editar_nombres', 'SocioController@editarNombres');
-Route::post('/socios/editar_apellidos', 'SocioController@editarApellidos');
-Route::post('/socios/editar_rut', 'SocioController@editarRut');
-Route::post('/socios/editar_genero', 'SocioController@editarGenero');
-Route::post('/socios/editar_fecha_nacimiento', 'SocioController@editarFechaNacimiento');
-Route::post('/socios/editar_celular', 'SocioController@editarCelular');
-Route::post('/socios/editar_fijo', 'SocioController@editarFijo');
-Route::post('/socios/editar_correo', 'SocioController@editarCorreo');
-Route::post('/socios/editar_direccion', 'SocioController@editarDireccion');
-Route::post('/socios/editar_fecha_ingreso_pucv', 'SocioController@editarFechaIngresoPucv');
-Route::post('/socios/editar_anexo', 'SocioController@editarAnexo');
-Route::post('/socios/editar_fecha_ingreso_sind1', 'SocioController@editarFechaIngresoSind1');
-Route::post('/socios/editar_numero_socio', 'SocioController@editarNumeroSocio');
-Route::post('/socios/editar_ciudad', 'SocioController@editarCiudad');
-Route::post('/socios/editar_comuna', 'SocioController@editarComuna');
-Route::post('/socios/editar_sede', 'SocioController@editarSede');
-Route::post('/socios/editar_area', 'SocioController@editarArea');
-Route::post('/socios/editar_cargo', 'SocioController@editarCargo');
+Route::post('/socios/editar_nombres', 'SocioController@editarNombres')->middleware('auth');
+Route::post('/socios/editar_apellidos', 'SocioController@editarApellidos')->middleware('auth');
+Route::post('/socios/editar_rut', 'SocioController@editarRut')->middleware('auth');
+Route::post('/socios/editar_genero', 'SocioController@editarGenero')->middleware('auth');
+Route::post('/socios/editar_fecha_nacimiento', 'SocioController@editarFechaNacimiento')->middleware('auth');
+Route::post('/socios/editar_celular', 'SocioController@editarCelular')->middleware('auth');
+Route::post('/socios/editar_fijo', 'SocioController@editarFijo')->middleware('auth');
+Route::post('/socios/editar_correo', 'SocioController@editarCorreo')->middleware('auth');
+Route::post('/socios/editar_direccion', 'SocioController@editarDireccion')->middleware('auth');
+Route::post('/socios/editar_fecha_ingreso_pucv', 'SocioController@editarFechaIngresoPucv')->middleware('auth');
+Route::post('/socios/editar_anexo', 'SocioController@editarAnexo')->middleware('auth');
+Route::post('/socios/editar_fecha_ingreso_sind1', 'SocioController@editarFechaIngresoSind1')->middleware('auth');
+Route::post('/socios/editar_numero_socio', 'SocioController@editarNumeroSocio')->middleware('auth');
+Route::post('/socios/editar_ciudad', 'SocioController@editarCiudad')->middleware('auth');
+Route::post('/socios/editar_comuna', 'SocioController@editarComuna')->middleware('auth');
+Route::post('/socios/editar_sede', 'SocioController@editarSede')->middleware('auth');
+Route::post('/socios/editar_area', 'SocioController@editarArea')->middleware('auth');
+Route::post('/socios/editar_cargo', 'SocioController@editarCargo')->middleware('auth');
 
 //rutas independientes socios
-Route::get('/buscarUltimoNumeroSocio', 'SocioController@buscarUltimoNumeroSocio');
+Route::get('/buscarUltimoNumeroSocio', 'SocioController@buscarUltimoNumeroSocio')->middleware('auth');
 
 //rutas independientes prestamos
-Route::get('/validarPrestamo', 'PrestamoController@validarPrestamo');
-Route::get('/buscarIdEnPrestamos', 'PrestamoController@buscarIdEnPrestamos');
-Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumeroPrestamo');
+Route::get('/validarPrestamo', 'PrestamoController@validarPrestamo')->middleware('auth');
+Route::get('/buscarIdEnPrestamos', 'PrestamoController@buscarIdEnPrestamos')->middleware('auth');
+Route::get('/buscarUltimoNumeroPrestamo', 'PrestamoController@buscarUltimoNumeroPrestamo')->middleware('auth');
 
 //pago automatico de cuotas
-Route::get('/pagoAutomaticoCuotas', 'CuotaController@pagoAutomaticoCuotas');
-Route::get('/comprobarEstadoPrestamo', 'PrestamoController@comprobarEstadoPrestamo');
+Route::get('/pagoAutomaticoCuotas', 'CuotaController@pagoAutomaticoCuotas')->middleware('auth');
+Route::get('/comprobarEstadoPrestamo', 'PrestamoController@comprobarEstadoPrestamo')->middleware('auth');
 
 //rutas estadisticas
-Route::get('/estadisticasSocios', 'SocioController@estadisticasSocios')->name('todos');
-Route::get('/estadisticaCantidadPrestamos', 'SocioController@estadisticaCantidadPrestamos')->name('cantidad');
-Route::get('/estadisticaMontoPrestamos', 'SocioController@estadisticaMontoPrestamos')->name('monto');
-Route::get('/estadisticaIncorporacionSocios', 'SocioController@estadisticaIncorporacionSocios')->name('incorporaciones');
+Route::get('/estadisticasSocios', 'SocioController@estadisticasSocios')->name('todos')->middleware('auth');
+Route::get('/estadisticaCantidadPrestamos', 'SocioController@estadisticaCantidadPrestamos')->name('cantidad')->middleware('auth');
+Route::get('/estadisticaIncorporacionSocios', 'SocioController@estadisticaIncorporacionSocios')->name('incorporaciones')->middleware('auth');
 
-Route::post('/verEstadisticaCantidadPrestamos', 'SocioController@verEstadisticaCantidadPrestamos')->name('ver_cantidad');
-Route::post('/verEstadisticaMontoPrestamos', 'SocioController@verEstadisticaMontoPrestamos')->name('ver_monto');
-Route::post('/verEstadisticaIncorporacionSocios', 'SocioController@verEstadisticaIncorporacionSocios')->name('ver_incorporaciones');
+Route::post('/verEstadisticaCantidadPrestamos', 'SocioController@verEstadisticaCantidadPrestamos')->name('ver_cantidad')->middleware('auth');
+Route::post('/verEstadisticaIncorporacionSocios', 'SocioController@verEstadisticaIncorporacionSocios')->name('ver_incorporaciones')->middleware('auth');
 
 //pdf
-Route::get('/comprobante_prestamo', 'PdfController@pdf');
+//Route::get('/comprobante_prestamo', 'PdfController@pdf');

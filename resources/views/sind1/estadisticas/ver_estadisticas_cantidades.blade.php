@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if($existencias_prestamos != 0)
 <div class="row">
     <div class="col-md-12 mx-auto">
 	    <script src="{{ asset('js/loader.js') }}"></script>
@@ -41,8 +43,7 @@
       chart.draw(data, google.charts.Line.convertOptions(options));
     }
 		</script>
-	<div class="tabla-grafico" id="linechart_material" style="width: 800px; height: 350px; margin:0 auto;"></div>
-    @if($existencias_prestamos != 0)
+	<div class="tabla-grafico" id="linechart_material" style="width: 900px; height: 350px; margin:0 auto;"></div>
       <div>
         <table id="tabla_prestamos" class="table table-striped table-bordered">
           <thead>
@@ -71,12 +72,11 @@
           </tbody>
         </table>
       </div>
+    </div>
+</div>
     @else
       <div class="tamano-texto alert alert-warning alert-dismissible fade show" role="alert">
           <strong>No existen registros que mostrar.</strong>
       </div>
       @endif
-    </div>
-</div>
-
 @endsection
