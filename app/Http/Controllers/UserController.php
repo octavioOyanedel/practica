@@ -108,7 +108,8 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		//
+		User::destroy($id);
+		return redirect()->route('usuarios.index')->with('desvincular_usuario', '');
 	}
 
 	public function editarNombre(NombresRequest $request) {
@@ -134,7 +135,7 @@ class UserController extends Controller {
 	public function editarContrasena(ContrasenaRequest $request) {
         if ($request->ajax()) {
             $usuario = User::find($request->id);
-            $usuario->password = $request->input('confirmar');
+            $usuario->password = Hash::make($request->input('confirmar'));
             $usuario->update();
             return response()->json($request->input('confirmar'));
         }

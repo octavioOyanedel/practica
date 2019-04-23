@@ -9,40 +9,34 @@
 				<tr>
                     <th class="cabecera">Datos Usuario</th>
                     <th></th>
-                    @if(Auth::user()->clase_id == 1)
-                        <th class="actualizar"></th>
-                    @endif
+                    <th class="actualizar"></th>
                 </tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>Nombre</td>
 					<td class="td-nombre">{{ $usuario->name}}</td>
-                    @if(Auth::user()->clase_id == 1)
-					   <td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
-                    @endif
-				</tr>
+                    	<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
+                    </tr>
 				<tr>
 					<td>Correo</td>
 					<td class="td-correo">{{ $usuario->email}}</td>
-                    @if(Auth::user()->clase_id == 1)
-					   <td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
-                    @endif
-				</tr>
+                    	<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
+                    </tr>
 				<tr>
 					<td>Contraseña</td>
 					<td>********</td>
-                    @if(Auth::user()->clase_id == 1)
-					   <td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
-                    @endif
-				</tr>
+                    	<td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
+                    </tr>
 				<tr>
 					<td>Tipo</td>
 					<td class="td-tipo">{{ $usuario->clase_id}}</td>
-                    @if(Auth::user()->clase_id == 1)
-					   <td class="boton-editar"><a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a></td>
-                    @endif
-				</tr>
+                    	<td class="boton-editar">
+                    		@if(Auth::user()->clase_id == 1)
+                    			<a class="editar" href="" data-toggle="modal" data-target="#modal_editar_usuario">@svg('iconos/editar')</a>
+                    		@endif
+                    	</td>
+                    </tr>
 
 			</tbody>
 		</table>
@@ -58,5 +52,6 @@
         @endif
 	</div>
 	@include('modals.modal_editar_usuario')
+	@include('modals.modal_eliminar_usuario')
 </div>
 @endsection

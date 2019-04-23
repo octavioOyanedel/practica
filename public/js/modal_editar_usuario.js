@@ -13,20 +13,12 @@ $(window).on('load',function(){
 		valorAnterior = obtenerValorParaVista(elemento);
 		poblarVentanaModal(tituloFila, valorAnterior);
 		$('#editar_registro').click(function(){
-			if(tituloFila === 'Contraseña'){
-				var actual = $('#contrasena_actual').val();
+			if(tituloFila === 'Contraseña'){;
 				var nueva = $('#nueva_contrasena').val();
 				var confirmar = $('#confirmar_contrasena').val();
-				if(actual != '' && nueva != '' && confirmar != ''){
-					peticionAjaxContraseña(id, actual, nueva, confirmar);
+				if(nueva != '' && confirmar != ''){
+					peticionAjaxContraseña(id, nueva, confirmar);
 				}else{
-					if(actual == ''){
-						$('.error-actual').empty();
-						$('.error-actual').append(' campo obligatorio.');
-					}else{
-						$('.error-actual').empty();
-					}
-
 					if(nueva == ''){
 						$('.error-nueva').empty();
 						$('.error-nueva').append(' campo obligatorio.');
@@ -54,7 +46,7 @@ $(window).on('load',function(){
 		});
 	});
 
-	function peticionAjaxContraseña(id, actual, nueva, confirmar){
+	function peticionAjaxContraseña(id, nueva, confirmar){
 		$.ajaxSetup({
 			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 		});
@@ -62,13 +54,13 @@ $(window).on('load',function(){
 			method: 'POST',
 			dataType: 'json',
 			url: 'editar_contrasena',
-			data: {id: id, actual: actual, nueva: nueva, confirmar: confirmar},
+			data: {id: id, nueva: nueva, confirmar: confirmar},
 			success: function(respuesta){
 				$('.modal').modal('hide');
 			},
 			error: function(respuesta){
 				$('.errores').empty();
-
+				$('.error-nueva').append(' deben ser campos válidos e idénticos.');					
 			}
 		});
 	}
@@ -111,8 +103,7 @@ $(window).on('load',function(){
 				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="correo" id="correo" value="'+valorAnterior+'"/>');
 			break;
 			case 'Contraseña':
-				$('.cuerpo-modal').append('<label for="contrasena_actual">'+tituloFila+' Actual *'+'<small class="errores error-actual" class="form-text text-muted"></small></label>');
-				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="contrasena_actual" id="contrasena_actual" value="" maxlength="10"/>');
+				$('.cuerpo-modal').append('<div class="alert alert-info" role="alert">Contraseña sólo permite letras y números entre 6 y 10 caracteres.</div>');
 				$('.cuerpo-modal').append('<label class="separar-label" for="nueva_contrasena">Nueva '+tituloFila+' * <small class="errores error-nueva" class="form-text text-muted"></small></label>');
 				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="nueva_contrasena" id="nueva_contrasena" value="" maxlength="10"/>');
 				$('.cuerpo-modal').append('<label class="separar-label" for="confirmar_contrasena">Confirmar '+tituloFila+' * <small class="errores error-confirmar" class="form-text text-muted"></small></label>');

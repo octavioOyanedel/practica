@@ -9,7 +9,6 @@
 				</button>
 			</div>
 			<div class="modal-body cuerpo-modal">
-
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
