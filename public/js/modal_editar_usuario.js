@@ -14,18 +14,64 @@ $(window).on('load',function(){
 		poblarVentanaModal(tituloFila, valorAnterior);
 		$('#editar_registro').click(function(){
 			if(tituloFila === 'Contraseña'){
-				//console.log('contraseña');
+				var actual = $('#contrasena_actual').val();
+				var nueva = $('#nueva_contrasena').val();
+				var confirmar = $('#confirmar_contrasena').val();
+				if(actual != '' && nueva != '' && confirmar != ''){
+					peticionAjaxContraseña(id, actual, nueva, confirmar);
+				}else{
+					if(actual == ''){
+						$('.error-actual').empty();
+						$('.error-actual').append(' campo obligatorio.');
+					}else{
+						$('.error-actual').empty();
+					}
+
+					if(nueva == ''){
+						$('.error-nueva').empty();
+						$('.error-nueva').append(' campo obligatorio.');
+					}else{
+						$('.error-nueva').empty();
+					}
+
+					if(confirmar == ''){
+						$('.error-confirmar').empty();
+						$('.error-confirmar').append(' campo obligatorio.');
+					}else{
+						$('.error-confirmar').empty();
+					}
+				}
+
 			}else{
 				nuevoValor = obtenerNuevoValor();
 				if(nuevoValor != ''){
 					peticionAjax(tituloFila, nuevoValor, id);
 				}else{
 					$('.errores').empty();
-					$('.errores').append('campo obligatorio.');					
+					$('.errores').append('campo obligatorio.');
 				}
 			}
 		});
 	});
+
+	function peticionAjaxContraseña(id, actual, nueva, confirmar){
+		$.ajaxSetup({
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+		$.ajax({
+			method: 'POST',
+			dataType: 'json',
+			url: 'editar_contrasena',
+			data: {id: id, actual: actual, nueva: nueva, confirmar: confirmar},
+			success: function(respuesta){
+				$('.modal').modal('hide');
+			},
+			error: function(respuesta){
+				$('.errores').empty();
+
+			}
+		});
+	}
 
 	function peticionAjax(tituloFila, nuevoValor, id){
 		var ruta = obtenerRuta(tituloFila);
@@ -57,21 +103,21 @@ $(window).on('load',function(){
 		$('.titulo-modal').empty().append('Editar '+tituloFila);
 		switch(tituloFila) {
 			case 'Nombre':
-				$('.cuerpo-modal').append('<label for="nombre">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<label for="nombre">'+tituloFila+' * <small class="errores" class="form-text text-muted"></small></label>');
 				$('.cuerpo-modal').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="nombre" id="nombre" value="'+valorAnterior+'"/>');
 			break;
 			case 'Correo':
-				$('.cuerpo-modal').append('<label for="correo">'+tituloFila+' <small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<label for="correo">'+tituloFila+' * <small class="errores" class="form-text text-muted"></small></label>');
 				$('.cuerpo-modal').append('<input type="email" class="form-control form-control-sm valor-form form-editar" name="correo" id="correo" value="'+valorAnterior+'"/>');
-			break;			
+			break;
 			case 'Contraseña':
-				$('.cuerpo-modal').append('<label for="contrasena_actual">'+tituloFila+' Actual *'+'<small class="errores" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<label for="contrasena_actual">'+tituloFila+' Actual *'+'<small class="errores error-actual" class="form-text text-muted"></small></label>');
 				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="contrasena_actual" id="contrasena_actual" value="" maxlength="10"/>');
-				$('.cuerpo-modal').append('<label class="separar-label" for="nueva_contrasena">Nueva '+tituloFila+' *<small class="errores" class="form-text text-muted"></small></label>');
-				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="nueva_contrasena" id="nueva_contrasena" value="" maxlength="10"/>');	
-				$('.cuerpo-modal').append('<label class="separar-label" for="confirmar_contrasena">Confirmar '+tituloFila+' *<small class="errores" class="form-text text-muted"></small></label>');
-				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="confirmar_contrasena" id="confirmar_contrasena" value="" maxlength="10"/>');								
-			break;	
+				$('.cuerpo-modal').append('<label class="separar-label" for="nueva_contrasena">Nueva '+tituloFila+' * <small class="errores error-nueva" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="nueva_contrasena" id="nueva_contrasena" value="" maxlength="10"/>');
+				$('.cuerpo-modal').append('<label class="separar-label" for="confirmar_contrasena">Confirmar '+tituloFila+' * <small class="errores error-confirmar" class="form-text text-muted"></small></label>');
+				$('.cuerpo-modal').append('<input type="password" class="form-control form-control-sm valor-form form-editar" name="confirmar_contrasena" id="confirmar_contrasena" value="" maxlength="10"/>');
+			break;
 			case 'Tipo':
 				$('.cuerpo-modal').append('<label for="tipo_usuario">Tipo Usuario * <small class="errores" class="form-text text-muted"></small></label>');
 				$('.cuerpo-modal').append('<select id="tipo_usuario" class="form-control form-control-sm valor-form form-editar" name="tipo_usuario" required><option value="">Seleccione Tipo</option></select>');
@@ -82,9 +128,9 @@ $(window).on('load',function(){
 					$('#tipo_usuario').append('<option value="1">Administrador</option>');
 					$('#tipo_usuario').append('<option value="2" selected="true">Invitado</option>');
 				}
-			break;								
-			default:			
-		}	
+			break;
+			default:
+		}
 	}
 
 	function modificarVista(tituloFila, nuevoValor){
@@ -101,7 +147,7 @@ $(window).on('load',function(){
 				$('.td-tipo').empty();
 
 				$('.td-tipo').text($('#tipo_usuario option:selected').text());
-			break;							
+			break;
 			default:
 		}
 	}
@@ -126,7 +172,7 @@ $(window).on('load',function(){
 			break;
 			case 'Tipo':
 				return 'editar_tipo';
-			break;			
+			break;
 			default:
 		}
 	}

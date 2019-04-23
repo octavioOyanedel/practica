@@ -9,6 +9,7 @@ use App\User;
 use App\Http\Requests\UsuarioRequest;
 use App\Http\Requests\NombresRequest;
 use App\Http\Requests\CorreoRequest;
+use App\Http\Requests\ContrasenaRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -117,7 +118,7 @@ class UserController extends Controller {
 			$usuario->name = $request->input('valor');
 			$usuario->update();
 			return response()->json($request->input('valor'));
-		}		
+		}
 	}
 
 	public function editarCorreo(CorreoRequest $request) {
@@ -131,7 +132,12 @@ class UserController extends Controller {
 	}
 
 	public function editarContrasena(ContrasenaRequest $request) {
-
+        if ($request->ajax()) {
+            $usuario = User::find($request->id);
+            $usuario->password = $request->input('confirmar');
+            $usuario->update();
+            return response()->json($request->input('confirmar'));
+        }
 	}
 
 	public function editarTipo(Request $request) {

@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\PasswordUsuarioRule;
+use App\Rules\PasswordsIgualesRule;
+use App\Rules\ConfirmarPasswordActualRule;
 
 class ContrasenaRequest extends FormRequest
 {
@@ -24,7 +27,9 @@ class ContrasenaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+        'actual' => ['required',new PasswordUsuarioRule, new ConfirmarPasswordActualRule(Request()->id),'max:10'],
+        'nueva' => ['required',new PasswordUsuarioRule, new PasswordsIgualesRule(Request()->confirmar),'max:10'],
+        'confirmar' => ['required',new PasswordUsuarioRule, new PasswordsIgualesRule(Request()->nueva),'max:10'],
         ];
     }
 }
