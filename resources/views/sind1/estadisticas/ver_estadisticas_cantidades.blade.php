@@ -48,13 +48,14 @@
         <table id="tabla_prestamos" class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th class="centrar-td"># Prestamo</th>
+              <th class="centrar-td"># Préstamo</th>
               <th>Socio</th>
               <th class="centrar-td">Fecha Solicitud</th>
               <th class="centrar-td">Número de Cheque</th>
               <th class="centrar-td">Monto</th>
               <th class="centrar-td">Cuotas</th>
-              <th class="centrar-td">Estado Prestamo</th>
+              <th class="centrar-td">Interés</th>
+              <th class="centrar-td">Estado Préstamo</th>
             </tr>
           </thead>
           <tbody>
@@ -63,9 +64,10 @@
                 <td class="valores-td centrar-td"><a href="{{ route('prestamos.show',['id'=>$prestamo->id]) }}">{{ $prestamo->numero_prestamo}}</a></td>
                 <td class="valores-td">{{ $prestamo->socio_id}}</td>
                 <td class="valores-td centrar-td">{{ $prestamo->fecha }}</td>
-                <td class="valores-td centrar-td">{{ $prestamo->cheque}}</td>
-                <td class="valores-td centrar-td">{{ $prestamo->monto}}</td>
-                <td class="valores-td centrar-td">{{ $prestamo->cuotas}}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->cheque }}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->monto }}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->cuotas }}</td>
+                <td class="valores-td centrar-td">{{ $prestamo->monto * 0.02 }}</td>
                 <td class="valores-td centrar-td estado-prestamo">{{ $prestamo->estado_id}}</td>
               </tr>
             @endforeach
