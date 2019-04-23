@@ -17,7 +17,7 @@
                     ['{{$cantidad_hombres}} Varón/es', {{$cantidad_hombres}}]
                 ]);
                 var options = {
-                    title: 'Existen {{ $existencias_socios }} incorporaciones entre el {{ $fecha_ini_grafico }} y  el {{ $fecha_fin_grafico }}.',
+                    title: 'Existe/n {{ $existencias_socios }} incorporacion/es entre el {{ $fecha_ini_grafico }} y  el {{ $fecha_fin_grafico }}.',
                     backgroundColor: '#f8fafc',
                     is3D: true,
                     colors: ['#e83e8c', '#6574cd']
@@ -32,21 +32,31 @@
     				<table id="tabla_incorporacion" class="table table-striped table-bordered">
     					<thead>
     						<tr>
-    							<th>Nombre</th>
-    							<th class="centrar-td">Género</th>
-    							<th class="centrar-td">Sede</th>
-    							<th class="centrar-td">Área</th>
-    							<th class="centrar-td">Cargo</th>
+                                <th>Nombre</th>
+                                <th class="centrar-td">Rut</th>
+                                <th class="centrar-td">Género</th>
+                                <th class="centrar-td">Comuna</th>
+                                <th class="centrar-td">Celular</th>
+                                <th class="centrar-td">Correo</th>
+                                <th class="centrar-td">Sede</th>
+                                <th class="centrar-td">Área</th>
+                                <th class="centrar-td">Cargo</th>
+                                <th class="centrar-td">Anexo</th>
     						</tr>
     					</thead>
     					<tbody>
     						@foreach($incorporaciones as $incorporacion)
     							<tr>
-    								<td class="valores-td"><a href="{{ route('socios.show',['id'=>$incorporacion->id]) }}">{{ $incorporacion->nombres}} {{ $incorporacion->apellidos}}</a></td>
-    								<td class="valores-td centrar-td">{{ $incorporacion->genero }}</td>
-    								<td class="valores-td centrar-td">{{ $incorporacion->sede_id }}</td>
-    								<td class="valores-td centrar-td">{{ $incorporacion->area_id }}</td>
-    								<td class="valores-td centrar-td">{{ $incorporacion->cargo_id }}</td>
+                                    <td class="valores-td"><a href="{{ route('socios.show',['id'=>$incorporacion->id]) }}">{{ $incorporacion->nombres}} {{ $incorporacion->apellidos}}</a></td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->rut }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->genero }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->comuna_id }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->celular }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->correo }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->sede_id }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->area_id }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->cargo_id }}</td>
+                                    <td class="valores-td centrar-td">{{ $incorporacion->anexo }}</td>
     							</tr>
     						@endforeach
     					</tbody>

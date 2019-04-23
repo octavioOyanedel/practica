@@ -12,19 +12,24 @@ body{
 }
 
 .nav-interno{
-	background-color: #f8f9fa;
-	color: #212529;
+	/*background-color: #f8f9fa;*/
+	color: #ffc107;
 }
 
-.badge{
+.nav-interno div a{
+	/*background-color: #f8f9fa;*/
+	color: white;
+}
+
+.nav-interno div a.badge{
 	color: #6cb2eb;
-	background-color: #f8fafc;
+	background-color: #343a40;
 	font-size: 12px;
 }
 
-.badge:hover{
+.nav-interno div a.badge:hover{
 	color: #fff;
-	background-color: #6cb2eb;
+	background-color: #4a545f;
 }
 
 .nav{
@@ -55,11 +60,6 @@ a{
 }
 
 a:hover{
-	text-decoration: underline;
-	color: #6cb2eb;
-}
-
-.activo{
 	text-decoration: underline;
 	color: #6cb2eb;
 }
@@ -154,6 +154,15 @@ table thead tr th.actualizar{
 	width: 50px;
 }
 
+table tbody tr td{
+	font-size: 12px;
+	white-space: nowrap
+}
+
+table thead tr th{
+	font-size: 12px;
+}
+
 .boton-editar{
 	text-align:center;
 	color: #007bff;
@@ -221,4 +230,16 @@ table thead tr th.actualizar{
 }
 .etiqueta-form{
     font-size: 14px;
+}
+
+ul.menu-lateral{
+	background-color: #343a40;
+}
+
+.titulo-ul a{
+	color:white;
+}
+
+.titulo-ul a:hover{
+	color: #6cb2eb;
 }

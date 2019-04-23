@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="item-menu item-responsivo">
-             <span class="derecha">@svg('iconos/logueado')</span> {{ Auth::user()->name }}
+             <span class="derecha caca">@svg('iconos/logueado')</span> {{ Auth::user()->name }}
         </li>
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria
@@ -32,18 +32,6 @@
                 <li><a class="enlace-menu" href="{{ route('prestamos.index') }}">Buscar</a></li>
             </ul>
         </li>
-        <!--
-        <li class="item-menu item-general titulo-ul">
-            <a class="mostrar-sub-categoria
-            {{request()->is('contables')?'activo':''}}
-            {{request()->is('contables/create')?'activo':''}}
-            " href="">Contabilidad<span class="derecha">@svg('iconos/mas')</span></a>
-             <ul>
-                <li><a class="enlace-menu" href="{{ route('contables.create') }}">Registrar (Ing/Egr)</a></li>
-                <li><a class="enlace-menu" href="">Nuevo Concepto</a></li>
-            </ul>
-        </li>
-        -->
         <li class="item-menu item-general titulo-ul">
             <a class="mostrar-sub-categoria
             {{request()->is('estadisticaCantidadPrestamos')?'activo':''}}
@@ -52,7 +40,6 @@
             " href="">Estadisticas<span class="derecha">@svg('iconos/mas')</span></a>
              <ul>
                 <li><a class="enlace-menu" href="{{ route('cantidad') }}">Cantidad de Prestamos</a></li>
-                {{-- <li><a class="enlace-menu" href="{{ route('monto') }}">Montos Prestamos</a></li> --}}
                 <li><a class="enlace-menu" href="{{ route('incorporaciones') }}">Incorporaciones Sind1</a></li>
             </ul>
         </li>
@@ -77,9 +64,9 @@
                 <span class="derecha">@svg('iconos/mas')</span>
             </a>
              <ul>
-                <li><a href="">Hombres:<span class="derecha">{{ $varones }}</span></a></li>
-                <li><a href="">Mujeres:<span class="derecha">{{ $damas }}</span></a></li>
-                <li><a href="">Total:<span class="derecha">{{ $varones + $damas }}</span></a></li>
+                <li><a href="{{ route('todos') }}">Hombres:<span class="derecha">{{ $varones }}</span></a></li>
+                <li><a href="{{ route('todos') }}">Mujeres:<span class="derecha">{{ $damas }}</span></a></li>
+                <li><a href="{{ route('todos') }}">Total:<span class="derecha">{{ $varones + $damas }}</span></a></li>
             </ul>
         </li>
         <li class="item-menu item-responsivo titulo-ul">

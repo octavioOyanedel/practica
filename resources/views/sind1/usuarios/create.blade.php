@@ -54,7 +54,7 @@
                 <div class="form-group row">
                     <div class="col-sm-3 separar-responsivo">
                         <label for="clase" title="Campo obligatorio.">Tipo Usuario *</label>
-                        <select id="clase" class="form-control form-control-sm {{ $errors->has('clase') ? ' is-invalid' : '' }}" name="clase">
+                        <select id="clase" class="form-control form-control-sm {{ $errors->has('clase') ? ' is-invalid' : '' }}" name="clase" required>
                             <option selected="true" value="">Seleccione Tipo</option>
                             @foreach ($clases as $clase)
                                  <option value="{{ $clase->id }}" @if(old('clase') == $clase->id) {{ 'selected' }} @endif>{{ $clase->nombre }}</option>

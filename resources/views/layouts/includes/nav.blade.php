@@ -1,5 +1,5 @@
 <div class="nav">
-    <div class="nav-interno">
+    <div class="nav-interno bg-dark navbar-dark">
         <div class="titulo-nav">Sind1</div>
         <div class="info-1">
             <a href="{{ route('todos') }}" class="badge">V: {{ $varones }}</a>

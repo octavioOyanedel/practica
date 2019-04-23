@@ -8,11 +8,15 @@
 				<table id="tabla_socios" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Nombres</th>
+							<th>Nombre</th>
 							<th class="centrar-td">Rut</th>
+							<th class="centrar-td">Género</th>
+							<th class="centrar-td">Comuna</th>
 							<th class="centrar-td">Celular</th>
 							<th class="centrar-td">Correo</th>
-							<th>Cargo</th>
+							<th class="centrar-td">Sede</th>
+							<th class="centrar-td">Área</th>
+							<th class="centrar-td">Cargo</th>
 							<th class="centrar-td">Anexo</th>
 						</tr>
 					</thead>
@@ -21,9 +25,13 @@
 							<tr>
 								<td class="valores-td"><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}}</a></td>
 								<td class="valores-td centrar-td">{{ $soc->rut }}</td>
+								<td class="valores-td centrar-td">{{ $soc->genero }}</td>
+								<td class="valores-td centrar-td">{{ $soc->comuna_id }}</td>
 								<td class="valores-td centrar-td">{{ $soc->celular }}</td>
 								<td class="valores-td centrar-td">{{ $soc->correo }}</td>
-								<td class="valores-td">{{ $soc->cargo_id }}</td>
+								<td class="valores-td centrar-td">{{ $soc->sede_id }}</td>
+								<td class="valores-td centrar-td">{{ $soc->area_id }}</td>
+								<td class="valores-td centrar-td">{{ $soc->cargo_id }}</td>
 								<td class="valores-td centrar-td">{{ $soc->anexo }}</td>
 							</tr>
 						@endforeach

@@ -7,7 +7,7 @@ $(document).ready( function () {
                 "next":         "Siguiente",
                 "previous":     "Anterior",
             },
-            "lengthMenu":       '<select class="form-control form-control-sm">'+
+            "lengthMenu":   '<select class="form-control form-control-sm">'+
                             '<option value="5">5</option>'+
                             '<option value="10">10</option>'+
                             '<option value="50">50</option>'+

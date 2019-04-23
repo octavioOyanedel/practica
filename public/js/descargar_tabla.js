@@ -57,19 +57,19 @@ $(window).on('load',function(){
     function obtenerFactorInicial(ruta){
         switch(ruta){
             case '/socios':
-                return 6;
+                return 10;
             break;
             case '/estadisticasSocios':
-                return 5;
+                return 10;
             break;
             case '/prestamos':
-                return 7;
+                return 8;
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return 7;
             break;
             case '/verEstadisticaIncorporacionSocios':
-                return 5;
+                return 10;
             break;
             default:
                 return false;
@@ -80,19 +80,19 @@ $(window).on('load',function(){
     function obtenerFactorFinal(ruta){
         switch(ruta){
             case '/socios':
-                return 5;
+                return 9;
             break;
             case '/estadisticasSocios':
-                return 4;
+                return 9;
             break;
             case '/prestamos':
-                return 6;
+                return 7;
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return 6;
             break;
             case '/verEstadisticaIncorporacionSocios':
-                return 4;
+                return 9;
             break;
             default:
                 return false;
@@ -102,19 +102,19 @@ $(window).on('load',function(){
     function obtenerCabeceras(ruta){
         switch(ruta){
             case '/socios':
-                return ["Nombre", "Rut", "Celular", "Correo", "Cargo", "Anexo"];
+                return ["Nombre", "Rut", "Género", "Comuna", "Celular", "Correo", "Sede", "Área", "Cargo", "Anexo"];
             break;
             case '/estadisticasSocios':
-                return  ["Nombre", "Género", "Sede", "Área","Cargo"];
+                return ["Nombre", "Rut", "Género", "Comuna", "Celular", "Correo", "Sede", "Área", "Cargo", "Anexo"];
             break;
             case '/prestamos':
-                return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Estado Prestamo"];
+                return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Interés", "Estado Prestamo"];
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return  ["Número Prestamo", "Socio", "Fecha Solicitud", "Número de Cheque", "Monto", "Cuotas", "Estado Prestamo"];
             break;
             case '/verEstadisticaIncorporacionSocios':
-                return  ["Nombre", "Género", "Sede", "Área","Cargo"];
+                return ["Nombre", "Rut", "Género", "Comuna", "Celular", "Correo", "Sede", "Área", "Cargo", "Anexo"];
             break;
             default:
                 return false;
@@ -124,19 +124,19 @@ $(window).on('load',function(){
     function obtenerRecorrido(ruta, valoresTabla){
         switch(ruta){
             case '/socios':
-                return Math.round(valoresTabla.length/6);
+                return Math.round(valoresTabla.length/10);
             break;
             case '/estadisticasSocios':
-                return Math.round(valoresTabla.length/5);
+                return Math.round(valoresTabla.length/10);
             break;
             case '/prestamos':
-                return Math.round(valoresTabla.length/7);
+                return Math.round(valoresTabla.length/8);
             break;
             case '/verEstadisticaCantidadPrestamos':
                 return Math.round(valoresTabla.length/7);
             break;
             case '/verEstadisticaIncorporacionSocios':
-                return Math.round(valoresTabla.length/5);
+                return Math.round(valoresTabla.length/10);
             break;
             default:
                 return false;

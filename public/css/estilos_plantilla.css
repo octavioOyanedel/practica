@@ -157,5 +157,9 @@ ul li ul{
 	.separar-responsivo{
 		padding: 10px 0px;
 	}
+	
+	ul.menu-lateral li a{
+		color: white;
+	}
 
 }
