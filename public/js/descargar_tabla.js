@@ -66,7 +66,7 @@ $(window).on('load',function(){
                 return 8;
             break;
             case '/verEstadisticaCantidadPrestamos':
-                return 7;
+                return 8;
             break;
             case '/verEstadisticaIncorporacionSocios':
                 return 10;
@@ -89,7 +89,7 @@ $(window).on('load',function(){
                 return 7;
             break;
             case '/verEstadisticaCantidadPrestamos':
-                return 6;
+                return 7;
             break;
             case '/verEstadisticaIncorporacionSocios':
                 return 9;
@@ -133,7 +133,7 @@ $(window).on('load',function(){
                 return Math.round(valoresTabla.length/8);
             break;
             case '/verEstadisticaCantidadPrestamos':
-                return Math.round(valoresTabla.length/7);
+                return Math.round(valoresTabla.length/8);
             break;
             case '/verEstadisticaIncorporacionSocios':
                 return Math.round(valoresTabla.length/10);
