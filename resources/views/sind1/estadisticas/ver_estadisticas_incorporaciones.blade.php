@@ -37,10 +37,10 @@
                                 <th class="centrar-td">Género</th>
                                 <th class="centrar-td">Comuna</th>
                                 <th class="centrar-td">Celular</th>
-                                <th class="centrar-td">Correo</th>
-                                <th class="centrar-td">Sede</th>
-                                <th class="centrar-td">Área</th>
-                                <th class="centrar-td">Cargo</th>
+                                <th class="">Correo</th>
+                                <th class="">Sede</th>
+                                <th class="">Área</th>
+                                <th class="">Cargo</th>
                                 <th class="centrar-td">Anexo</th>
     						</tr>
     					</thead>
@@ -52,10 +52,10 @@
                                     <td class="valores-td centrar-td">{{ $incorporacion->genero }}</td>
                                     <td class="valores-td centrar-td">{{ $incorporacion->comuna_id }}</td>
                                     <td class="valores-td centrar-td">{{ $incorporacion->celular }}</td>
-                                    <td class="valores-td centrar-td">{{ $incorporacion->correo }}</td>
-                                    <td class="valores-td centrar-td">{{ $incorporacion->sede_id }}</td>
-                                    <td class="valores-td centrar-td">{{ $incorporacion->area_id }}</td>
-                                    <td class="valores-td centrar-td">{{ $incorporacion->cargo_id }}</td>
+                                    <td class="valores-td">{{ $incorporacion->correo }}</td>
+                                    <td class="valores-td">{{ $incorporacion->sede_id }}</td>
+                                    <td class="valores-td">{{ $incorporacion->area_id }}</td>
+                                    <td class="valores-td">{{ $incorporacion->cargo_id }}</td>
                                     <td class="valores-td centrar-td">{{ $incorporacion->anexo }}</td>
     							</tr>
     						@endforeach

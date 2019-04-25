@@ -37,10 +37,10 @@
                             <th class="centrar-td">Género</th>
                             <th class="centrar-td">Comuna</th>
                             <th class="centrar-td">Celular</th>
-                            <th class="centrar-td">Correo</th>
-                            <th class="centrar-td">Sede</th>
-                            <th class="centrar-td">Área</th>
-                            <th class="centrar-td">Cargo</th>
+							<th class="">Correo</th>
+							<th class="">Sede</th>
+							<th class="">Área</th>
+							<th class="">Cargo</th>
                             <th class="centrar-td">Anexo</th>
 						</tr>
 					</thead>
@@ -52,10 +52,10 @@
                                 <td class="valores-td centrar-td">{{ $soc->genero }}</td>
                                 <td class="valores-td centrar-td">{{ $soc->comuna_id }}</td>
                                 <td class="valores-td centrar-td">{{ $soc->celular }}</td>
-                                <td class="valores-td centrar-td">{{ $soc->correo }}</td>
-                                <td class="valores-td centrar-td">{{ $soc->sede_id }}</td>
-                                <td class="valores-td centrar-td">{{ $soc->area_id }}</td>
-                                <td class="valores-td centrar-td">{{ $soc->cargo_id }}</td>
+								<td class="valores-td">{{ $soc->correo }}</td>
+								<td class="valores-td">{{ $soc->sede_id }}</td>
+								<td class="valores-td">{{ $soc->area_id }}</td>
+								<td class="valores-td">{{ $soc->cargo_id }}</td>
                                 <td class="valores-td centrar-td">{{ $soc->anexo }}</td>
 							</tr>
 						@endforeach

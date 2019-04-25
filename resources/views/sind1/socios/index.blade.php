@@ -13,10 +13,10 @@
 							<th class="centrar-td">Género</th>
 							<th class="centrar-td">Comuna</th>
 							<th class="centrar-td">Celular</th>
-							<th class="centrar-td">Correo</th>
-							<th class="centrar-td">Sede</th>
-							<th class="centrar-td">Área</th>
-							<th class="centrar-td">Cargo</th>
+							<th class="">Correo</th>
+							<th class="">Sede</th>
+							<th class="">Área</th>
+							<th class="">Cargo</th>
 							<th class="centrar-td">Anexo</th>
 						</tr>
 					</thead>
