@@ -48,9 +48,16 @@ $(window).on('load',function(){
 			dataType: 'json',
 			url: '/buscarUltimoNumeroPrestamo',
 			success: function(respuesta){
-				alertaPrestamoAprobado(nombre);
+				alertaPrestamoAprobado(nombre);	
+				var hoy = new Date();
+				var dd = addZero(hoy.getDate());
+				var mm = addZero(hoy.getMonth()+1);
+				var yyyy = hoy.getFullYear();
+				console.log(yyyy+'-'+mm+'-'+dd);
 				$('#formulario_prestamo').append('<label for="numero_prestamo">Número Préstamo *</label>');
 				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="numero_prestamo" id="numero_prestamo" value="'+respuesta+'" maxlength="8" required />');
+				$('#formulario_prestamo').append('<label class="separar-label" for="fecha_prestamo">Fecha Préstamo</label>');
+				$('#formulario_prestamo').append('<input type="date" class="form-control form-control-sm" id="fecha_prestamo" value="'+yyyy+'-'+mm+'-'+dd+'" name="fecha_prestamo">');
 				$('#formulario_prestamo').append('<label for="cheque" class="separar-label">Cheque *</label>');
 				$('#formulario_prestamo').append('<input type="text" class="form-control form-control-sm valor-form form-editar" name="cheque" id="cheque" value="" maxlength="8" required />');
 				$('#formulario_prestamo').append('<label for="monto" class="separar-label">Monto *</label>');
@@ -64,6 +71,13 @@ $(window).on('load',function(){
 			error: function(respuesta){
 			}
 		});
+	}
+	
+	function addZero(i) {
+	    if (i < 10) {
+	        i = '0' + i;
+	    }
+	    return i;
 	}
 
 	function cargarCuotas(){

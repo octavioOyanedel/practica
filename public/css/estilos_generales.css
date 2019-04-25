@@ -213,10 +213,12 @@ table thead tr th{
 }
 
 .pagada{
+	font-weight:bold;
 	color:green;
 }
 
 .no-pagada{
+	font-weight:bold;
 	color:red;
 }
 

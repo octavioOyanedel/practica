@@ -51,7 +51,7 @@ class PrestamoController extends Controller {
 	 */
 	public function store(PrestamoRequest $request) {
 		$prestamo = new Prestamo;
-		$prestamo->fecha = date('Y-m-d');
+		$prestamo->fecha = $request->fecha_prestamo;
 		$prestamo->numero_prestamo = $request->numero_prestamo;
 		$prestamo->cheque = $request->cheque;
 		$prestamo->monto = $request->monto;

@@ -42,9 +42,11 @@ class CuotaController extends Controller
         //$interes = Renta::obtenerInteresPrestamos();
         $montoConInteres = ((2 / 100) * $prestamo->monto) + $prestamo->monto;
         $montoCouta = $montoConInteres / $prestamo->cuotas;
-        $dia = date('j');
-        $mes = date('n');
-        $year = date('Y');
+
+        $year = substr($prestamo->fecha,0,-6);
+        $mes = substr($prestamo->fecha,5,-3);
+        $dia = substr($prestamo->fecha,8);
+
         if($dia > 15){
             $mes = $mes + 1;
             if($mes >= 13){

@@ -5,7 +5,7 @@
                 Sind1 <span class="derecha">@svg('iconos/bars-solid')</span>
             </a>
         </li>
-        <li class="item-menu item-responsivo">
+        <li class="item-menu item-responsivo info-usuario">
              <span class="derecha caca">@svg('iconos/logueado')</span> {{ Auth::user()->name }}
         </li>
         <li class="item-menu item-general titulo-ul">
