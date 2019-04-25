@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\sede;
+use App\Sede;
 use App\Http\Requests\SedeRequest;
 
 class SedeController extends Controller

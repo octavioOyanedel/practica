@@ -25,7 +25,7 @@ class NombrePropioRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]*$/",$value);
+        return preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚñÑ \-]*$/",$value);
     }
 
     /**

@@ -137,7 +137,14 @@ class AreasTableSeeder extends Seeder
 		App\Area::create(['nombre' => 'Casino Curauma', 'sede_id' =>17]);
 		App\Area::create(['nombre' => 'Decanato de Ciencias', 'sede_id' =>17]);
 		App\Area::create(['nombre' => 'Centro de Estudio Avanzados y Extensión', 'sede_id' =>19]);
-		App\Area::create(['nombre' => 'CFT - Centro de Formación Técnica', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede la Calera', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede la Ligua', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede Limache', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede Quillota', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede Valparaíso', 'sede_id' =>20]);
+		App\Area::create(['nombre' => 'Sede Viña del Mar', 'sede_id' =>20]);
 		App\Area::create(['nombre' => 'Ediciones Universitarias', 'sede_id' =>21]);
+
+
     }
 }
