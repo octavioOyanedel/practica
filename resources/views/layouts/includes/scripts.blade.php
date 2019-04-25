@@ -10,6 +10,7 @@
 <script src="{{ asset('js/nav.js') }}"></script>
 <script src="{{ asset('js/ajax_selects.js') }}"></script>
 <script src="{{ asset('js/color_estado.js') }}"></script>
+<script src="{{ asset('js/ajax_pago_prestamo.js') }}"></script>
 @php
 	$id = '';
     $idUsuario = '';
@@ -30,7 +31,6 @@
 	    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 	    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 	    <script src="{{ asset('js/runDataTableSocios.js') }}"></script>
-        <script src="{{ asset('js/ajax_pago_prestamo.js') }}"></script>
         <script src="{{ asset('js/descargar_tabla.js') }}"></script>
     @break
     @case('socios/create')

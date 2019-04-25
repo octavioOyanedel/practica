@@ -39,34 +39,53 @@ class CuotaController extends Controller
      */
     public function store(Prestamo $prestamo)
     {
-        //$interes = Renta::obtenerInteresPrestamos();
+        $cuotas = $prestamo->cuotas;
+        $fecha = $prestamo->fecha;
+        $dia_pago = 25;
+        $year_inicio = 0;
+        $mes_inicio = 0;
+        $fecha_cuota = '';
         $montoConInteres = ((2 / 100) * $prestamo->monto) + $prestamo->monto;
         $montoCouta = $montoConInteres / $prestamo->cuotas;
 
-        $year = substr($prestamo->fecha,0,-6);
-        $mes = substr($prestamo->fecha,5,-3);
-        $dia = substr($prestamo->fecha,8);
+        //obtener año, mes y dia
+        $year = substr($fecha,0,-6);
+        $mes = substr($fecha,5,-3);
+        $dia = substr($fecha,8);
 
-        if($dia > 15){
-            $mes = $mes + 1;
-            if($mes >= 13){
-                $mes = 1;
-            }
+        //mes de inicio
+        if($dia < 15){
+            $mes_inicio = $mes + 0; //casteo a entero
+        }else{
+            //inicio mes siguiente
+            $mes_inicio = $mes + 1;
+            if($mes_inicio == 13){
+                $mes_inicio = 1;
+            }      
         }
-        for($i = 1; $i <= $prestamo->cuotas; $i++){
-            if($mes > 12){
-                $mes = 1;
-                $year = $year + 1;
+
+        $year_inicio = $year;
+        $mes_pago = $mes_inicio;
+        $year_pago = $year_inicio + 0; //casteo a entreo
+
+        //loop cuotas
+        for($i = 0; $i < $cuotas; $i++){
+            if($mes_pago > 12){
+                $mes_pago = 1;
+                $year_pago++; 
             }
+            if($mes_pago < 10){
+                $mes_pago = '0'.$mes_pago;
+            }      
+            $fecha_cuota = (string)$year_pago.'-'.$mes_pago.'-'.$dia_pago;
             $cuota = new Cuota;
-            $cuota->fecha_pago_cuota = $year.'-'.$mes.'-25';
-            $cuota->numero_cuota = $i;
+            $cuota->fecha_pago_cuota = $fecha_cuota;
+            $cuota->numero_cuota = $i + 1;
             $cuota->monto_cuota = $montoCouta;
             $cuota->estado_id = 2;
             $cuota->prestamo_id = $prestamo->id;
-            //validar mes para incremento de año
             $cuota->save();
-            $mes++;
+            $mes_pago++;       
         }
     }
 
