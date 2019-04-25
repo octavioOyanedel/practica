@@ -4,7 +4,7 @@ $(window).on('load',function(){
 	var idSocio;
 	$('#solicitar_prestamo').click(function(e){
 		e.preventDefault();
-		//$('#formulario_prestamo').empty();
+		$('#formulario_prestamo').empty();
 		$('#mensaje_prestamo').empty();
 		if($('#rut').val() != ''){
 			rut = $('#rut').val();
