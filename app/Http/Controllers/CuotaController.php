@@ -52,7 +52,7 @@ class CuotaController extends Controller
         $year = substr($fecha,0,-6);
         $mes = substr($fecha,5,-3);
         $dia = substr($fecha,8);
-
+        $year_pago = $year + 0; //casteo a entreo
         //mes de inicio
         if($dia < 15){
             $mes_inicio = $mes + 0; //casteo a entero
@@ -61,12 +61,12 @@ class CuotaController extends Controller
             $mes_inicio = $mes + 1;
             if($mes_inicio == 13){
                 $mes_inicio = 1;
+                $year_pago++; 
             }      
         }
 
         $year_inicio = $year;
         $mes_pago = $mes_inicio;
-        $year_pago = $year_inicio + 0; //casteo a entreo
 
         //loop cuotas
         for($i = 0; $i < $cuotas; $i++){
