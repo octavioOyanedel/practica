@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12 mx-auto">
-    	@if($existencias != 0)
+    		@if($existencias_prestamos != 0)
         	<div class="">
 				<table id="tabla_prestamos" class="table table-striped table-bordered">
 					<thead>
@@ -25,9 +25,9 @@
 								<td class="valores-td">{{ $prestamo->socio_id}}</td>
 								<td class="valores-td centrar-td">{{ $prestamo->fecha }}</td>
 								<td class="valores-td centrar-td">{{ $prestamo->cheque }}</td>
-								<td class="valores-td centrar-td">{{ $prestamo->monto }}</td>
+								<td class="valores-td centrar-td">{{ '$'.number_format($prestamo->monto, 0, '.', '.') }}</td>
 								<td class="valores-td centrar-td">{{ $prestamo->cuotas }}</td>
-								<td class="valores-td centrar-td">{{ $prestamo->monto * 0.02 }}</td>
+								<td class="valores-td centrar-td">{{ '$'.number_format($prestamo->monto * 0.02, 0, '.', '.') }}</td>
 								<td class="valores-td centrar-td estado-prestamo">{{ $prestamo->estado_id}}</td>
 							</tr>
 						@endforeach
@@ -35,9 +35,9 @@
 				</table>
 			</div>
 		@else
-	    <div class="tamano-texto alert alert-warning alert-dismissible fade show" role="alert">
-	        <strong>No existen registros que mostrar.</strong>
-	    </div>
+		    <div class="tamano-texto alert alert-warning alert-dismissible fade show" role="alert">
+		        <strong>No existen registros que mostrar.</strong>
+		    </div>
     	@endif
     </div>
 </div>

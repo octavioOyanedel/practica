@@ -10,7 +10,7 @@
                     <th class="cabecera">Datos Personales</th>
                     <th></th>
                     @if(Auth::user()->clase_id == 1)
-                        <th class="actualizar"></th>
+                        <th class="actualizar">Editar</th>
                     @endif
                 </tr>
 			</thead>
@@ -100,7 +100,7 @@
                     <th class="cabecera">Datos Laborales</th>
                     <th></th>
                     @if(Auth::user()->clase_id == 1)
-                        <th class="actualizar"></th>
+                        <th class="actualizar">Editar</th>
                     @endif
                 </tr>
 			</thead>
@@ -148,7 +148,7 @@
                     <th class="cabecera">Datos Sindicales</th>
                     <th></th>
                     @if(Auth::user()->clase_id == 1)
-                        <th class="actualizar"></th>
+                        <th class="actualizar">Editar</th>
                     @endif
                 </tr>
 			</thead>

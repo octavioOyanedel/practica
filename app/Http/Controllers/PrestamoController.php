@@ -25,10 +25,10 @@ class PrestamoController extends Controller {
 		$socios = Socio::all();
 		$varones = Socio::where('genero', 'Varón')->count();
 		$damas = Socio::where('genero', 'Dama')->count();
-		$existencias = $socios->count();
 		$prestamos = Prestamo::obtenerTodosLosPrestamos();
+		$existencias_prestamos = $prestamos->count();
 		Sind1::formatearColeccionParaMostrar($prestamos);
-		return view('sind1.prestamos.index', compact('prestamos', 'existencias', 'varones', 'damas'));
+		return view('sind1.prestamos.index', compact('prestamos', 'existencias_prestamos', 'varones', 'damas'));
 	}
 
 	/**

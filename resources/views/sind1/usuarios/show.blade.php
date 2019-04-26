@@ -9,7 +9,7 @@
 				<tr>
                     <th class="cabecera">Datos Usuario</th>
                     <th></th>
-                    <th class="actualizar"></th>
+                    <th class="actualizar">Editar</th>
                 </tr>
 			</thead>
 			<tbody>

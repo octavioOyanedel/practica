@@ -23,7 +23,7 @@
 					<tbody>
 						@foreach($socios as $soc)
 							<tr>
-								<td class="valores-td"><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}}</a></td>
+								<td class="valores-td"><a href="{{ route('socios.show',['id'=>$soc->id]) }}">{{ $soc->nombres}} {{ $soc->apellidos}} {{ $soc->id}}</a></td>
 								<td class="valores-td centrar-td">{{ $soc->rut }}</td>
 								<td class="valores-td centrar-td">{{ $soc->genero }}</td>
 								<td class="valores-td centrar-td">{{ $soc->comuna_id }}</td>

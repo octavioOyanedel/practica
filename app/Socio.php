@@ -18,7 +18,7 @@ class Socio extends Model {
 	}
 
 	static public function obtenerUltimoNumeroSocio() {
-		return Socio::orderBy('created_at', 'desc')->first();
+		return Socio::orderBy('numero_socio', 'desc')->first();
 	}
 
 	static public function obtenerIncorporacionesPorFechas($fechaIni, $fechaFin) {

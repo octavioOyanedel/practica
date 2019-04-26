@@ -2,13 +2,14 @@
     <div class="nav-interno bg-dark navbar-dark">
         <div class="titulo-nav">Sind1</div>
         <div class="info-1">
-            <a href="{{ route('todos') }}" class="badge">V: {{ $varones }}</a>
+            <a href="{{ route('todos') }}" class="badge" title="Cantidad de varones"><span class="icono-nav">@svg('iconos/varon')</span> {{ $varones }}</a>
         </div>
         <div class="info-2">
-            <a href="{{ route('todos') }}" class="badge">D: {{ $damas }}</a>
+            <a href="{{ route('todos') }}" class="badge" title="Cantidad de damas"><span class="icono-nav">@svg('iconos/dama')</span> {{ $damas }}</a>
         </div>
         <div class="info-3">
-            <a href="{{ route('todos') }}" class="badge">T: {{ $varones + $damas }}</a>
+            <a href="{{ route('todos') }}" class="badge" title="Cantidad total de socios">
+                <span class="icono-nav">@svg('iconos/varon')</span><span class="icono-nav">@svg('iconos/dama')</span> {{ $varones + $damas }}</a>
         </div>
         <div class="icono-usuario">
             <span class="icon icono-usuario">@svg('iconos/logueado')</span>

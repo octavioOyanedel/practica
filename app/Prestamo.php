@@ -27,7 +27,7 @@ class Prestamo extends Model
     }
 
     static public function obtenerUltimoNumeroPrestamo(){
-        return Prestamo::orderBy('created_at', 'desc')->first();
+        return Prestamo::orderBy('numero_prestamo', 'desc')->first();
     }
 
     public function socio(){

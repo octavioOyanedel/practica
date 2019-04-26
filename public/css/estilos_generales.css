@@ -245,3 +245,7 @@ ul.menu-lateral{
 .titulo-ul a:hover{
 	color: #6cb2eb;
 }
+
+.icono-nav{
+	margin-right: 5px;
+}
