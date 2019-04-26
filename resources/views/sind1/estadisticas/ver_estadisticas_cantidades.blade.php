@@ -34,7 +34,7 @@
       	backgroundColor: '#f8fafc',
         chart: {
           title: 'Prestamos realizados entre {{ $fecha_ini_grafico }} y el {{ $fecha_fin_grafico }}',
-          subtitle: 'Se han solicitado {{ $existencias_prestamos }} prestamos con un monto total de {{ $suma_montos }}'
+          subtitle: 'Se han solicitado {{ $existencias_prestamos }} prestamos con un monto total de {{ '$'.number_format($suma_montos, 0, '.', '.') }} con un saldo de {{ '$'.number_format($suma_montos * 0.02, 0, '.', '.') }} en interés.'
         },
       };
 
@@ -65,9 +65,9 @@
                 <td class="valores-td">{{ $prestamo->socio_id}}</td>
                 <td class="valores-td centrar-td">{{ $prestamo->fecha }}</td>
                 <td class="valores-td centrar-td">{{ $prestamo->cheque }}</td>
-                <td class="valores-td centrar-td">{{ $prestamo->monto }}</td>
+                <td class="valores-td centrar-td">{{ '$'.number_format($prestamo->monto, 0, '.', '.') }}</td>
                 <td class="valores-td centrar-td">{{ $prestamo->cuotas }}</td>
-                <td class="valores-td centrar-td">{{ $prestamo->monto * 0.02 }}</td>
+                <td class="valores-td centrar-td">{{ '$'.number_format($prestamo->monto * 0.02, 0, '.', '.') }}</td>
                 <td class="valores-td centrar-td estado-prestamo">{{ $prestamo->estado_id}}</td>
               </tr>
             @endforeach
